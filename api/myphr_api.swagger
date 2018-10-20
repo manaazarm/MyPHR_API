@@ -1,0 +1,70 @@
+openapi: '3.0.0'
+info:
+  title: test api
+  version: "0.0.1"
+
+paths:
+  /patients:
+    get:
+      summary: List all patients
+      operationId: listPatients
+      responses:
+        '200':
+          description: array of results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Patient"
+
+components:
+  schemas:
+    GenderType:
+      type: string
+      enum:
+        - female
+        - male
+        - unknown
+        - nonbinary
+    ServiceLanguage:
+      type: string
+      enum:
+        - en
+        - fr
+    Client:
+      description: >
+        This is the base type with common properties 
+        between patients and caregivers
+      type: object
+      properties:
+        client_Id: 
+          type: string
+        name: 
+          type: string
+        gender: 
+          type: GenderType
+        dob:
+          type: string
+          format: date
+        service_language:
+          type: ServiceLanguage
+    Patient:
+      allOf:
+        - $ref: '#/components/schemas/Client'
+        - type: object
+          description: >
+            a person with a health card number 
+            that is the subject of the records
+          properties:
+            primary_physician_Id:
+              type: string
+            dietary_regimen:
+              type: array
+              items: 
+                type: string
+              description: the dietary aversions, restrictions, or preferences
+            advance_directives:
+              type: array
+              items: 
+                type: string
