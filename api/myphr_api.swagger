@@ -32,6 +32,16 @@ components:
       enum:
         - en
         - fr
+    OrganizationType:
+      type: string
+      enum:
+        - hospital
+        - community care provider
+        - physician clinic
+        - pharmacy
+        - laboratory
+        - chiropactice
+        - physiotherapy centre
     Client:
       description: >
         This is the base type with common properties 
@@ -68,3 +78,56 @@ components:
               type: array
               items: 
                 type: string
+    Caregiver:
+      allOf:
+        - $ref: '#/components/schemas/Client'
+        - type: object
+          description: >
+            a healthcare client that helps with a patient's 
+            activities of daily living
+          properties:
+            relationship:
+              type: string
+              description: who the caregiver is to patient
+            is_active:
+              type: boolean
+            is_primary_caregiver:
+              type: boolean
+    HealthcareProvider:
+      description: > 
+        a registered provider with HIC designation
+        offering healthcare services
+      type: object
+      properties:
+        healthcare_provider_Id: 
+          type: string
+        name:
+          type: string
+    HCO:
+      allOf:
+        - $ref: '#/components/schemas/HealthcareProvider'
+        - type: object
+          description: >
+            a business entity that provides healthcare services
+            and has at least one electronic health record system
+          properties:
+            bin:
+              type: string
+              description: the business identification number
+            organization_type:
+              type: OrganizationType
+    Physician:
+      allOf:
+        - $ref: '#/components/schemas/HealthcareProvider'
+        - type: object
+          description: >
+            a physician regardless of their employment arrangement,
+            hired by hospital or hired by their own practice
+          properties:
+            specialty:
+              type: string
+            licence_number:
+              type: string
+            licence_date:
+              type: string
+              format: date 
