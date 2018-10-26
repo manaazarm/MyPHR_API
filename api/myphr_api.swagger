@@ -48,9 +48,11 @@ components:
         between patients and caregivers
       type: object
       properties:
-        client_Id: 
+        client_id: 
           type: string
-        name: 
+        firstname:
+          type: string
+        surname: 
           type: string
         gender: 
           type: GenderType
@@ -67,7 +69,7 @@ components:
             a person with a health card number 
             that is the subject of the records
           properties:
-            primary_physician_Id:
+            primary_physician_id:
               type: string
             dietary_regimen:
               type: array
@@ -99,9 +101,11 @@ components:
         offering healthcare services
       type: object
       properties:
-        healthcare_provider_Id: 
+        healthcare_provider_id: 
           type: string
-        name:
+        firstname:
+          type: string
+        surname:
           type: string
     HCO:
       allOf:
@@ -131,3 +135,59 @@ components:
             licence_date:
               type: string
               format: date 
+    HealthProfile:
+      type: object
+      properties:
+        health_profile_id: 
+          type: string
+        client_id: 
+          type: string
+        firstname: 
+          type: string
+        surname: 
+          type: string
+        start_date: 
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        diagnosing_healthcare_provider_id:
+          type: string
+        is_activity_impediment:
+          type: boolean
+        is_risk_and_safety_issue:
+          type: boolean
+        is_allergy:
+          type: boolean
+        is_health_condition:
+          type: boolean
+    Medication:
+      type: object
+      properties:
+        medication_id:
+          type: string
+        name:
+          type: string
+        icd_code:
+          type: string
+        client_id:
+          type: string
+        prescribing_healthcare_provider_id:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        last_reconciliation_date:
+          type: string
+          format: date
+        condition_prescribed_for_id:
+          type: string
+          
+
+        
+
+
