@@ -42,6 +42,14 @@ components:
         - laboratory
         - chiropactice
         - physiotherapy centre
+    NotificationType:
+      type: string
+      enum:
+        - patient episodes
+        - addresses
+        - phone number
+        - web access
+        - comment added 
     Client:
       description: >
         This is the base type with common properties 
@@ -186,7 +194,146 @@ components:
           format: date
         condition_prescribed_for_id:
           type: string
-          
+    WebUser:
+      type: object
+      properties:
+        user_id:
+          type: string
+        client_id:
+          type: string
+        healthcare_provider_id:
+          type: string
+        status:
+          type: string
+        created_date:
+          type: string
+          format: date
+        type:
+          type: string
+        created_at:
+          type: string
+    Comment:
+      type: object
+      properties:
+        comment_id:
+          type: string
+        user_id:
+          type: string
+        subject_healthcare_provider_id:
+          type: string
+        subject_client_id:
+          type: string
+        comment_date:
+          type: string
+          format: date
+        comment_text:
+          type: string
+    Episode:
+      type: object
+      properties:
+        episode_id:
+          type: string
+        client_id:
+          type: string
+        healthcare_provider_id:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        status:
+          type: string
+        episode_type:
+          type: string
+        physician_id:
+          type: string
+    Address:
+      type: object
+      properties:
+        address_id:
+          type: string
+        client_id:
+          type: string
+        healthcare_provider_id:
+          type: string
+        is_active:
+          type: boolean
+        start_date: 
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        country:
+          type: string
+        city:
+          type: string
+        street_type:
+          type: string
+        street_number:
+          type: string
+        unit_number:
+          type: string
+        postal_code:
+          type: string
+    PhoneNumber:
+      type: object
+      properties:
+        phone_num_id:
+          type: string
+        client_id:
+          type: string
+        healthcare_provider_id:
+          type: string
+        is_active:
+          type: boolean
+        start_date: 
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        country_code:
+          type: string
+        number:
+          type: string
+    AuditTrail:
+      type: object
+      properties:
+        audit_id:
+          type: string
+        user_id:
+          type: string
+        healthcare_provider_id:
+          type: string
+        is_web_access:
+          type: boolean
+        is_api_access:
+          type: boolean
+        access_date:
+          type: string
+          format: date
+    Notification:
+      type: object
+      properties:
+        subscription_id:
+          type: string
+        user_id:
+          type: string
+        healthcare_provider_id:
+          type: string
+        notification_type:
+          type: NotificationType
+        subscription_start_date: 
+          type: string
+          format: date
+        subscription_end_date:
+          type: string
+          format: date
+        
+
 
         
 
