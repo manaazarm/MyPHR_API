@@ -1,9 +1,12 @@
 openapi: '3.0.0'
 info:
-  title: test api
+  title: MyPHR API
+  description: > This API provides means to collect and disseminate data (proposed in MyPHR ontology) from 
+    healthcare clients and providers
   version: "0.0.1"
 
 paths:
+  
   /patients:
     get:
       summary: List all patients
@@ -17,8 +20,30 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Patient"
+  /hco:
+    get:
+      summary: List all HCOs
+      operationId: listHCOs
+      responses:
+        '200':
+          description: array of results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/HCO"
 
 components:
+  securitySchemes:
+    oAuth_scheme:
+      type: oauth2
+      description: This API uses oAuth2
+      flows:
+        implicit:
+          authorizationUrl: https://myphr.ca/oauth2/authorize
+            
+
   schemas:
     GenderType:
       type: string
