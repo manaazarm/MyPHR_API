@@ -1,15 +1,16 @@
 openapi: '3.0.0'
 info:
   title: MyPHR API
-  description: > This API provides means to collect and disseminate data (proposed in MyPHR ontology) from 
+  description: > 
+    This API provides means to collect and disseminate data (proposed in MyPHR ontology) from 
     healthcare clients and providers
   version: "0.0.1"
 
 paths:
   
-  /patients:
+  /client/{client_id}:
     get:
-      summary: List all patients
+      summary: gets a client by ID
       operationId: listPatients
       responses:
         '200':
@@ -33,15 +34,16 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/HCO"
+  
 
 components:
-  securitySchemes:
-    oAuth_scheme:
-      type: oauth2
-      description: This API uses oAuth2
-      flows:
-        implicit:
-          authorizationUrl: https://myphr.ca/oauth2/authorize
+#  securitySchemes:
+#    oAuth_scheme:
+#      type: oauth2
+#      description: This API uses oAuth2
+#      flows:
+#        implicit:
+#          authorizationUrl: https://myphr.ca/oauth2/authorize
             
 
   schemas:
@@ -75,6 +77,17 @@ components:
         - phone number
         - web access
         - comment added 
+    DietaryRegimen:
+      type: object
+      properties:
+        dietary_regimen_id:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
     Client:
       description: >
         This is the base type with common properties 
@@ -95,20 +108,22 @@ components:
         service_language:
           type: ServiceLanguage
     Patient:
+      description: >
+        a person with a health card number 
+        that is the subject of the records
       allOf:
         - $ref: '#/components/schemas/Client'
         - type: object
-          description: >
-            a person with a health card number 
-            that is the subject of the records
           properties:
-            primary_physician_id:
+            health_card_number:
+              type: string
+            active_primary_physician_id:
               type: string
             dietary_regimen:
+              description: the dietary aversions, restrictions, or preferences
               type: array
               items: 
-                type: string
-              description: the dietary aversions, restrictions, or preferences
+                $ref: '#/components/schemas/DietaryRegimen'
             advance_directives:
               type: array
               items: 
