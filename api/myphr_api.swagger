@@ -48,7 +48,7 @@ paths:
   
   /addresses/{client_id}:
     get:
-      summary: gets the addresses for a client
+      summary: gets the active addresses for a client
       operationId: getaddressesforaclient
       responses: 
         '200': 
@@ -59,9 +59,21 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Address"
+    patch:
+      summary: add/modify addresses
+      operationId: editaddressesforaclient
+      parameters:
+        - name: addressobj
+          in: body
+          required: false
+          schema:
+            $ref: "#/components/schemas/Address"
+      responses:
+        '201':
+          description: addresses modified
   /phonenumbers/{client_id}:
     get:
-      summary: gets the phonenumbers for a client
+      summary: gets the active phonenumbers for a client
       operationId: getphonenumbersforaclient
       responses: 
         '200': 
@@ -72,7 +84,18 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/PhoneNumber"
-  
+    patch:
+      summary: add/modify phonenumbers
+      operationId: editphonenumbersforaclient
+      parameters:
+        - name: phonenumbersobj
+          in: body
+          required: false
+          schema:
+            $ref: "#/components/schemas/PhoneNumber"
+      responses:
+        '201':
+          description: phonenumbers modified
     
   /caregivers/{client_id}:
     get:
@@ -165,6 +188,18 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Episode"
+    patch:
+      summary: add an episode
+      operationId: addepisodeforaclient
+      parameters:
+        - name: episodeobj
+          in: body
+          required: false
+          schema:
+            $ref: "#/components/schemas/Episode"
+      responses:
+        '201':
+          description: episode added
   
 
 components:
