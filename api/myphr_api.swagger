@@ -8,19 +8,83 @@ info:
 
 paths:
   
-  /client/{client_id}:
+  /patients:
+    post:
+      summary: creates a new patient object 
+      operationId: createpatient
+      parameters:
+        - name: patientobj
+          in: body
+          required: true
+          schema: 
+            $ref: "#/components/schemas/Patient"
+      responses:
+        '201':
+          description: created
+
+  /patients/{client_id}:
     get:
-      summary: gets a client by ID
-      operationId: listPatients
+      summary: gets a patient by ID
+      operationId: getpatientinfo
       responses:
         '200':
-          description: array of results
+          description: one patient object
           content:
             application/json:
               schema:
+                $ref: "#/components/schemas/Patient"
+    patch:
+      summary: add/modify patient info
+      operationId: editpatientinfo
+      parameters:
+        - name: patientobj
+          in: body
+          required: false
+          schema:
+            $ref: "#/components/schemas/Patient"
+      responses:
+        '201':
+          description: patient info modified
+  
+  /addresses/{client_id}:
+    get:
+      summary: gets the addresses for a client
+      operationId: getaddressesforaclient
+      responses: 
+        '200': 
+          description: getting the listed addresses for a patient
+          content:
+            application/json: 
+              schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Patient"
+                  $ref: "#/components/schemas/Address"
+  /phonenumbers/{client_id}:
+    get:
+      summary: gets the phonenumbers for a client
+      operationId: getphonenumbersforaclient
+      responses: 
+        '200': 
+          description: getting the listed phonenumbers for a patient
+          content:
+            application/json: 
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PhoneNumber"
+  
+    
+  /caregivers/{client_id}:
+    get:
+      summary: gets a caregiver by ID
+      operationId: getcaregiverinfo
+      responses:
+        '200':
+          description: one care giver object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Caregiver"
   /hco:
     get:
       summary: List all HCOs
@@ -34,6 +98,73 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/HCO"
+  
+  /comments: 
+    post:
+      summary: creates a new comment 
+      operationId: postcomment
+      parameters:
+        - name: commentobj
+          in: body
+          required: true
+          schema: 
+            $ref: "#/components/schemas/Comment"
+      responses:
+        '201':
+          description: comment posted
+  /comments/{subject_healthcare_provider_id}:
+    get:
+      sunmary: gets the comments for a healthcare provider by ID
+      operationId: getcommentforhco
+      responses:
+        '200':
+          description: comments for this HCO
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Comment"
+
+  /medications/{client_id}:
+    get:
+      summary: gets the medications for a client
+      operationId: getmedicationsforaclient
+      responses: 
+        '200': 
+          description: getting the listed medications for a patient
+          content:
+            application/json: 
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Medication"
+  /healthprofiles/{client_id}:
+    get:
+      summary: gets the health profiles for a client
+      operationId: gethealthprofilesforaclient
+      responses: 
+        '200': 
+          description: getting the listed Health Profiles for a patient
+          content:
+            application/json: 
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/HealthProfile"
+  /episodes/{client_id}:
+    get:
+      summary: gets the episodes for a client
+      operationId: getepisodesforaclient
+      responses: 
+        '200': 
+          description: getting the listed episodes for a patient
+          content:
+            application/json: 
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Episode"
   
 
 components:
