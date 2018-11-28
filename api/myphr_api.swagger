@@ -12,12 +12,12 @@ paths:
     post:
       summary: creates a new patient object 
       operationId: createpatient
-      parameters:
-        - name: patientobj
-          in: body
+      requestBody:
           required: true
-          schema: 
-            $ref: "#/components/schemas/Patient"
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Patient"
       responses:
         '201':
           description: created
@@ -36,12 +36,12 @@ paths:
     patch:
       summary: add/modify patient info
       operationId: editpatientinfo
-      parameters:
-        - name: patientobj
-          in: body
+      requestBody:
           required: false
-          schema:
-            $ref: "#/components/schemas/Patient"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Patient"
       responses:
         '201':
           description: patient info modified
@@ -62,12 +62,12 @@ paths:
     patch:
       summary: add/modify addresses
       operationId: editaddressesforaclient
-      parameters:
-        - name: addressobj
-          in: body
-          required: false
-          schema:
-            $ref: "#/components/schemas/Address"
+      requestBody:
+          required: true
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Address"
       responses:
         '201':
           description: addresses modified
@@ -87,12 +87,12 @@ paths:
     patch:
       summary: add/modify phonenumbers
       operationId: editphonenumbersforaclient
-      parameters:
-        - name: phonenumbersobj
-          in: body
+      requestBody:
           required: false
-          schema:
-            $ref: "#/components/schemas/PhoneNumber"
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhoneNumber"
       responses:
         '201':
           description: phonenumbers modified
@@ -126,12 +126,12 @@ paths:
     post:
       summary: creates a new comment 
       operationId: postcomment
-      parameters:
-        - name: commentobj
-          in: body
+      requestBody:
           required: true
-          schema: 
-            $ref: "#/components/schemas/Comment"
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Comment"
       responses:
         '201':
           description: comment posted
