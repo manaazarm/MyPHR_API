@@ -137,7 +137,7 @@ paths:
           description: comment posted
   /comments/{subject_healthcare_provider_id}:
     get:
-      sunmary: gets the comments for a healthcare provider by ID
+      summary: gets the comments for a healthcare provider by ID
       operationId: getcommentforhco
       responses:
         '200':
@@ -191,12 +191,12 @@ paths:
     patch:
       summary: add an episode
       operationId: addepisodeforaclient
-      parameters:
-        - name: episodeobj
-          in: body
+      requestBody:
           required: false
-          schema:
-            $ref: "#/components/schemas/Episode"
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Episode"
       responses:
         '201':
           description: episode added
