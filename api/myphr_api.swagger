@@ -310,6 +310,14 @@ components:
           format: date
         service_language:
           type: ServiceLanguage
+        profile_start_date:
+          description: a new client profile may start when they change names or gender
+          type: string
+          format: date
+        profile_end_date:
+          description: a client profile may end when they change names or gender
+          type: string
+          format: date
     Patient:
       description: >
         a person with a health card number 
