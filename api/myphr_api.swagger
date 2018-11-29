@@ -59,7 +59,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Address"
-    patch:
+    post:
       summary: add/modify addresses
       operationId: editaddressesforaclient
       requestBody:
@@ -84,7 +84,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/PhoneNumber"
-    patch:
+    post:
       summary: add/modify phonenumbers
       operationId: editphonenumbersforaclient
       requestBody:
@@ -97,6 +97,19 @@ paths:
         '201':
           description: phonenumbers modified
     
+  /caregivers:
+    post:
+      summary: creates a new caregiver object 
+      operationId: createcaregiver
+      requestBody:
+          required: true
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Caregiver"
+      responses:
+        '201':
+          description: created
   /caregivers/{client_id}:
     get:
       summary: gets a caregiver by ID
@@ -162,6 +175,18 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Medication"
+    post:
+      summary: creates a new medication 
+      operationId: postmedication
+      requestBody:
+          required: true
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Medication"
+      responses:
+        '201':
+          description: medication posted
   /healthprofiles/{client_id}:
     get:
       summary: gets the health profiles for a client
@@ -175,6 +200,18 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/HealthProfile"
+    post:
+      summary: creates a new healthprofile 
+      operationId: posthealthprofile
+      requestBody:
+          required: true
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthProfile"
+      responses:
+        '201':
+          description: health profile posted
   /episodes/{client_id}:
     get:
       summary: gets the episodes for a client
@@ -188,7 +225,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Episode"
-    patch:
+    post:
       summary: add an episode
       operationId: addepisodeforaclient
       requestBody:
@@ -459,6 +496,9 @@ components:
       type: object
       properties:
         address_id:
+          type: string
+        address_type:
+          description: e.g. mailing, home, temporary etc.
           type: string
         client_id:
           type: string
