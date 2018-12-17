@@ -6,8 +6,6 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from openapi_server.models.base_model_ import Model
-from openapi_server.models.gender_type import GenderType  # noqa: F401,E501
-from openapi_server.models.service_language import ServiceLanguage  # noqa: F401,E501
 from openapi_server import util
 
 
@@ -17,7 +15,7 @@ class Client(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, client_id: str=None, firstname: str=None, surname: str=None, gender: GenderType=None, dob: date=None, service_language: ServiceLanguage=None, profile_start_date: date=None, profile_end_date: date=None):  # noqa: E501
+    def __init__(self, client_id=None, firstname=None, surname=None, gender=None, dob=None, service_language=None, profile_start_date=None, profile_end_date=None):  # noqa: E501
         """Client - a model defined in OpenAPI
 
         :param client_id: The client_id of this Client.  # noqa: E501
@@ -80,7 +78,7 @@ class Client(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def client_id(self) -> str:
+    def client_id(self):
         """Gets the client_id of this Client.
 
 
@@ -90,7 +88,7 @@ class Client(Model):
         return self._client_id
 
     @client_id.setter
-    def client_id(self, client_id: str):
+    def client_id(self, client_id):
         """Sets the client_id of this Client.
 
 
@@ -101,7 +99,7 @@ class Client(Model):
         self._client_id = client_id
 
     @property
-    def firstname(self) -> str:
+    def firstname(self):
         """Gets the firstname of this Client.
 
 
@@ -111,7 +109,7 @@ class Client(Model):
         return self._firstname
 
     @firstname.setter
-    def firstname(self, firstname: str):
+    def firstname(self, firstname):
         """Sets the firstname of this Client.
 
 
@@ -122,7 +120,7 @@ class Client(Model):
         self._firstname = firstname
 
     @property
-    def surname(self) -> str:
+    def surname(self):
         """Gets the surname of this Client.
 
 
@@ -132,7 +130,7 @@ class Client(Model):
         return self._surname
 
     @surname.setter
-    def surname(self, surname: str):
+    def surname(self, surname):
         """Sets the surname of this Client.
 
 
@@ -143,7 +141,7 @@ class Client(Model):
         self._surname = surname
 
     @property
-    def gender(self) -> GenderType:
+    def gender(self):
         """Gets the gender of this Client.
 
 
@@ -153,7 +151,7 @@ class Client(Model):
         return self._gender
 
     @gender.setter
-    def gender(self, gender: GenderType):
+    def gender(self, gender):
         """Sets the gender of this Client.
 
 
@@ -164,7 +162,7 @@ class Client(Model):
         self._gender = gender
 
     @property
-    def dob(self) -> date:
+    def dob(self):
         """Gets the dob of this Client.
 
 
@@ -174,7 +172,7 @@ class Client(Model):
         return self._dob
 
     @dob.setter
-    def dob(self, dob: date):
+    def dob(self, dob):
         """Sets the dob of this Client.
 
 
@@ -185,7 +183,7 @@ class Client(Model):
         self._dob = dob
 
     @property
-    def service_language(self) -> ServiceLanguage:
+    def service_language(self):
         """Gets the service_language of this Client.
 
 
@@ -195,7 +193,7 @@ class Client(Model):
         return self._service_language
 
     @service_language.setter
-    def service_language(self, service_language: ServiceLanguage):
+    def service_language(self, service_language):
         """Sets the service_language of this Client.
 
 
@@ -206,7 +204,7 @@ class Client(Model):
         self._service_language = service_language
 
     @property
-    def profile_start_date(self) -> date:
+    def profile_start_date(self):
         """Gets the profile_start_date of this Client.
 
         a new client profile may start when they change names or gender  # noqa: E501
@@ -217,7 +215,7 @@ class Client(Model):
         return self._profile_start_date
 
     @profile_start_date.setter
-    def profile_start_date(self, profile_start_date: date):
+    def profile_start_date(self, profile_start_date):
         """Sets the profile_start_date of this Client.
 
         a new client profile may start when they change names or gender  # noqa: E501
@@ -229,7 +227,7 @@ class Client(Model):
         self._profile_start_date = profile_start_date
 
     @property
-    def profile_end_date(self) -> date:
+    def profile_end_date(self):
         """Gets the profile_end_date of this Client.
 
         a client profile may end when they change names or gender  # noqa: E501
@@ -240,7 +238,7 @@ class Client(Model):
         return self._profile_end_date
 
     @profile_end_date.setter
-    def profile_end_date(self, profile_end_date: date):
+    def profile_end_date(self, profile_end_date):
         """Sets the profile_end_date of this Client.
 
         a client profile may end when they change names or gender  # noqa: E501

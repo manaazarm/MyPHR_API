@@ -15,7 +15,7 @@ class Medication(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, medication_id: str=None, name: str=None, icd_code: str=None, client_id: str=None, prescribing_healthcare_provider_id: str=None, start_date: date=None, end_date: date=None, last_reconciliation_date: date=None, condition_prescribed_for_id: str=None):  # noqa: E501
+    def __init__(self, medication_id=None, name=None, icd_code=None, client_id=None, prescribing_healthcare_provider_id=None, start_date=None, end_date=None, last_reconciliation_date=None, condition_prescribed_for_id=None):  # noqa: E501
         """Medication - a model defined in OpenAPI
 
         :param medication_id: The medication_id of this Medication.  # noqa: E501
@@ -83,7 +83,7 @@ class Medication(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def medication_id(self) -> str:
+    def medication_id(self):
         """Gets the medication_id of this Medication.
 
 
@@ -93,7 +93,7 @@ class Medication(Model):
         return self._medication_id
 
     @medication_id.setter
-    def medication_id(self, medication_id: str):
+    def medication_id(self, medication_id):
         """Sets the medication_id of this Medication.
 
 
@@ -104,7 +104,7 @@ class Medication(Model):
         self._medication_id = medication_id
 
     @property
-    def name(self) -> str:
+    def name(self):
         """Gets the name of this Medication.
 
 
@@ -114,7 +114,7 @@ class Medication(Model):
         return self._name
 
     @name.setter
-    def name(self, name: str):
+    def name(self, name):
         """Sets the name of this Medication.
 
 
@@ -125,7 +125,7 @@ class Medication(Model):
         self._name = name
 
     @property
-    def icd_code(self) -> str:
+    def icd_code(self):
         """Gets the icd_code of this Medication.
 
 
@@ -135,7 +135,7 @@ class Medication(Model):
         return self._icd_code
 
     @icd_code.setter
-    def icd_code(self, icd_code: str):
+    def icd_code(self, icd_code):
         """Sets the icd_code of this Medication.
 
 
@@ -146,7 +146,7 @@ class Medication(Model):
         self._icd_code = icd_code
 
     @property
-    def client_id(self) -> str:
+    def client_id(self):
         """Gets the client_id of this Medication.
 
 
@@ -156,7 +156,7 @@ class Medication(Model):
         return self._client_id
 
     @client_id.setter
-    def client_id(self, client_id: str):
+    def client_id(self, client_id):
         """Sets the client_id of this Medication.
 
 
@@ -167,7 +167,7 @@ class Medication(Model):
         self._client_id = client_id
 
     @property
-    def prescribing_healthcare_provider_id(self) -> str:
+    def prescribing_healthcare_provider_id(self):
         """Gets the prescribing_healthcare_provider_id of this Medication.
 
 
@@ -177,7 +177,7 @@ class Medication(Model):
         return self._prescribing_healthcare_provider_id
 
     @prescribing_healthcare_provider_id.setter
-    def prescribing_healthcare_provider_id(self, prescribing_healthcare_provider_id: str):
+    def prescribing_healthcare_provider_id(self, prescribing_healthcare_provider_id):
         """Sets the prescribing_healthcare_provider_id of this Medication.
 
 
@@ -188,7 +188,7 @@ class Medication(Model):
         self._prescribing_healthcare_provider_id = prescribing_healthcare_provider_id
 
     @property
-    def start_date(self) -> date:
+    def start_date(self):
         """Gets the start_date of this Medication.
 
 
@@ -198,7 +198,7 @@ class Medication(Model):
         return self._start_date
 
     @start_date.setter
-    def start_date(self, start_date: date):
+    def start_date(self, start_date):
         """Sets the start_date of this Medication.
 
 
@@ -209,7 +209,7 @@ class Medication(Model):
         self._start_date = start_date
 
     @property
-    def end_date(self) -> date:
+    def end_date(self):
         """Gets the end_date of this Medication.
 
 
@@ -219,7 +219,7 @@ class Medication(Model):
         return self._end_date
 
     @end_date.setter
-    def end_date(self, end_date: date):
+    def end_date(self, end_date):
         """Sets the end_date of this Medication.
 
 
@@ -230,7 +230,7 @@ class Medication(Model):
         self._end_date = end_date
 
     @property
-    def last_reconciliation_date(self) -> date:
+    def last_reconciliation_date(self):
         """Gets the last_reconciliation_date of this Medication.
 
 
@@ -240,7 +240,7 @@ class Medication(Model):
         return self._last_reconciliation_date
 
     @last_reconciliation_date.setter
-    def last_reconciliation_date(self, last_reconciliation_date: date):
+    def last_reconciliation_date(self, last_reconciliation_date):
         """Sets the last_reconciliation_date of this Medication.
 
 
@@ -251,7 +251,7 @@ class Medication(Model):
         self._last_reconciliation_date = last_reconciliation_date
 
     @property
-    def condition_prescribed_for_id(self) -> str:
+    def condition_prescribed_for_id(self):
         """Gets the condition_prescribed_for_id of this Medication.
 
 
@@ -261,7 +261,7 @@ class Medication(Model):
         return self._condition_prescribed_for_id
 
     @condition_prescribed_for_id.setter
-    def condition_prescribed_for_id(self, condition_prescribed_for_id: str):
+    def condition_prescribed_for_id(self, condition_prescribed_for_id):
         """Sets the condition_prescribed_for_id of this Medication.
 
 

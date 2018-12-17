@@ -15,7 +15,7 @@ class AuditTrail(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, audit_id: str=None, user_id: str=None, healthcare_provider_id: str=None, is_web_access: bool=None, is_api_access: bool=None, access_date: date=None):  # noqa: E501
+    def __init__(self, audit_id=None, user_id=None, healthcare_provider_id=None, is_web_access=None, is_api_access=None, access_date=None):  # noqa: E501
         """AuditTrail - a model defined in OpenAPI
 
         :param audit_id: The audit_id of this AuditTrail.  # noqa: E501
@@ -68,7 +68,7 @@ class AuditTrail(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def audit_id(self) -> str:
+    def audit_id(self):
         """Gets the audit_id of this AuditTrail.
 
 
@@ -78,7 +78,7 @@ class AuditTrail(Model):
         return self._audit_id
 
     @audit_id.setter
-    def audit_id(self, audit_id: str):
+    def audit_id(self, audit_id):
         """Sets the audit_id of this AuditTrail.
 
 
@@ -89,7 +89,7 @@ class AuditTrail(Model):
         self._audit_id = audit_id
 
     @property
-    def user_id(self) -> str:
+    def user_id(self):
         """Gets the user_id of this AuditTrail.
 
 
@@ -99,7 +99,7 @@ class AuditTrail(Model):
         return self._user_id
 
     @user_id.setter
-    def user_id(self, user_id: str):
+    def user_id(self, user_id):
         """Sets the user_id of this AuditTrail.
 
 
@@ -110,7 +110,7 @@ class AuditTrail(Model):
         self._user_id = user_id
 
     @property
-    def healthcare_provider_id(self) -> str:
+    def healthcare_provider_id(self):
         """Gets the healthcare_provider_id of this AuditTrail.
 
 
@@ -120,7 +120,7 @@ class AuditTrail(Model):
         return self._healthcare_provider_id
 
     @healthcare_provider_id.setter
-    def healthcare_provider_id(self, healthcare_provider_id: str):
+    def healthcare_provider_id(self, healthcare_provider_id):
         """Sets the healthcare_provider_id of this AuditTrail.
 
 
@@ -131,7 +131,7 @@ class AuditTrail(Model):
         self._healthcare_provider_id = healthcare_provider_id
 
     @property
-    def is_web_access(self) -> bool:
+    def is_web_access(self):
         """Gets the is_web_access of this AuditTrail.
 
 
@@ -141,7 +141,7 @@ class AuditTrail(Model):
         return self._is_web_access
 
     @is_web_access.setter
-    def is_web_access(self, is_web_access: bool):
+    def is_web_access(self, is_web_access):
         """Sets the is_web_access of this AuditTrail.
 
 
@@ -152,7 +152,7 @@ class AuditTrail(Model):
         self._is_web_access = is_web_access
 
     @property
-    def is_api_access(self) -> bool:
+    def is_api_access(self):
         """Gets the is_api_access of this AuditTrail.
 
 
@@ -162,7 +162,7 @@ class AuditTrail(Model):
         return self._is_api_access
 
     @is_api_access.setter
-    def is_api_access(self, is_api_access: bool):
+    def is_api_access(self, is_api_access):
         """Sets the is_api_access of this AuditTrail.
 
 
@@ -173,7 +173,7 @@ class AuditTrail(Model):
         self._is_api_access = is_api_access
 
     @property
-    def access_date(self) -> date:
+    def access_date(self):
         """Gets the access_date of this AuditTrail.
 
 
@@ -183,7 +183,7 @@ class AuditTrail(Model):
         return self._access_date
 
     @access_date.setter
-    def access_date(self, access_date: date):
+    def access_date(self, access_date):
         """Sets the access_date of this AuditTrail.
 
 

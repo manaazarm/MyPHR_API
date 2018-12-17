@@ -6,7 +6,6 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from openapi_server.models.base_model_ import Model
-from openapi_server.models.notification_type import NotificationType  # noqa: F401,E501
 from openapi_server import util
 
 
@@ -16,7 +15,7 @@ class Notification(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, subscription_id: str=None, user_id: str=None, healthcare_provider_id: str=None, notification_type: NotificationType=None, subscription_start_date: date=None, subscription_end_date: date=None):  # noqa: E501
+    def __init__(self, subscription_id=None, user_id=None, healthcare_provider_id=None, notification_type=None, subscription_start_date=None, subscription_end_date=None):  # noqa: E501
         """Notification - a model defined in OpenAPI
 
         :param subscription_id: The subscription_id of this Notification.  # noqa: E501
@@ -69,7 +68,7 @@ class Notification(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def subscription_id(self) -> str:
+    def subscription_id(self):
         """Gets the subscription_id of this Notification.
 
 
@@ -79,7 +78,7 @@ class Notification(Model):
         return self._subscription_id
 
     @subscription_id.setter
-    def subscription_id(self, subscription_id: str):
+    def subscription_id(self, subscription_id):
         """Sets the subscription_id of this Notification.
 
 
@@ -90,7 +89,7 @@ class Notification(Model):
         self._subscription_id = subscription_id
 
     @property
-    def user_id(self) -> str:
+    def user_id(self):
         """Gets the user_id of this Notification.
 
 
@@ -100,7 +99,7 @@ class Notification(Model):
         return self._user_id
 
     @user_id.setter
-    def user_id(self, user_id: str):
+    def user_id(self, user_id):
         """Sets the user_id of this Notification.
 
 
@@ -111,7 +110,7 @@ class Notification(Model):
         self._user_id = user_id
 
     @property
-    def healthcare_provider_id(self) -> str:
+    def healthcare_provider_id(self):
         """Gets the healthcare_provider_id of this Notification.
 
 
@@ -121,7 +120,7 @@ class Notification(Model):
         return self._healthcare_provider_id
 
     @healthcare_provider_id.setter
-    def healthcare_provider_id(self, healthcare_provider_id: str):
+    def healthcare_provider_id(self, healthcare_provider_id):
         """Sets the healthcare_provider_id of this Notification.
 
 
@@ -132,7 +131,7 @@ class Notification(Model):
         self._healthcare_provider_id = healthcare_provider_id
 
     @property
-    def notification_type(self) -> NotificationType:
+    def notification_type(self):
         """Gets the notification_type of this Notification.
 
 
@@ -142,7 +141,7 @@ class Notification(Model):
         return self._notification_type
 
     @notification_type.setter
-    def notification_type(self, notification_type: NotificationType):
+    def notification_type(self, notification_type):
         """Sets the notification_type of this Notification.
 
 
@@ -153,7 +152,7 @@ class Notification(Model):
         self._notification_type = notification_type
 
     @property
-    def subscription_start_date(self) -> date:
+    def subscription_start_date(self):
         """Gets the subscription_start_date of this Notification.
 
 
@@ -163,7 +162,7 @@ class Notification(Model):
         return self._subscription_start_date
 
     @subscription_start_date.setter
-    def subscription_start_date(self, subscription_start_date: date):
+    def subscription_start_date(self, subscription_start_date):
         """Sets the subscription_start_date of this Notification.
 
 
@@ -174,7 +173,7 @@ class Notification(Model):
         self._subscription_start_date = subscription_start_date
 
     @property
-    def subscription_end_date(self) -> date:
+    def subscription_end_date(self):
         """Gets the subscription_end_date of this Notification.
 
 
@@ -184,7 +183,7 @@ class Notification(Model):
         return self._subscription_end_date
 
     @subscription_end_date.setter
-    def subscription_end_date(self, subscription_end_date: date):
+    def subscription_end_date(self, subscription_end_date):
         """Sets the subscription_end_date of this Notification.
 
 

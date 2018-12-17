@@ -15,7 +15,7 @@ class Episode(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, episode_id: str=None, client_id: str=None, healthcare_provider_id: str=None, start_date: date=None, end_date: date=None, status: str=None, episode_type: str=None, physician_id: str=None):  # noqa: E501
+    def __init__(self, episode_id=None, client_id=None, healthcare_provider_id=None, start_date=None, end_date=None, status=None, episode_type=None, physician_id=None):  # noqa: E501
         """Episode - a model defined in OpenAPI
 
         :param episode_id: The episode_id of this Episode.  # noqa: E501
@@ -78,7 +78,7 @@ class Episode(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def episode_id(self) -> str:
+    def episode_id(self):
         """Gets the episode_id of this Episode.
 
 
@@ -88,7 +88,7 @@ class Episode(Model):
         return self._episode_id
 
     @episode_id.setter
-    def episode_id(self, episode_id: str):
+    def episode_id(self, episode_id):
         """Sets the episode_id of this Episode.
 
 
@@ -99,7 +99,7 @@ class Episode(Model):
         self._episode_id = episode_id
 
     @property
-    def client_id(self) -> str:
+    def client_id(self):
         """Gets the client_id of this Episode.
 
 
@@ -109,7 +109,7 @@ class Episode(Model):
         return self._client_id
 
     @client_id.setter
-    def client_id(self, client_id: str):
+    def client_id(self, client_id):
         """Sets the client_id of this Episode.
 
 
@@ -120,7 +120,7 @@ class Episode(Model):
         self._client_id = client_id
 
     @property
-    def healthcare_provider_id(self) -> str:
+    def healthcare_provider_id(self):
         """Gets the healthcare_provider_id of this Episode.
 
 
@@ -130,7 +130,7 @@ class Episode(Model):
         return self._healthcare_provider_id
 
     @healthcare_provider_id.setter
-    def healthcare_provider_id(self, healthcare_provider_id: str):
+    def healthcare_provider_id(self, healthcare_provider_id):
         """Sets the healthcare_provider_id of this Episode.
 
 
@@ -141,7 +141,7 @@ class Episode(Model):
         self._healthcare_provider_id = healthcare_provider_id
 
     @property
-    def start_date(self) -> date:
+    def start_date(self):
         """Gets the start_date of this Episode.
 
 
@@ -151,7 +151,7 @@ class Episode(Model):
         return self._start_date
 
     @start_date.setter
-    def start_date(self, start_date: date):
+    def start_date(self, start_date):
         """Sets the start_date of this Episode.
 
 
@@ -162,7 +162,7 @@ class Episode(Model):
         self._start_date = start_date
 
     @property
-    def end_date(self) -> date:
+    def end_date(self):
         """Gets the end_date of this Episode.
 
 
@@ -172,7 +172,7 @@ class Episode(Model):
         return self._end_date
 
     @end_date.setter
-    def end_date(self, end_date: date):
+    def end_date(self, end_date):
         """Sets the end_date of this Episode.
 
 
@@ -183,7 +183,7 @@ class Episode(Model):
         self._end_date = end_date
 
     @property
-    def status(self) -> str:
+    def status(self):
         """Gets the status of this Episode.
 
 
@@ -193,7 +193,7 @@ class Episode(Model):
         return self._status
 
     @status.setter
-    def status(self, status: str):
+    def status(self, status):
         """Sets the status of this Episode.
 
 
@@ -204,7 +204,7 @@ class Episode(Model):
         self._status = status
 
     @property
-    def episode_type(self) -> str:
+    def episode_type(self):
         """Gets the episode_type of this Episode.
 
 
@@ -214,7 +214,7 @@ class Episode(Model):
         return self._episode_type
 
     @episode_type.setter
-    def episode_type(self, episode_type: str):
+    def episode_type(self, episode_type):
         """Sets the episode_type of this Episode.
 
 
@@ -225,7 +225,7 @@ class Episode(Model):
         self._episode_type = episode_type
 
     @property
-    def physician_id(self) -> str:
+    def physician_id(self):
         """Gets the physician_id of this Episode.
 
 
@@ -235,7 +235,7 @@ class Episode(Model):
         return self._physician_id
 
     @physician_id.setter
-    def physician_id(self, physician_id: str):
+    def physician_id(self, physician_id):
         """Sets the physician_id of this Episode.
 
 

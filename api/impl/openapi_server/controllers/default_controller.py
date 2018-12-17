@@ -13,11 +13,13 @@ from openapi_server.models.phone_number import PhoneNumber  # noqa: E501
 from openapi_server import util
 
 
-def addepisodeforaclient(episode=None):  # noqa: E501
+def addepisodeforaclient(client_id, episode=None):  # noqa: E501
     """add an episode
 
      # noqa: E501
 
+    :param client_id: 
+    :type client_id: str
     :param episode: 
     :type episode: dict | bytes
 
@@ -58,11 +60,13 @@ def createpatient(patient):  # noqa: E501
     return 'do some magic!'
 
 
-def editaddressesforaclient(address):  # noqa: E501
+def editaddressesforaclient(client_id, address):  # noqa: E501
     """add/modify addresses
 
      # noqa: E501
 
+    :param client_id: 
+    :type client_id: str
     :param address: 
     :type address: dict | bytes
 
@@ -73,11 +77,13 @@ def editaddressesforaclient(address):  # noqa: E501
     return 'do some magic!'
 
 
-def editpatientinfo(patient=None):  # noqa: E501
+def editpatientinfo(client_id, patient=None):  # noqa: E501
     """add/modify patient info
 
      # noqa: E501
 
+    :param client_id: 
+    :type client_id: str
     :param patient: 
     :type patient: dict | bytes
 
@@ -88,11 +94,13 @@ def editpatientinfo(patient=None):  # noqa: E501
     return 'do some magic!'
 
 
-def editphonenumbersforaclient(phone_number=None):  # noqa: E501
+def editphonenumbersforaclient(client_id, phone_number=None):  # noqa: E501
     """add/modify phonenumbers
 
      # noqa: E501
 
+    :param client_id: 
+    :type client_id: str
     :param phone_number: 
     :type phone_number: dict | bytes
 
@@ -103,88 +111,104 @@ def editphonenumbersforaclient(phone_number=None):  # noqa: E501
     return 'do some magic!'
 
 
-def getaddressesforaclient():  # noqa: E501
+def getaddressesforaclient(client_id):  # noqa: E501
     """gets the active addresses for a client
 
      # noqa: E501
 
+    :param client_id: 
+    :type client_id: str
 
     :rtype: List[Address]
     """
     return 'do some magic!'
 
 
-def getcaregiverinfo():  # noqa: E501
+def getcaregiverinfo(client_id):  # noqa: E501
     """gets a caregiver by ID
 
      # noqa: E501
 
+    :param client_id: 
+    :type client_id: str
 
     :rtype: Caregiver
     """
     return 'do some magic!'
 
 
-def getcommentforhco():  # noqa: E501
+def getcommentforhco(subject_healthcare_provider_id):  # noqa: E501
     """gets the comments for a healthcare provider by ID
 
      # noqa: E501
 
+    :param subject_healthcare_provider_id: 
+    :type subject_healthcare_provider_id: str
 
     :rtype: List[Comment]
     """
     return 'do some magic!'
 
 
-def getepisodesforaclient():  # noqa: E501
+def getepisodesforaclient(client_id):  # noqa: E501
     """gets the episodes for a client
 
      # noqa: E501
 
+    :param client_id: 
+    :type client_id: str
 
     :rtype: List[Episode]
     """
     return 'do some magic!'
 
 
-def gethealthprofilesforaclient():  # noqa: E501
+def gethealthprofilesforaclient(client_id):  # noqa: E501
     """gets the health profiles for a client
 
      # noqa: E501
 
+    :param client_id: 
+    :type client_id: str
 
     :rtype: List[HealthProfile]
     """
     return 'do some magic!'
 
 
-def getmedicationsforaclient():  # noqa: E501
+def getmedicationsforaclient(client_id):  # noqa: E501
     """gets the medications for a client
 
      # noqa: E501
 
+    :param client_id: 
+    :type client_id: str
 
     :rtype: List[Medication]
     """
     return 'do some magic!'
 
 
-def getpatientinfo():  # noqa: E501
+def getpatientinfo(client_id):  # noqa: E501
     """gets a patient by ID
 
      # noqa: E501
 
+    :param client_id: 
+    :type client_id: str
 
     :rtype: Patient
     """
     return 'do some magic!'
 
 
-def getphonenumbersforaclient():  # noqa: E501
+def getphonenumbersforaclient(client_id):  # noqa: E501
     """gets the active phonenumbers for a client
 
      # noqa: E501
 
+    :param client_id: 
+    :type client_id: str
 
     :rtype: List[PhoneNumber]
     """
@@ -217,11 +241,13 @@ def postcomment(comment):  # noqa: E501
     return 'do some magic!'
 
 
-def posthealthprofile(health_profile):  # noqa: E501
+def posthealthprofile(client_id, health_profile):  # noqa: E501
     """creates a new healthprofile
 
      # noqa: E501
 
+    :param client_id: 
+    :type client_id: str
     :param health_profile: 
     :type health_profile: dict | bytes
 
@@ -232,11 +258,13 @@ def posthealthprofile(health_profile):  # noqa: E501
     return 'do some magic!'
 
 
-def postmedication(medication):  # noqa: E501
+def postmedication(client_id, medication):  # noqa: E501
     """creates a new medication
 
      # noqa: E501
 
+    :param client_id: 
+    :type client_id: str
     :param medication: 
     :type medication: dict | bytes
 

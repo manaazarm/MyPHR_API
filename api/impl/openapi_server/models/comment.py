@@ -15,7 +15,7 @@ class Comment(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, comment_id: str=None, user_id: str=None, subject_healthcare_provider_id: str=None, subject_client_id: str=None, comment_date: date=None, comment_text: str=None):  # noqa: E501
+    def __init__(self, comment_id=None, user_id=None, subject_healthcare_provider_id=None, subject_client_id=None, comment_date=None, comment_text=None):  # noqa: E501
         """Comment - a model defined in OpenAPI
 
         :param comment_id: The comment_id of this Comment.  # noqa: E501
@@ -68,7 +68,7 @@ class Comment(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def comment_id(self) -> str:
+    def comment_id(self):
         """Gets the comment_id of this Comment.
 
 
@@ -78,7 +78,7 @@ class Comment(Model):
         return self._comment_id
 
     @comment_id.setter
-    def comment_id(self, comment_id: str):
+    def comment_id(self, comment_id):
         """Sets the comment_id of this Comment.
 
 
@@ -89,7 +89,7 @@ class Comment(Model):
         self._comment_id = comment_id
 
     @property
-    def user_id(self) -> str:
+    def user_id(self):
         """Gets the user_id of this Comment.
 
 
@@ -99,7 +99,7 @@ class Comment(Model):
         return self._user_id
 
     @user_id.setter
-    def user_id(self, user_id: str):
+    def user_id(self, user_id):
         """Sets the user_id of this Comment.
 
 
@@ -110,7 +110,7 @@ class Comment(Model):
         self._user_id = user_id
 
     @property
-    def subject_healthcare_provider_id(self) -> str:
+    def subject_healthcare_provider_id(self):
         """Gets the subject_healthcare_provider_id of this Comment.
 
 
@@ -120,7 +120,7 @@ class Comment(Model):
         return self._subject_healthcare_provider_id
 
     @subject_healthcare_provider_id.setter
-    def subject_healthcare_provider_id(self, subject_healthcare_provider_id: str):
+    def subject_healthcare_provider_id(self, subject_healthcare_provider_id):
         """Sets the subject_healthcare_provider_id of this Comment.
 
 
@@ -131,7 +131,7 @@ class Comment(Model):
         self._subject_healthcare_provider_id = subject_healthcare_provider_id
 
     @property
-    def subject_client_id(self) -> str:
+    def subject_client_id(self):
         """Gets the subject_client_id of this Comment.
 
 
@@ -141,7 +141,7 @@ class Comment(Model):
         return self._subject_client_id
 
     @subject_client_id.setter
-    def subject_client_id(self, subject_client_id: str):
+    def subject_client_id(self, subject_client_id):
         """Sets the subject_client_id of this Comment.
 
 
@@ -152,7 +152,7 @@ class Comment(Model):
         self._subject_client_id = subject_client_id
 
     @property
-    def comment_date(self) -> date:
+    def comment_date(self):
         """Gets the comment_date of this Comment.
 
 
@@ -162,7 +162,7 @@ class Comment(Model):
         return self._comment_date
 
     @comment_date.setter
-    def comment_date(self, comment_date: date):
+    def comment_date(self, comment_date):
         """Sets the comment_date of this Comment.
 
 
@@ -173,7 +173,7 @@ class Comment(Model):
         self._comment_date = comment_date
 
     @property
-    def comment_text(self) -> str:
+    def comment_text(self):
         """Gets the comment_text of this Comment.
 
 
@@ -183,7 +183,7 @@ class Comment(Model):
         return self._comment_text
 
     @comment_text.setter
-    def comment_text(self, comment_text: str):
+    def comment_text(self, comment_text):
         """Sets the comment_text of this Comment.
 
 

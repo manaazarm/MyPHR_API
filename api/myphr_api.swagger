@@ -449,7 +449,7 @@ components:
             is_primary_caregiver:
               type: boolean
 
-    HealthcareProvider:
+    HIC:
       description: > 
         a registered provider with HIC designation
         offering healthcare services
@@ -464,7 +464,7 @@ components:
 
     HCO:
       allOf:
-        - $ref: '#/components/schemas/HealthcareProvider'
+        - $ref: '#/components/schemas/HIC'
         - type: object
           description: >
             a business entity that provides healthcare services
@@ -478,7 +478,7 @@ components:
 
     Physician:
       allOf:
-        - $ref: '#/components/schemas/HealthcareProvider'
+        - $ref: '#/components/schemas/HIC'
         - type: object
           description: >
             a physician regardless of their employment arrangement,

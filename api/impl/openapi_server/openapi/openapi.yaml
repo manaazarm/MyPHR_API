@@ -5,7 +5,8 @@ info:
   title: MyPHR API
   version: 0.0.1
 servers:
-- url: /
+- description: default server
+  url: http://localhost
 paths:
   /patients:
     post:
@@ -24,6 +25,14 @@ paths:
   /patients/{client_id}:
     get:
       operationId: getpatientinfo
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         200:
           content:
@@ -35,6 +44,14 @@ paths:
       x-openapi-router-controller: openapi_server.controllers.default_controller
     patch:
       operationId: editpatientinfo
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -49,6 +66,14 @@ paths:
   /addresses/{client_id}:
     get:
       operationId: getaddressesforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         200:
           content:
@@ -62,6 +87,14 @@ paths:
       x-openapi-router-controller: openapi_server.controllers.default_controller
     post:
       operationId: editaddressesforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -76,6 +109,14 @@ paths:
   /phonenumbers/{client_id}:
     get:
       operationId: getphonenumbersforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         200:
           content:
@@ -89,6 +130,14 @@ paths:
       x-openapi-router-controller: openapi_server.controllers.default_controller
     post:
       operationId: editphonenumbersforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -117,6 +166,14 @@ paths:
   /caregivers/{client_id}:
     get:
       operationId: getcaregiverinfo
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         200:
           content:
@@ -157,6 +214,14 @@ paths:
   /comments/{subject_healthcare_provider_id}:
     get:
       operationId: getcommentforhco
+      parameters:
+      - explode: false
+        in: path
+        name: subject_healthcare_provider_id
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         200:
           content:
@@ -171,6 +236,14 @@ paths:
   /medications/{client_id}:
     get:
       operationId: getmedicationsforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         200:
           content:
@@ -184,6 +257,14 @@ paths:
       x-openapi-router-controller: openapi_server.controllers.default_controller
     post:
       operationId: postmedication
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -198,6 +279,14 @@ paths:
   /healthprofiles/{client_id}:
     get:
       operationId: gethealthprofilesforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         200:
           content:
@@ -211,6 +300,14 @@ paths:
       x-openapi-router-controller: openapi_server.controllers.default_controller
     post:
       operationId: posthealthprofile
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -225,6 +322,14 @@ paths:
   /episodes/{client_id}:
     get:
       operationId: getepisodesforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         200:
           content:
@@ -238,6 +343,14 @@ paths:
       x-openapi-router-controller: openapi_server.controllers.default_controller
     post:
       operationId: addepisodeforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -303,12 +416,12 @@ components:
         surname:
           type: string
         gender:
-          type: GenderType
+          $ref: '#/components/schemas/GenderType'
         dob:
           format: date
           type: string
         service_language:
-          type: ServiceLanguage
+          $ref: '#/components/schemas/ServiceLanguage'
         profile_start_date:
           description: a new client profile may start when they change names or gender
           format: date
@@ -352,7 +465,7 @@ components:
           is_primary_caregiver:
             type: boolean
         type: object
-    HealthcareProvider:
+    HIC:
       description: |
         a registered provider with HIC designation offering healthcare services
       properties:
@@ -365,7 +478,7 @@ components:
       type: object
     HCO:
       allOf:
-      - $ref: '#/components/schemas/HealthcareProvider'
+      - $ref: '#/components/schemas/HIC'
       - description: |
           a business entity that provides healthcare services and has at least one electronic health record system
         properties:
@@ -373,11 +486,11 @@ components:
             description: the business identification number
             type: string
           organization_type:
-            type: OrganizationType
+            $ref: '#/components/schemas/OrganizationType'
         type: object
     Physician:
       allOf:
-      - $ref: '#/components/schemas/HealthcareProvider'
+      - $ref: '#/components/schemas/HIC'
       - description: |
           a physician regardless of their employment arrangement, hired by hospital or hired by their own practice
         properties:
@@ -634,7 +747,7 @@ components:
         healthcare_provider_id:
           type: string
         notification_type:
-          type: NotificationType
+          $ref: '#/components/schemas/NotificationType'
         subscription_start_date:
           format: date
           type: string

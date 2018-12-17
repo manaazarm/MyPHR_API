@@ -15,7 +15,7 @@ class PhoneNumber(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, phone_num_id: str=None, client_id: str=None, healthcare_provider_id: str=None, is_active: bool=None, start_date: date=None, end_date: date=None, country_code: str=None, number: str=None):  # noqa: E501
+    def __init__(self, phone_num_id=None, client_id=None, healthcare_provider_id=None, is_active=None, start_date=None, end_date=None, country_code=None, number=None):  # noqa: E501
         """PhoneNumber - a model defined in OpenAPI
 
         :param phone_num_id: The phone_num_id of this PhoneNumber.  # noqa: E501
@@ -78,7 +78,7 @@ class PhoneNumber(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def phone_num_id(self) -> str:
+    def phone_num_id(self):
         """Gets the phone_num_id of this PhoneNumber.
 
 
@@ -88,7 +88,7 @@ class PhoneNumber(Model):
         return self._phone_num_id
 
     @phone_num_id.setter
-    def phone_num_id(self, phone_num_id: str):
+    def phone_num_id(self, phone_num_id):
         """Sets the phone_num_id of this PhoneNumber.
 
 
@@ -99,7 +99,7 @@ class PhoneNumber(Model):
         self._phone_num_id = phone_num_id
 
     @property
-    def client_id(self) -> str:
+    def client_id(self):
         """Gets the client_id of this PhoneNumber.
 
 
@@ -109,7 +109,7 @@ class PhoneNumber(Model):
         return self._client_id
 
     @client_id.setter
-    def client_id(self, client_id: str):
+    def client_id(self, client_id):
         """Sets the client_id of this PhoneNumber.
 
 
@@ -120,7 +120,7 @@ class PhoneNumber(Model):
         self._client_id = client_id
 
     @property
-    def healthcare_provider_id(self) -> str:
+    def healthcare_provider_id(self):
         """Gets the healthcare_provider_id of this PhoneNumber.
 
 
@@ -130,7 +130,7 @@ class PhoneNumber(Model):
         return self._healthcare_provider_id
 
     @healthcare_provider_id.setter
-    def healthcare_provider_id(self, healthcare_provider_id: str):
+    def healthcare_provider_id(self, healthcare_provider_id):
         """Sets the healthcare_provider_id of this PhoneNumber.
 
 
@@ -141,7 +141,7 @@ class PhoneNumber(Model):
         self._healthcare_provider_id = healthcare_provider_id
 
     @property
-    def is_active(self) -> bool:
+    def is_active(self):
         """Gets the is_active of this PhoneNumber.
 
 
@@ -151,7 +151,7 @@ class PhoneNumber(Model):
         return self._is_active
 
     @is_active.setter
-    def is_active(self, is_active: bool):
+    def is_active(self, is_active):
         """Sets the is_active of this PhoneNumber.
 
 
@@ -162,7 +162,7 @@ class PhoneNumber(Model):
         self._is_active = is_active
 
     @property
-    def start_date(self) -> date:
+    def start_date(self):
         """Gets the start_date of this PhoneNumber.
 
 
@@ -172,7 +172,7 @@ class PhoneNumber(Model):
         return self._start_date
 
     @start_date.setter
-    def start_date(self, start_date: date):
+    def start_date(self, start_date):
         """Sets the start_date of this PhoneNumber.
 
 
@@ -183,7 +183,7 @@ class PhoneNumber(Model):
         self._start_date = start_date
 
     @property
-    def end_date(self) -> date:
+    def end_date(self):
         """Gets the end_date of this PhoneNumber.
 
 
@@ -193,7 +193,7 @@ class PhoneNumber(Model):
         return self._end_date
 
     @end_date.setter
-    def end_date(self, end_date: date):
+    def end_date(self, end_date):
         """Sets the end_date of this PhoneNumber.
 
 
@@ -204,7 +204,7 @@ class PhoneNumber(Model):
         self._end_date = end_date
 
     @property
-    def country_code(self) -> str:
+    def country_code(self):
         """Gets the country_code of this PhoneNumber.
 
 
@@ -214,7 +214,7 @@ class PhoneNumber(Model):
         return self._country_code
 
     @country_code.setter
-    def country_code(self, country_code: str):
+    def country_code(self, country_code):
         """Sets the country_code of this PhoneNumber.
 
 
@@ -225,7 +225,7 @@ class PhoneNumber(Model):
         self._country_code = country_code
 
     @property
-    def number(self) -> str:
+    def number(self):
         """Gets the number of this PhoneNumber.
 
 
@@ -235,7 +235,7 @@ class PhoneNumber(Model):
         return self._number
 
     @number.setter
-    def number(self, number: str):
+    def number(self, number):
         """Sets the number of this PhoneNumber.
 
 

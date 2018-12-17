@@ -15,7 +15,7 @@ class WebUser(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, user_id: str=None, client_id: str=None, healthcare_provider_id: str=None, status: str=None, created_date: date=None, type: str=None, created_at: str=None):  # noqa: E501
+    def __init__(self, user_id=None, client_id=None, healthcare_provider_id=None, status=None, created_date=None, type=None, created_at=None):  # noqa: E501
         """WebUser - a model defined in OpenAPI
 
         :param user_id: The user_id of this WebUser.  # noqa: E501
@@ -73,7 +73,7 @@ class WebUser(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def user_id(self) -> str:
+    def user_id(self):
         """Gets the user_id of this WebUser.
 
 
@@ -83,7 +83,7 @@ class WebUser(Model):
         return self._user_id
 
     @user_id.setter
-    def user_id(self, user_id: str):
+    def user_id(self, user_id):
         """Sets the user_id of this WebUser.
 
 
@@ -94,7 +94,7 @@ class WebUser(Model):
         self._user_id = user_id
 
     @property
-    def client_id(self) -> str:
+    def client_id(self):
         """Gets the client_id of this WebUser.
 
 
@@ -104,7 +104,7 @@ class WebUser(Model):
         return self._client_id
 
     @client_id.setter
-    def client_id(self, client_id: str):
+    def client_id(self, client_id):
         """Sets the client_id of this WebUser.
 
 
@@ -115,7 +115,7 @@ class WebUser(Model):
         self._client_id = client_id
 
     @property
-    def healthcare_provider_id(self) -> str:
+    def healthcare_provider_id(self):
         """Gets the healthcare_provider_id of this WebUser.
 
 
@@ -125,7 +125,7 @@ class WebUser(Model):
         return self._healthcare_provider_id
 
     @healthcare_provider_id.setter
-    def healthcare_provider_id(self, healthcare_provider_id: str):
+    def healthcare_provider_id(self, healthcare_provider_id):
         """Sets the healthcare_provider_id of this WebUser.
 
 
@@ -136,7 +136,7 @@ class WebUser(Model):
         self._healthcare_provider_id = healthcare_provider_id
 
     @property
-    def status(self) -> str:
+    def status(self):
         """Gets the status of this WebUser.
 
 
@@ -146,7 +146,7 @@ class WebUser(Model):
         return self._status
 
     @status.setter
-    def status(self, status: str):
+    def status(self, status):
         """Sets the status of this WebUser.
 
 
@@ -157,7 +157,7 @@ class WebUser(Model):
         self._status = status
 
     @property
-    def created_date(self) -> date:
+    def created_date(self):
         """Gets the created_date of this WebUser.
 
 
@@ -167,7 +167,7 @@ class WebUser(Model):
         return self._created_date
 
     @created_date.setter
-    def created_date(self, created_date: date):
+    def created_date(self, created_date):
         """Sets the created_date of this WebUser.
 
 
@@ -178,7 +178,7 @@ class WebUser(Model):
         self._created_date = created_date
 
     @property
-    def type(self) -> str:
+    def type(self):
         """Gets the type of this WebUser.
 
 
@@ -188,7 +188,7 @@ class WebUser(Model):
         return self._type
 
     @type.setter
-    def type(self, type: str):
+    def type(self, type):
         """Sets the type of this WebUser.
 
 
@@ -199,7 +199,7 @@ class WebUser(Model):
         self._type = type
 
     @property
-    def created_at(self) -> str:
+    def created_at(self):
         """Gets the created_at of this WebUser.
 
 
@@ -209,7 +209,7 @@ class WebUser(Model):
         return self._created_at
 
     @created_at.setter
-    def created_at(self, created_at: str):
+    def created_at(self, created_at):
         """Sets the created_at of this WebUser.
 
 

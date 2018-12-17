@@ -15,7 +15,7 @@ class DietaryRegimen(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, dietary_regimen_id: str=None, start_date: date=None, end_date: date=None):  # noqa: E501
+    def __init__(self, dietary_regimen_id=None, start_date=None, end_date=None):  # noqa: E501
         """DietaryRegimen - a model defined in OpenAPI
 
         :param dietary_regimen_id: The dietary_regimen_id of this DietaryRegimen.  # noqa: E501
@@ -53,7 +53,7 @@ class DietaryRegimen(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def dietary_regimen_id(self) -> str:
+    def dietary_regimen_id(self):
         """Gets the dietary_regimen_id of this DietaryRegimen.
 
 
@@ -63,7 +63,7 @@ class DietaryRegimen(Model):
         return self._dietary_regimen_id
 
     @dietary_regimen_id.setter
-    def dietary_regimen_id(self, dietary_regimen_id: str):
+    def dietary_regimen_id(self, dietary_regimen_id):
         """Sets the dietary_regimen_id of this DietaryRegimen.
 
 
@@ -74,7 +74,7 @@ class DietaryRegimen(Model):
         self._dietary_regimen_id = dietary_regimen_id
 
     @property
-    def start_date(self) -> date:
+    def start_date(self):
         """Gets the start_date of this DietaryRegimen.
 
 
@@ -84,7 +84,7 @@ class DietaryRegimen(Model):
         return self._start_date
 
     @start_date.setter
-    def start_date(self, start_date: date):
+    def start_date(self, start_date):
         """Sets the start_date of this DietaryRegimen.
 
 
@@ -95,7 +95,7 @@ class DietaryRegimen(Model):
         self._start_date = start_date
 
     @property
-    def end_date(self) -> date:
+    def end_date(self):
         """Gets the end_date of this DietaryRegimen.
 
 
@@ -105,7 +105,7 @@ class DietaryRegimen(Model):
         return self._end_date
 
     @end_date.setter
-    def end_date(self, end_date: date):
+    def end_date(self, end_date):
         """Sets the end_date of this DietaryRegimen.
 
 

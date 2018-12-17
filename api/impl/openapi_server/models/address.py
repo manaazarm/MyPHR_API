@@ -15,7 +15,7 @@ class Address(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, address_id: str=None, address_type: str=None, client_id: str=None, healthcare_provider_id: str=None, is_active: bool=None, start_date: date=None, end_date: date=None, country: str=None, city: str=None, street_type: str=None, street_number: str=None, unit_number: str=None, postal_code: str=None):  # noqa: E501
+    def __init__(self, address_id=None, address_type=None, client_id=None, healthcare_provider_id=None, is_active=None, start_date=None, end_date=None, country=None, city=None, street_type=None, street_number=None, unit_number=None, postal_code=None):  # noqa: E501
         """Address - a model defined in OpenAPI
 
         :param address_id: The address_id of this Address.  # noqa: E501
@@ -103,7 +103,7 @@ class Address(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def address_id(self) -> str:
+    def address_id(self):
         """Gets the address_id of this Address.
 
 
@@ -113,7 +113,7 @@ class Address(Model):
         return self._address_id
 
     @address_id.setter
-    def address_id(self, address_id: str):
+    def address_id(self, address_id):
         """Sets the address_id of this Address.
 
 
@@ -124,7 +124,7 @@ class Address(Model):
         self._address_id = address_id
 
     @property
-    def address_type(self) -> str:
+    def address_type(self):
         """Gets the address_type of this Address.
 
         e.g. mailing, home, temporary etc.  # noqa: E501
@@ -135,7 +135,7 @@ class Address(Model):
         return self._address_type
 
     @address_type.setter
-    def address_type(self, address_type: str):
+    def address_type(self, address_type):
         """Sets the address_type of this Address.
 
         e.g. mailing, home, temporary etc.  # noqa: E501
@@ -147,7 +147,7 @@ class Address(Model):
         self._address_type = address_type
 
     @property
-    def client_id(self) -> str:
+    def client_id(self):
         """Gets the client_id of this Address.
 
 
@@ -157,7 +157,7 @@ class Address(Model):
         return self._client_id
 
     @client_id.setter
-    def client_id(self, client_id: str):
+    def client_id(self, client_id):
         """Sets the client_id of this Address.
 
 
@@ -168,7 +168,7 @@ class Address(Model):
         self._client_id = client_id
 
     @property
-    def healthcare_provider_id(self) -> str:
+    def healthcare_provider_id(self):
         """Gets the healthcare_provider_id of this Address.
 
 
@@ -178,7 +178,7 @@ class Address(Model):
         return self._healthcare_provider_id
 
     @healthcare_provider_id.setter
-    def healthcare_provider_id(self, healthcare_provider_id: str):
+    def healthcare_provider_id(self, healthcare_provider_id):
         """Sets the healthcare_provider_id of this Address.
 
 
@@ -189,7 +189,7 @@ class Address(Model):
         self._healthcare_provider_id = healthcare_provider_id
 
     @property
-    def is_active(self) -> bool:
+    def is_active(self):
         """Gets the is_active of this Address.
 
 
@@ -199,7 +199,7 @@ class Address(Model):
         return self._is_active
 
     @is_active.setter
-    def is_active(self, is_active: bool):
+    def is_active(self, is_active):
         """Sets the is_active of this Address.
 
 
@@ -210,7 +210,7 @@ class Address(Model):
         self._is_active = is_active
 
     @property
-    def start_date(self) -> date:
+    def start_date(self):
         """Gets the start_date of this Address.
 
 
@@ -220,7 +220,7 @@ class Address(Model):
         return self._start_date
 
     @start_date.setter
-    def start_date(self, start_date: date):
+    def start_date(self, start_date):
         """Sets the start_date of this Address.
 
 
@@ -231,7 +231,7 @@ class Address(Model):
         self._start_date = start_date
 
     @property
-    def end_date(self) -> date:
+    def end_date(self):
         """Gets the end_date of this Address.
 
 
@@ -241,7 +241,7 @@ class Address(Model):
         return self._end_date
 
     @end_date.setter
-    def end_date(self, end_date: date):
+    def end_date(self, end_date):
         """Sets the end_date of this Address.
 
 
@@ -252,7 +252,7 @@ class Address(Model):
         self._end_date = end_date
 
     @property
-    def country(self) -> str:
+    def country(self):
         """Gets the country of this Address.
 
 
@@ -262,7 +262,7 @@ class Address(Model):
         return self._country
 
     @country.setter
-    def country(self, country: str):
+    def country(self, country):
         """Sets the country of this Address.
 
 
@@ -273,7 +273,7 @@ class Address(Model):
         self._country = country
 
     @property
-    def city(self) -> str:
+    def city(self):
         """Gets the city of this Address.
 
 
@@ -283,7 +283,7 @@ class Address(Model):
         return self._city
 
     @city.setter
-    def city(self, city: str):
+    def city(self, city):
         """Sets the city of this Address.
 
 
@@ -294,7 +294,7 @@ class Address(Model):
         self._city = city
 
     @property
-    def street_type(self) -> str:
+    def street_type(self):
         """Gets the street_type of this Address.
 
 
@@ -304,7 +304,7 @@ class Address(Model):
         return self._street_type
 
     @street_type.setter
-    def street_type(self, street_type: str):
+    def street_type(self, street_type):
         """Sets the street_type of this Address.
 
 
@@ -315,7 +315,7 @@ class Address(Model):
         self._street_type = street_type
 
     @property
-    def street_number(self) -> str:
+    def street_number(self):
         """Gets the street_number of this Address.
 
 
@@ -325,7 +325,7 @@ class Address(Model):
         return self._street_number
 
     @street_number.setter
-    def street_number(self, street_number: str):
+    def street_number(self, street_number):
         """Sets the street_number of this Address.
 
 
@@ -336,7 +336,7 @@ class Address(Model):
         self._street_number = street_number
 
     @property
-    def unit_number(self) -> str:
+    def unit_number(self):
         """Gets the unit_number of this Address.
 
 
@@ -346,7 +346,7 @@ class Address(Model):
         return self._unit_number
 
     @unit_number.setter
-    def unit_number(self, unit_number: str):
+    def unit_number(self, unit_number):
         """Sets the unit_number of this Address.
 
 
@@ -357,7 +357,7 @@ class Address(Model):
         self._unit_number = unit_number
 
     @property
-    def postal_code(self) -> str:
+    def postal_code(self):
         """Gets the postal_code of this Address.
 
 
@@ -367,7 +367,7 @@ class Address(Model):
         return self._postal_code
 
     @postal_code.setter
-    def postal_code(self, postal_code: str):
+    def postal_code(self, postal_code):
         """Sets the postal_code of this Address.
 
 

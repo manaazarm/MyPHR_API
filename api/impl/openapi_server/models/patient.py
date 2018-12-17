@@ -6,10 +6,6 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from openapi_server.models.base_model_ import Model
-from openapi_server.models.client import Client  # noqa: F401,E501
-from openapi_server.models.dietary_regimen import DietaryRegimen  # noqa: F401,E501
-from openapi_server.models.gender_type import GenderType  # noqa: F401,E501
-from openapi_server.models.service_language import ServiceLanguage  # noqa: F401,E501
 from openapi_server import util
 
 
@@ -19,7 +15,7 @@ class Patient(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, client_id: str=None, firstname: str=None, surname: str=None, gender: GenderType=None, dob: date=None, service_language: ServiceLanguage=None, profile_start_date: date=None, profile_end_date: date=None, health_card_number: str=None, active_primary_physician_id: str=None, dietary_regimen: List[DietaryRegimen]=None, advance_directives: List[str]=None):  # noqa: E501
+    def __init__(self, client_id=None, firstname=None, surname=None, gender=None, dob=None, service_language=None, profile_start_date=None, profile_end_date=None, health_card_number=None, active_primary_physician_id=None, dietary_regimen=None, advance_directives=None):  # noqa: E501
         """Patient - a model defined in OpenAPI
 
         :param client_id: The client_id of this Patient.  # noqa: E501
@@ -102,7 +98,7 @@ class Patient(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def client_id(self) -> str:
+    def client_id(self):
         """Gets the client_id of this Patient.
 
 
@@ -112,7 +108,7 @@ class Patient(Model):
         return self._client_id
 
     @client_id.setter
-    def client_id(self, client_id: str):
+    def client_id(self, client_id):
         """Sets the client_id of this Patient.
 
 
@@ -123,7 +119,7 @@ class Patient(Model):
         self._client_id = client_id
 
     @property
-    def firstname(self) -> str:
+    def firstname(self):
         """Gets the firstname of this Patient.
 
 
@@ -133,7 +129,7 @@ class Patient(Model):
         return self._firstname
 
     @firstname.setter
-    def firstname(self, firstname: str):
+    def firstname(self, firstname):
         """Sets the firstname of this Patient.
 
 
@@ -144,7 +140,7 @@ class Patient(Model):
         self._firstname = firstname
 
     @property
-    def surname(self) -> str:
+    def surname(self):
         """Gets the surname of this Patient.
 
 
@@ -154,7 +150,7 @@ class Patient(Model):
         return self._surname
 
     @surname.setter
-    def surname(self, surname: str):
+    def surname(self, surname):
         """Sets the surname of this Patient.
 
 
@@ -165,7 +161,7 @@ class Patient(Model):
         self._surname = surname
 
     @property
-    def gender(self) -> GenderType:
+    def gender(self):
         """Gets the gender of this Patient.
 
 
@@ -175,7 +171,7 @@ class Patient(Model):
         return self._gender
 
     @gender.setter
-    def gender(self, gender: GenderType):
+    def gender(self, gender):
         """Sets the gender of this Patient.
 
 
@@ -186,7 +182,7 @@ class Patient(Model):
         self._gender = gender
 
     @property
-    def dob(self) -> date:
+    def dob(self):
         """Gets the dob of this Patient.
 
 
@@ -196,7 +192,7 @@ class Patient(Model):
         return self._dob
 
     @dob.setter
-    def dob(self, dob: date):
+    def dob(self, dob):
         """Sets the dob of this Patient.
 
 
@@ -207,7 +203,7 @@ class Patient(Model):
         self._dob = dob
 
     @property
-    def service_language(self) -> ServiceLanguage:
+    def service_language(self):
         """Gets the service_language of this Patient.
 
 
@@ -217,7 +213,7 @@ class Patient(Model):
         return self._service_language
 
     @service_language.setter
-    def service_language(self, service_language: ServiceLanguage):
+    def service_language(self, service_language):
         """Sets the service_language of this Patient.
 
 
@@ -228,7 +224,7 @@ class Patient(Model):
         self._service_language = service_language
 
     @property
-    def profile_start_date(self) -> date:
+    def profile_start_date(self):
         """Gets the profile_start_date of this Patient.
 
         a new client profile may start when they change names or gender  # noqa: E501
@@ -239,7 +235,7 @@ class Patient(Model):
         return self._profile_start_date
 
     @profile_start_date.setter
-    def profile_start_date(self, profile_start_date: date):
+    def profile_start_date(self, profile_start_date):
         """Sets the profile_start_date of this Patient.
 
         a new client profile may start when they change names or gender  # noqa: E501
@@ -251,7 +247,7 @@ class Patient(Model):
         self._profile_start_date = profile_start_date
 
     @property
-    def profile_end_date(self) -> date:
+    def profile_end_date(self):
         """Gets the profile_end_date of this Patient.
 
         a client profile may end when they change names or gender  # noqa: E501
@@ -262,7 +258,7 @@ class Patient(Model):
         return self._profile_end_date
 
     @profile_end_date.setter
-    def profile_end_date(self, profile_end_date: date):
+    def profile_end_date(self, profile_end_date):
         """Sets the profile_end_date of this Patient.
 
         a client profile may end when they change names or gender  # noqa: E501
@@ -274,7 +270,7 @@ class Patient(Model):
         self._profile_end_date = profile_end_date
 
     @property
-    def health_card_number(self) -> str:
+    def health_card_number(self):
         """Gets the health_card_number of this Patient.
 
 
@@ -284,7 +280,7 @@ class Patient(Model):
         return self._health_card_number
 
     @health_card_number.setter
-    def health_card_number(self, health_card_number: str):
+    def health_card_number(self, health_card_number):
         """Sets the health_card_number of this Patient.
 
 
@@ -295,7 +291,7 @@ class Patient(Model):
         self._health_card_number = health_card_number
 
     @property
-    def active_primary_physician_id(self) -> str:
+    def active_primary_physician_id(self):
         """Gets the active_primary_physician_id of this Patient.
 
 
@@ -305,7 +301,7 @@ class Patient(Model):
         return self._active_primary_physician_id
 
     @active_primary_physician_id.setter
-    def active_primary_physician_id(self, active_primary_physician_id: str):
+    def active_primary_physician_id(self, active_primary_physician_id):
         """Sets the active_primary_physician_id of this Patient.
 
 
@@ -316,7 +312,7 @@ class Patient(Model):
         self._active_primary_physician_id = active_primary_physician_id
 
     @property
-    def dietary_regimen(self) -> List[DietaryRegimen]:
+    def dietary_regimen(self):
         """Gets the dietary_regimen of this Patient.
 
         the dietary aversions, restrictions, or preferences  # noqa: E501
@@ -327,7 +323,7 @@ class Patient(Model):
         return self._dietary_regimen
 
     @dietary_regimen.setter
-    def dietary_regimen(self, dietary_regimen: List[DietaryRegimen]):
+    def dietary_regimen(self, dietary_regimen):
         """Sets the dietary_regimen of this Patient.
 
         the dietary aversions, restrictions, or preferences  # noqa: E501
@@ -339,7 +335,7 @@ class Patient(Model):
         self._dietary_regimen = dietary_regimen
 
     @property
-    def advance_directives(self) -> List[str]:
+    def advance_directives(self):
         """Gets the advance_directives of this Patient.
 
 
@@ -349,7 +345,7 @@ class Patient(Model):
         return self._advance_directives
 
     @advance_directives.setter
-    def advance_directives(self, advance_directives: List[str]):
+    def advance_directives(self, advance_directives):
         """Sets the advance_directives of this Patient.
 
 

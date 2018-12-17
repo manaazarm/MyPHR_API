@@ -27,7 +27,7 @@ class TestDefaultController(BaseTestCase):
         """
         episode = Episode()
         response = self.client.open(
-            '//episodes/{client_id}',
+            '/episodes/{client_id}'.format(client_id='client_id_example'),
             method='POST',
             data=json.dumps(episode),
             content_type='application/json')
@@ -41,7 +41,7 @@ class TestDefaultController(BaseTestCase):
         """
         caregiver = Caregiver()
         response = self.client.open(
-            '//caregivers',
+            '/caregivers',
             method='POST',
             data=json.dumps(caregiver),
             content_type='application/json')
@@ -55,7 +55,7 @@ class TestDefaultController(BaseTestCase):
         """
         patient = Patient()
         response = self.client.open(
-            '//patients',
+            '/patients',
             method='POST',
             data=json.dumps(patient),
             content_type='application/json')
@@ -69,7 +69,7 @@ class TestDefaultController(BaseTestCase):
         """
         address = Address()
         response = self.client.open(
-            '//addresses/{client_id}',
+            '/addresses/{client_id}'.format(client_id='client_id_example'),
             method='POST',
             data=json.dumps(address),
             content_type='application/json')
@@ -83,7 +83,7 @@ class TestDefaultController(BaseTestCase):
         """
         patient = Patient()
         response = self.client.open(
-            '//patients/{client_id}',
+            '/patients/{client_id}'.format(client_id='client_id_example'),
             method='PATCH',
             data=json.dumps(patient),
             content_type='application/json')
@@ -97,7 +97,7 @@ class TestDefaultController(BaseTestCase):
         """
         phone_number = PhoneNumber()
         response = self.client.open(
-            '//phonenumbers/{client_id}',
+            '/phonenumbers/{client_id}'.format(client_id='client_id_example'),
             method='POST',
             data=json.dumps(phone_number),
             content_type='application/json')
@@ -110,7 +110,7 @@ class TestDefaultController(BaseTestCase):
         gets the active addresses for a client
         """
         response = self.client.open(
-            '//addresses/{client_id}',
+            '/addresses/{client_id}'.format(client_id='client_id_example'),
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -121,7 +121,7 @@ class TestDefaultController(BaseTestCase):
         gets a caregiver by ID
         """
         response = self.client.open(
-            '//caregivers/{client_id}',
+            '/caregivers/{client_id}'.format(client_id='client_id_example'),
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -132,7 +132,7 @@ class TestDefaultController(BaseTestCase):
         gets the comments for a healthcare provider by ID
         """
         response = self.client.open(
-            '//comments/{subject_healthcare_provider_id}',
+            '/comments/{subject_healthcare_provider_id}'.format(subject_healthcare_provider_id='subject_healthcare_provider_id_example'),
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -143,7 +143,7 @@ class TestDefaultController(BaseTestCase):
         gets the episodes for a client
         """
         response = self.client.open(
-            '//episodes/{client_id}',
+            '/episodes/{client_id}'.format(client_id='client_id_example'),
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -154,7 +154,7 @@ class TestDefaultController(BaseTestCase):
         gets the health profiles for a client
         """
         response = self.client.open(
-            '//healthprofiles/{client_id}',
+            '/healthprofiles/{client_id}'.format(client_id='client_id_example'),
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -165,7 +165,7 @@ class TestDefaultController(BaseTestCase):
         gets the medications for a client
         """
         response = self.client.open(
-            '//medications/{client_id}',
+            '/medications/{client_id}'.format(client_id='client_id_example'),
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -176,7 +176,7 @@ class TestDefaultController(BaseTestCase):
         gets a patient by ID
         """
         response = self.client.open(
-            '//patients/{client_id}',
+            '/patients/{client_id}'.format(client_id='client_id_example'),
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -187,7 +187,7 @@ class TestDefaultController(BaseTestCase):
         gets the active phonenumbers for a client
         """
         response = self.client.open(
-            '//phonenumbers/{client_id}',
+            '/phonenumbers/{client_id}'.format(client_id='client_id_example'),
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -198,7 +198,7 @@ class TestDefaultController(BaseTestCase):
         List all HCOs
         """
         response = self.client.open(
-            '//hco',
+            '/hco',
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -210,7 +210,7 @@ class TestDefaultController(BaseTestCase):
         """
         comment = Comment()
         response = self.client.open(
-            '//comments',
+            '/comments',
             method='POST',
             data=json.dumps(comment),
             content_type='application/json')
@@ -224,7 +224,7 @@ class TestDefaultController(BaseTestCase):
         """
         health_profile = HealthProfile()
         response = self.client.open(
-            '//healthprofiles/{client_id}',
+            '/healthprofiles/{client_id}'.format(client_id='client_id_example'),
             method='POST',
             data=json.dumps(health_profile),
             content_type='application/json')
@@ -238,7 +238,7 @@ class TestDefaultController(BaseTestCase):
         """
         medication = Medication()
         response = self.client.open(
-            '//medications/{client_id}',
+            '/medications/{client_id}'.format(client_id='client_id_example'),
             method='POST',
             data=json.dumps(medication),
             content_type='application/json')

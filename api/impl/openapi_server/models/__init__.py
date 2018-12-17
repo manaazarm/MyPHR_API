@@ -12,8 +12,8 @@ from openapi_server.models.dietary_regimen import DietaryRegimen
 from openapi_server.models.episode import Episode
 from openapi_server.models.gender_type import GenderType
 from openapi_server.models.hco import HCO
+from openapi_server.models.hic import HIC
 from openapi_server.models.health_profile import HealthProfile
-from openapi_server.models.healthcare_provider import HealthcareProvider
 from openapi_server.models.medication import Medication
 from openapi_server.models.notification import Notification
 from openapi_server.models.notification_type import NotificationType

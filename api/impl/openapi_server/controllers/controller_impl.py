@@ -1,4 +1,4 @@
-import connexion
+mport connexion
 import six
 
 from openapi_server.models.address import Address  # noqa: E501
@@ -12,5 +12,6 @@ from openapi_server.models.patient import Patient  # noqa: E501
 from openapi_server.models.phone_number import PhoneNumber  # noqa: E501
 from openapi_server import util
 
-def addepisodeforaclient(episode=None):  # noqa: E501
-    return "it works"
+
+def addepisodeforaclient(client_id, episode=None):  # noqa: E501
+    return 'It works!'

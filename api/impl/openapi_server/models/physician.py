@@ -6,7 +6,6 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from openapi_server.models.base_model_ import Model
-from openapi_server.models.healthcare_provider import HealthcareProvider  # noqa: F401,E501
 from openapi_server import util
 
 
@@ -16,7 +15,7 @@ class Physician(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, healthcare_provider_id: str=None, firstname: str=None, surname: str=None, specialty: str=None, licence_number: str=None, licence_date: date=None):  # noqa: E501
+    def __init__(self, healthcare_provider_id=None, firstname=None, surname=None, specialty=None, licence_number=None, licence_date=None):  # noqa: E501
         """Physician - a model defined in OpenAPI
 
         :param healthcare_provider_id: The healthcare_provider_id of this Physician.  # noqa: E501
@@ -69,7 +68,7 @@ class Physician(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def healthcare_provider_id(self) -> str:
+    def healthcare_provider_id(self):
         """Gets the healthcare_provider_id of this Physician.
 
 
@@ -79,7 +78,7 @@ class Physician(Model):
         return self._healthcare_provider_id
 
     @healthcare_provider_id.setter
-    def healthcare_provider_id(self, healthcare_provider_id: str):
+    def healthcare_provider_id(self, healthcare_provider_id):
         """Sets the healthcare_provider_id of this Physician.
 
 
@@ -90,7 +89,7 @@ class Physician(Model):
         self._healthcare_provider_id = healthcare_provider_id
 
     @property
-    def firstname(self) -> str:
+    def firstname(self):
         """Gets the firstname of this Physician.
 
 
@@ -100,7 +99,7 @@ class Physician(Model):
         return self._firstname
 
     @firstname.setter
-    def firstname(self, firstname: str):
+    def firstname(self, firstname):
         """Sets the firstname of this Physician.
 
 
@@ -111,7 +110,7 @@ class Physician(Model):
         self._firstname = firstname
 
     @property
-    def surname(self) -> str:
+    def surname(self):
         """Gets the surname of this Physician.
 
 
@@ -121,7 +120,7 @@ class Physician(Model):
         return self._surname
 
     @surname.setter
-    def surname(self, surname: str):
+    def surname(self, surname):
         """Sets the surname of this Physician.
 
 
@@ -132,7 +131,7 @@ class Physician(Model):
         self._surname = surname
 
     @property
-    def specialty(self) -> str:
+    def specialty(self):
         """Gets the specialty of this Physician.
 
 
@@ -142,7 +141,7 @@ class Physician(Model):
         return self._specialty
 
     @specialty.setter
-    def specialty(self, specialty: str):
+    def specialty(self, specialty):
         """Sets the specialty of this Physician.
 
 
@@ -153,7 +152,7 @@ class Physician(Model):
         self._specialty = specialty
 
     @property
-    def licence_number(self) -> str:
+    def licence_number(self):
         """Gets the licence_number of this Physician.
 
 
@@ -163,7 +162,7 @@ class Physician(Model):
         return self._licence_number
 
     @licence_number.setter
-    def licence_number(self, licence_number: str):
+    def licence_number(self, licence_number):
         """Sets the licence_number of this Physician.
 
 
@@ -174,7 +173,7 @@ class Physician(Model):
         self._licence_number = licence_number
 
     @property
-    def licence_date(self) -> date:
+    def licence_date(self):
         """Gets the licence_date of this Physician.
 
 
@@ -184,7 +183,7 @@ class Physician(Model):
         return self._licence_date
 
     @licence_date.setter
-    def licence_date(self, licence_date: date):
+    def licence_date(self, licence_date):
         """Sets the licence_date of this Physician.
 
 

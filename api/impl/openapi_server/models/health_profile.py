@@ -15,7 +15,7 @@ class HealthProfile(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, health_profile_id: str=None, client_id: str=None, firstname: str=None, surname: str=None, start_date: date=None, end_date: date=None, diagnosing_healthcare_provider_id: str=None, is_activity_impediment: bool=None, is_risk_and_safety_issue: bool=None, is_allergy: bool=None, is_health_condition: bool=None):  # noqa: E501
+    def __init__(self, health_profile_id=None, client_id=None, firstname=None, surname=None, start_date=None, end_date=None, diagnosing_healthcare_provider_id=None, is_activity_impediment=None, is_risk_and_safety_issue=None, is_allergy=None, is_health_condition=None):  # noqa: E501
         """HealthProfile - a model defined in OpenAPI
 
         :param health_profile_id: The health_profile_id of this HealthProfile.  # noqa: E501
@@ -93,7 +93,7 @@ class HealthProfile(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def health_profile_id(self) -> str:
+    def health_profile_id(self):
         """Gets the health_profile_id of this HealthProfile.
 
 
@@ -103,7 +103,7 @@ class HealthProfile(Model):
         return self._health_profile_id
 
     @health_profile_id.setter
-    def health_profile_id(self, health_profile_id: str):
+    def health_profile_id(self, health_profile_id):
         """Sets the health_profile_id of this HealthProfile.
 
 
@@ -114,7 +114,7 @@ class HealthProfile(Model):
         self._health_profile_id = health_profile_id
 
     @property
-    def client_id(self) -> str:
+    def client_id(self):
         """Gets the client_id of this HealthProfile.
 
 
@@ -124,7 +124,7 @@ class HealthProfile(Model):
         return self._client_id
 
     @client_id.setter
-    def client_id(self, client_id: str):
+    def client_id(self, client_id):
         """Sets the client_id of this HealthProfile.
 
 
@@ -135,7 +135,7 @@ class HealthProfile(Model):
         self._client_id = client_id
 
     @property
-    def firstname(self) -> str:
+    def firstname(self):
         """Gets the firstname of this HealthProfile.
 
 
@@ -145,7 +145,7 @@ class HealthProfile(Model):
         return self._firstname
 
     @firstname.setter
-    def firstname(self, firstname: str):
+    def firstname(self, firstname):
         """Sets the firstname of this HealthProfile.
 
 
@@ -156,7 +156,7 @@ class HealthProfile(Model):
         self._firstname = firstname
 
     @property
-    def surname(self) -> str:
+    def surname(self):
         """Gets the surname of this HealthProfile.
 
 
@@ -166,7 +166,7 @@ class HealthProfile(Model):
         return self._surname
 
     @surname.setter
-    def surname(self, surname: str):
+    def surname(self, surname):
         """Sets the surname of this HealthProfile.
 
 
@@ -177,7 +177,7 @@ class HealthProfile(Model):
         self._surname = surname
 
     @property
-    def start_date(self) -> date:
+    def start_date(self):
         """Gets the start_date of this HealthProfile.
 
 
@@ -187,7 +187,7 @@ class HealthProfile(Model):
         return self._start_date
 
     @start_date.setter
-    def start_date(self, start_date: date):
+    def start_date(self, start_date):
         """Sets the start_date of this HealthProfile.
 
 
@@ -198,7 +198,7 @@ class HealthProfile(Model):
         self._start_date = start_date
 
     @property
-    def end_date(self) -> date:
+    def end_date(self):
         """Gets the end_date of this HealthProfile.
 
 
@@ -208,7 +208,7 @@ class HealthProfile(Model):
         return self._end_date
 
     @end_date.setter
-    def end_date(self, end_date: date):
+    def end_date(self, end_date):
         """Sets the end_date of this HealthProfile.
 
 
@@ -219,7 +219,7 @@ class HealthProfile(Model):
         self._end_date = end_date
 
     @property
-    def diagnosing_healthcare_provider_id(self) -> str:
+    def diagnosing_healthcare_provider_id(self):
         """Gets the diagnosing_healthcare_provider_id of this HealthProfile.
 
 
@@ -229,7 +229,7 @@ class HealthProfile(Model):
         return self._diagnosing_healthcare_provider_id
 
     @diagnosing_healthcare_provider_id.setter
-    def diagnosing_healthcare_provider_id(self, diagnosing_healthcare_provider_id: str):
+    def diagnosing_healthcare_provider_id(self, diagnosing_healthcare_provider_id):
         """Sets the diagnosing_healthcare_provider_id of this HealthProfile.
 
 
@@ -240,7 +240,7 @@ class HealthProfile(Model):
         self._diagnosing_healthcare_provider_id = diagnosing_healthcare_provider_id
 
     @property
-    def is_activity_impediment(self) -> bool:
+    def is_activity_impediment(self):
         """Gets the is_activity_impediment of this HealthProfile.
 
 
@@ -250,7 +250,7 @@ class HealthProfile(Model):
         return self._is_activity_impediment
 
     @is_activity_impediment.setter
-    def is_activity_impediment(self, is_activity_impediment: bool):
+    def is_activity_impediment(self, is_activity_impediment):
         """Sets the is_activity_impediment of this HealthProfile.
 
 
@@ -261,7 +261,7 @@ class HealthProfile(Model):
         self._is_activity_impediment = is_activity_impediment
 
     @property
-    def is_risk_and_safety_issue(self) -> bool:
+    def is_risk_and_safety_issue(self):
         """Gets the is_risk_and_safety_issue of this HealthProfile.
 
 
@@ -271,7 +271,7 @@ class HealthProfile(Model):
         return self._is_risk_and_safety_issue
 
     @is_risk_and_safety_issue.setter
-    def is_risk_and_safety_issue(self, is_risk_and_safety_issue: bool):
+    def is_risk_and_safety_issue(self, is_risk_and_safety_issue):
         """Sets the is_risk_and_safety_issue of this HealthProfile.
 
 
@@ -282,7 +282,7 @@ class HealthProfile(Model):
         self._is_risk_and_safety_issue = is_risk_and_safety_issue
 
     @property
-    def is_allergy(self) -> bool:
+    def is_allergy(self):
         """Gets the is_allergy of this HealthProfile.
 
 
@@ -292,7 +292,7 @@ class HealthProfile(Model):
         return self._is_allergy
 
     @is_allergy.setter
-    def is_allergy(self, is_allergy: bool):
+    def is_allergy(self, is_allergy):
         """Sets the is_allergy of this HealthProfile.
 
 
@@ -303,7 +303,7 @@ class HealthProfile(Model):
         self._is_allergy = is_allergy
 
     @property
-    def is_health_condition(self) -> bool:
+    def is_health_condition(self):
         """Gets the is_health_condition of this HealthProfile.
 
 
@@ -313,7 +313,7 @@ class HealthProfile(Model):
         return self._is_health_condition
 
     @is_health_condition.setter
-    def is_health_condition(self, is_health_condition: bool):
+    def is_health_condition(self, is_health_condition):
         """Sets the is_health_condition of this HealthProfile.
 
 

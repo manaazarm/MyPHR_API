@@ -6,8 +6,6 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from openapi_server.models.base_model_ import Model
-from openapi_server.models.healthcare_provider import HealthcareProvider  # noqa: F401,E501
-from openapi_server.models.organization_type import OrganizationType  # noqa: F401,E501
 from openapi_server import util
 
 
@@ -17,7 +15,7 @@ class HCO(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, healthcare_provider_id: str=None, firstname: str=None, surname: str=None, bin: str=None, organization_type: OrganizationType=None):  # noqa: E501
+    def __init__(self, healthcare_provider_id=None, firstname=None, surname=None, bin=None, organization_type=None):  # noqa: E501
         """HCO - a model defined in OpenAPI
 
         :param healthcare_provider_id: The healthcare_provider_id of this HCO.  # noqa: E501
@@ -65,7 +63,7 @@ class HCO(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def healthcare_provider_id(self) -> str:
+    def healthcare_provider_id(self):
         """Gets the healthcare_provider_id of this HCO.
 
 
@@ -75,7 +73,7 @@ class HCO(Model):
         return self._healthcare_provider_id
 
     @healthcare_provider_id.setter
-    def healthcare_provider_id(self, healthcare_provider_id: str):
+    def healthcare_provider_id(self, healthcare_provider_id):
         """Sets the healthcare_provider_id of this HCO.
 
 
@@ -86,7 +84,7 @@ class HCO(Model):
         self._healthcare_provider_id = healthcare_provider_id
 
     @property
-    def firstname(self) -> str:
+    def firstname(self):
         """Gets the firstname of this HCO.
 
 
@@ -96,7 +94,7 @@ class HCO(Model):
         return self._firstname
 
     @firstname.setter
-    def firstname(self, firstname: str):
+    def firstname(self, firstname):
         """Sets the firstname of this HCO.
 
 
@@ -107,7 +105,7 @@ class HCO(Model):
         self._firstname = firstname
 
     @property
-    def surname(self) -> str:
+    def surname(self):
         """Gets the surname of this HCO.
 
 
@@ -117,7 +115,7 @@ class HCO(Model):
         return self._surname
 
     @surname.setter
-    def surname(self, surname: str):
+    def surname(self, surname):
         """Sets the surname of this HCO.
 
 
@@ -128,7 +126,7 @@ class HCO(Model):
         self._surname = surname
 
     @property
-    def bin(self) -> str:
+    def bin(self):
         """Gets the bin of this HCO.
 
         the business identification number  # noqa: E501
@@ -139,7 +137,7 @@ class HCO(Model):
         return self._bin
 
     @bin.setter
-    def bin(self, bin: str):
+    def bin(self, bin):
         """Sets the bin of this HCO.
 
         the business identification number  # noqa: E501
@@ -151,7 +149,7 @@ class HCO(Model):
         self._bin = bin
 
     @property
-    def organization_type(self) -> OrganizationType:
+    def organization_type(self):
         """Gets the organization_type of this HCO.
 
 
@@ -161,7 +159,7 @@ class HCO(Model):
         return self._organization_type
 
     @organization_type.setter
-    def organization_type(self, organization_type: OrganizationType):
+    def organization_type(self, organization_type):
         """Sets the organization_type of this HCO.
 
 
