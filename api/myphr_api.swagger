@@ -5,6 +5,9 @@ info:
     This API provides means to collect and disseminate data (proposed in MyPHR ontology) from 
     healthcare clients and providers
   version: "0.0.1"
+servers:
+  - url: http://localhost
+    description: default server
 
 paths:
   
@@ -26,6 +29,12 @@ paths:
     get:
       summary: gets a patient by ID
       operationId: getpatientinfo
+      parameters:
+        - in: path
+          name: client_id
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: one patient object
@@ -36,6 +45,12 @@ paths:
     patch:
       summary: add/modify patient info
       operationId: editpatientinfo
+      parameters:
+        - in: path
+          name: client_id
+          schema:
+            type: string
+          required: true
       requestBody:
           required: false
           content:
@@ -50,6 +65,12 @@ paths:
     get:
       summary: gets the active addresses for a client
       operationId: getaddressesforaclient
+      parameters:
+        - in: path
+          name: client_id
+          schema:
+            type: string
+          required: true
       responses: 
         '200': 
           description: getting the listed addresses for a patient
@@ -62,6 +83,12 @@ paths:
     post:
       summary: add/modify addresses
       operationId: editaddressesforaclient
+      parameters:
+        - in: path
+          name: client_id
+          schema:
+            type: string
+          required: true
       requestBody:
           required: true
           content: 
@@ -75,6 +102,12 @@ paths:
     get:
       summary: gets the active phonenumbers for a client
       operationId: getphonenumbersforaclient
+      parameters:
+        - in: path
+          name: client_id
+          schema:
+            type: string
+          required: true
       responses: 
         '200': 
           description: getting the listed phonenumbers for a patient
@@ -87,6 +120,12 @@ paths:
     post:
       summary: add/modify phonenumbers
       operationId: editphonenumbersforaclient
+      parameters:
+        - in: path
+          name: client_id
+          schema:
+            type: string
+          required: true
       requestBody:
           required: false
           content: 
@@ -114,6 +153,12 @@ paths:
     get:
       summary: gets a caregiver by ID
       operationId: getcaregiverinfo
+      parameters:
+        - in: path
+          name: client_id
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: one care giver object
@@ -152,6 +197,12 @@ paths:
     get:
       summary: gets the comments for a healthcare provider by ID
       operationId: getcommentforhco
+      parameters:
+        - in: path
+          name: subject_healthcare_provider_id
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: comments for this HCO
@@ -166,6 +217,12 @@ paths:
     get:
       summary: gets the medications for a client
       operationId: getmedicationsforaclient
+      parameters:
+        - in: path
+          name: client_id
+          schema:
+            type: string
+          required: true
       responses: 
         '200': 
           description: getting the listed medications for a patient
@@ -178,6 +235,12 @@ paths:
     post:
       summary: creates a new medication 
       operationId: postmedication
+      parameters:
+        - in: path
+          name: client_id
+          schema:
+            type: string
+          required: true
       requestBody:
           required: true
           content: 
@@ -191,6 +254,12 @@ paths:
     get:
       summary: gets the health profiles for a client
       operationId: gethealthprofilesforaclient
+      parameters:
+        - in: path
+          name: client_id
+          schema:
+            type: string
+          required: true
       responses: 
         '200': 
           description: getting the listed Health Profiles for a patient
@@ -203,6 +272,12 @@ paths:
     post:
       summary: creates a new healthprofile 
       operationId: posthealthprofile
+      parameters:
+        - in: path
+          name: client_id
+          schema:
+            type: string
+          required: true
       requestBody:
           required: true
           content: 
@@ -216,6 +291,12 @@ paths:
     get:
       summary: gets the episodes for a client
       operationId: getepisodesforaclient
+      parameters:
+        - in: path
+          name: client_id
+          schema:
+            type: string
+          required: true
       responses: 
         '200': 
           description: getting the listed episodes for a patient
@@ -228,6 +309,12 @@ paths:
     post:
       summary: add an episode
       operationId: addepisodeforaclient
+      parameters:
+        - in: path
+          name: client_id
+          schema:
+            type: string
+          required: true
       requestBody:
           required: false
           content: 
@@ -257,11 +344,13 @@ components:
         - male
         - unknown
         - nonbinary
+
     ServiceLanguage:
       type: string
       enum:
         - en
         - fr
+
     OrganizationType:
       type: string
       enum:
@@ -272,6 +361,7 @@ components:
         - laboratory
         - chiropactice
         - physiotherapy centre
+
     NotificationType:
       type: string
       enum:
@@ -280,6 +370,7 @@ components:
         - phone number
         - web access
         - comment added 
+
     DietaryRegimen:
       type: object
       properties:
@@ -291,6 +382,7 @@ components:
         end_date:
           type: string
           format: date
+
     Client:
       description: >
         This is the base type with common properties 
@@ -304,12 +396,12 @@ components:
         surname: 
           type: string
         gender: 
-          type: GenderType
+          $ref: "#/components/schemas/GenderType"
         dob:
           type: string
           format: date
         service_language:
-          type: ServiceLanguage
+          $ref: "#/components/schemas/ServiceLanguage"
         profile_start_date:
           description: a new client profile may start when they change names or gender
           type: string
@@ -318,6 +410,7 @@ components:
           description: a client profile may end when they change names or gender
           type: string
           format: date
+
     Patient:
       description: >
         a person with a health card number 
@@ -339,6 +432,7 @@ components:
               type: array
               items: 
                 type: string
+
     Caregiver:
       allOf:
         - $ref: '#/components/schemas/Client'
@@ -354,6 +448,7 @@ components:
               type: boolean
             is_primary_caregiver:
               type: boolean
+
     HealthcareProvider:
       description: > 
         a registered provider with HIC designation
@@ -366,6 +461,7 @@ components:
           type: string
         surname:
           type: string
+
     HCO:
       allOf:
         - $ref: '#/components/schemas/HealthcareProvider'
@@ -378,7 +474,8 @@ components:
               type: string
               description: the business identification number
             organization_type:
-              type: OrganizationType
+              $ref: "#/components/schemas/OrganizationType"
+
     Physician:
       allOf:
         - $ref: '#/components/schemas/HealthcareProvider'
@@ -394,6 +491,7 @@ components:
             licence_date:
               type: string
               format: date 
+
     HealthProfile:
       type: object
       properties:
@@ -421,6 +519,7 @@ components:
           type: boolean
         is_health_condition:
           type: boolean
+
     Medication:
       type: object
       properties:
@@ -445,6 +544,7 @@ components:
           format: date
         condition_prescribed_for_id:
           type: string
+
     WebUser:
       type: object
       properties:
@@ -463,6 +563,7 @@ components:
           type: string
         created_at:
           type: string
+
     Comment:
       type: object
       properties:
@@ -479,6 +580,7 @@ components:
           format: date
         comment_text:
           type: string
+
     Episode:
       type: object
       properties:
@@ -500,6 +602,7 @@ components:
           type: string
         physician_id:
           type: string
+
     Address:
       type: object
       properties:
@@ -532,6 +635,7 @@ components:
           type: string
         postal_code:
           type: string
+
     PhoneNumber:
       type: object
       properties:
@@ -553,6 +657,7 @@ components:
           type: string
         number:
           type: string
+
     AuditTrail:
       type: object
       properties:
@@ -569,6 +674,7 @@ components:
         access_date:
           type: string
           format: date
+
     Notification:
       type: object
       properties:
@@ -579,16 +685,10 @@ components:
         healthcare_provider_id:
           type: string
         notification_type:
-          type: NotificationType
+          $ref: "#/components/schemas/NotificationType"
         subscription_start_date: 
           type: string
           format: date
         subscription_end_date:
           type: string
           format: date
-        
-
-
-        
-
-
