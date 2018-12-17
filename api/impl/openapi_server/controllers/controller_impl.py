@@ -13,5 +13,5 @@ from openapi_server.models.phone_number import PhoneNumber  # noqa: E501
 from openapi_server import util
 
 
-def addepisodeforaclient(client_id, episode=None):  # noqa: E501
-    return 'It works!'
+def list_hc_os():  # noqa: E501
+    return 'it works'

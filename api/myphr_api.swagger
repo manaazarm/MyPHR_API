@@ -457,10 +457,14 @@ components:
       properties:
         healthcare_provider_id: 
           type: string
-        firstname:
+        name:
           type: string
-        surname:
+        creation_date:
           type: string
+          format: date 
+        deactivation_date:
+          type: string
+          format: date 
 
     HCO:
       allOf:
@@ -484,6 +488,10 @@ components:
             a physician regardless of their employment arrangement,
             hired by hospital or hired by their own practice
           properties:
+            firstname:
+              type: string
+            lastname:
+              type: string
             specialty:
               type: string
             licence_number:
