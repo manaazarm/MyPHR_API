@@ -11,6 +11,7 @@ from openapi_server.models.medication import Medication  # noqa: E501
 from openapi_server.models.patient import Patient  # noqa: E501
 from openapi_server.models.phone_number import PhoneNumber  # noqa: E501
 from openapi_server import util
+from openapi_server.controllers import controller_impl
 
 
 def addepisodeforaclient(client_id, episode=None):  # noqa: E501
@@ -216,14 +217,7 @@ def getphonenumbersforaclient(client_id):  # noqa: E501
 
 
 def list_hc_os():  # noqa: E501
-    """List all HCOs
-
-     # noqa: E501
-
-
-    :rtype: List[HCO]
-    """
-    return 'do some magic!'
+    return controller_impl.list_hc_os()
 
 
 def postcomment(comment):  # noqa: E501
