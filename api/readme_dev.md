@@ -7,3 +7,9 @@ $ openapi-generator generate -i myphr_api.swagger -g html2 -o tmpout
 ```
  Generate code via the following command while in the right directory:
  $ openapi-generator generate -i ./myphr_api.swagger -g python-flask -o ./impl
+
+# Activating conda environment (python36)
+
+    cd /Users/mana/manaDev/MyPHR_API
+    conda activate python36
+
