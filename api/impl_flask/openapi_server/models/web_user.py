@@ -15,7 +15,7 @@ class WebUser(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, user_id=None, client_id=None, healthcare_provider_id=None, status=None, created_date=None, type=None, created_at=None):  # noqa: E501
+    def __init__(self, user_id=None, client_id=None, healthcare_provider_id=None, status=None, created_date=None, type=None, hcn=None, password=None):  # noqa: E501
         """WebUser - a model defined in OpenAPI
 
         :param user_id: The user_id of this WebUser.  # noqa: E501
@@ -30,8 +30,10 @@ class WebUser(Model):
         :type created_date: date
         :param type: The type of this WebUser.  # noqa: E501
         :type type: str
-        :param created_at: The created_at of this WebUser.  # noqa: E501
-        :type created_at: str
+        :param hcn: The hcn of this WebUser.  # noqa: E501
+        :type hcn: str
+        :param password: The password of this WebUser.  # noqa: E501
+        :type password: str
         """
         self.openapi_types = {
             'user_id': str,
@@ -40,7 +42,8 @@ class WebUser(Model):
             'status': str,
             'created_date': date,
             'type': str,
-            'created_at': str
+            'hcn': str,
+            'password': str
         }
 
         self.attribute_map = {
@@ -50,7 +53,8 @@ class WebUser(Model):
             'status': 'status',
             'created_date': 'created_date',
             'type': 'type',
-            'created_at': 'created_at'
+            'hcn': 'hcn',
+            'password': 'password'
         }
 
         self._user_id = user_id
@@ -59,7 +63,8 @@ class WebUser(Model):
         self._status = status
         self._created_date = created_date
         self._type = type
-        self._created_at = created_at
+        self._hcn = hcn
+        self._password = password
 
     @classmethod
     def from_dict(cls, dikt) -> 'WebUser':
@@ -199,22 +204,43 @@ class WebUser(Model):
         self._type = type
 
     @property
-    def created_at(self):
-        """Gets the created_at of this WebUser.
+    def hcn(self):
+        """Gets the hcn of this WebUser.
 
 
-        :return: The created_at of this WebUser.
+        :return: The hcn of this WebUser.
         :rtype: str
         """
-        return self._created_at
+        return self._hcn
 
-    @created_at.setter
-    def created_at(self, created_at):
-        """Sets the created_at of this WebUser.
+    @hcn.setter
+    def hcn(self, hcn):
+        """Sets the hcn of this WebUser.
 
 
-        :param created_at: The created_at of this WebUser.
-        :type created_at: str
+        :param hcn: The hcn of this WebUser.
+        :type hcn: str
         """
 
-        self._created_at = created_at
+        self._hcn = hcn
+
+    @property
+    def password(self):
+        """Gets the password of this WebUser.
+
+
+        :return: The password of this WebUser.
+        :rtype: str
+        """
+        return self._password
+
+    @password.setter
+    def password(self, password):
+        """Sets the password of this WebUser.
+
+
+        :param password: The password of this WebUser.
+        :type password: str
+        """
+
+        self._password = password

@@ -2,6 +2,7 @@ import connexion
 import six
 from datetime import date
 import datetime
+from passlib.hash import sha256_crypt
 
 from openapi_server.models.address import Address  # noqa: E501
 from openapi_server.models.client import Client
@@ -24,6 +25,10 @@ _DEF_HIC_DEACTIVATION_DATE = None
 _DEF_HIC_BIN = 'HELLO123456'
 _DEF_HIC_ORGANIZATION_TYPE = OrganizationType.HOSPITAL
 
+def hash_password(passw):
+    h= sha256_crypt.hash(passw)
+    return h
+
 
 def list_hc_os():  
     def_HCO = HCO(_DEF_HIC_ID,_DEF_HIC_NAME,_DEF_HIC_CREATION_DATE,_DEF_HIC_DEACTIVATION_DATE,_DEF_HIC_BIN,_DEF_HIC_ORGANIZATION_TYPE)
@@ -33,9 +38,18 @@ def list_hc_os():
 def postcomment(comment):
     return "comment posted"
 
-def authenticare_user(username, password):
-    return "User is authenticated"
+def get_authenticated_user(username, password):
+    #should grab the user matching this username from the database
+    user = 'a web user'
+    #then get the stored hash password of the matching user
+    storedpass='s'
+    #then comparing the hash password to the provided password
+    if sha256_crypt.verify(password,storedpass):
+        return user
+    else:
+        return 'no user found!' 
 
+    
 def get_client_from_user(username, password):
     return "Here's the client"
 

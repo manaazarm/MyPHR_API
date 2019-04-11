@@ -569,8 +569,10 @@ components:
           format: date
         type:
           type: string
-        created_at:
+        hcn:
           type: string
+        password:
+          type: string 
 
     Comment:
       type: object
