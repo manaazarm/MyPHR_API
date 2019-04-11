@@ -36,8 +36,6 @@ def get_user(username, password):
                 return user
             else:
                 print('password is wrong!')       
-        else:
-            print(doc_list)
     except:
         print(u'No such client!')
         raise
