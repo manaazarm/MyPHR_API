@@ -18,15 +18,15 @@ default_app = firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
-client_ref = db.collection('web_user')
-
+user_ref = db.collection('web_user')
+client_ref = db.collection('client')
 
 def get_user(username, password):
-    #should grab the user matching this username from the database
+    #grabs the user matching this username and password from the database
     try:
-        query_ref = client_ref.where('hcn','==',username)
-        clnt = query_ref.get()
-        doc_list = list(clnt)
+        query_ref = user_ref.where('hcn','==',username)
+        usr = query_ref.get()
+        doc_list = list(usr)
         if len(doc_list) >= 1:
             doc = doc_list[0]
             doc_dict = doc.to_dict()
@@ -42,3 +42,15 @@ def get_user(username, password):
 
 if __name__ == '__main__':
     get_user('H7777666699','mypass')
+
+def get_client(user):
+    user = WebUser()
+    #hcn = user.hcn
+    client_id = user.client_id
+    query_ref = client_ref.where('client_id','==',client_id)
+    clnt = query_ref.get()
+    return clnt
+
+#def get_client_basic_info(client):
+    
+

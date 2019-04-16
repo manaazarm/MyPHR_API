@@ -2,6 +2,7 @@ import connexion
 import six
 from datetime import date
 import datetime
+import hashlib
 from passlib.hash import sha256_crypt
 import openapi_server.dal.firebase as firebase
 
@@ -24,7 +25,11 @@ _DEF_HIC_NAME = 'MANA DEFAULT HIC'
 _DEF_HIC_CREATION_DATE = date(2018,12,17)
 _DEF_HIC_DEACTIVATION_DATE = None
 _DEF_HIC_BIN = 'HELLO123456'
-_DEF_HIC_ORGANIZATION_TYPE = OrganizationType.HOSPITAL
+_DEF_HIC_ORGANIZATION_TYPE = OrganizationType.HOSPITAL 
+
+_USER = WebUser()
+
+_HMACKEY = 'hiwuehf983'
 
 def hash_password(passw):
     h= sha256_crypt.hash(passw)
@@ -39,18 +44,31 @@ def list_hc_os():
 def postcomment(comment):
     return "comment posted"
 
-def get_authenticated_user(username, password):
+def generate_ticket(client_id):
+    h_input = client_id + _HMACKEY
+    return hashlib.sha256(h_input.encode()).hexdigest()
+
+def verify_ticket(claimed_client_id, hash_client_id):
+    return generate_ticket(claimed_client_id) == hash_client_id
+
+
+def get_authenticated(username, password):
     user = firebase.get_user(username,password)
+    client_id = user.client_id
     if user is not None:
-        return user
+        client_hash = generate_ticket(client_id)
+        return {'client_id':client_id, 'token':client_hash}
     else:
         return 'no user found!' 
 
     
 def get_client_from_user(username, password):
-    return "Here's the client"
+    user = get_authenticated(username,password)
+    clnt = firebase.get_client(user)
+    return clnt
 
 def get_client_basic_info(client):
+    
     return "Basic info"
 
 def get_client_health_profile(client, active_status=1):

@@ -2,6 +2,7 @@ import flask
 from flask.json import jsonify
 from flask import request
 from openapi_server.models import *
+import controller_impl as con 
 from datetime import date
 
 
@@ -24,6 +25,12 @@ _subject_client_id=None
 _comment_date=date(2018,12,27)
 _comment_text='Excellent'
 _a_comment = Comment(_comment_id, _user_id, _subject_healthcare_provider_id, _subject_client_id, _comment_date, _comment_text)
+
+@app.route('/login', methods=['GET'])
+def authenticate():
+    username = request.args['username']
+    password = request.args['password']
+    return jsonify(con.get_authenticated(username, password))
 
 @app.route('/hco', methods=['GET'])
 def list_HCOs():
