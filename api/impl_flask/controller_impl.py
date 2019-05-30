@@ -67,26 +67,32 @@ def get_client_from_user(username, password):
     clnt = firebase.get_client(user)
     return clnt
 
-def get_client_basic_info(client):
-    
-    return "Basic info"
+def get_client_basic_info(client_id,token):
+    bi = []
+    if verify_ticket(client_id, token):
+        bi = firebase.get_client_basic_info(client_id)
+    return bi
 
-def get_client_health_profile(client, active_status=1):
-    return "here's the health profile"
+def get_client_health_profile(client_id,token):
+    if verify_ticket(client_id, token):
+        hplist_dto = firebase.get_client_health_profile(client_id)
+        return [H.to_dict() for H in hplist_dto]
+    else:
+        raise Exception('invalid ticket')
 
-def get_client_contact_info(client, active_status=1):
+def get_client_contact_info(client_id,token):
     return "here's the contact info"
 
-def get_client_caregiver_info(client, active_status=1):
+def get_client_caregiver_info(client_id,token):
     return "here's the caregiver status"
 
-def get_client_physicians(client, active_status=1):
+def get_client_physicians(client_id,token):
     return "here's the client's physician"
 
-def get_client_episodes(client, start_date, end_date= datetime.datetime.now):
+def get_client_episodes(client_id,token, start_date, end_date= datetime.datetime.now):
     return "here's the health profile"
 
-def get_client_alerts(client, active_status =1):
+def get_client_alerts(client_id, token, active_status =1):
     return "here are the alerts"
 
 

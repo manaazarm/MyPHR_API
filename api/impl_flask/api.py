@@ -32,28 +32,38 @@ def authenticate():
     password = request.args['password']
     return jsonify(con.get_authenticated(username, password))
 
-@app.route('/hco', methods=['GET'])
-def list_HCOs():
-    def_HCO = HCO(_DEF_HIC_ID,_DEF_HIC_NAME,_DEF_HIC_CREATION_DATE,_DEF_HIC_DEACTIVATION_DATE,_DEF_HIC_BIN,_DEF_HIC_ORGANIZATION_TYPE)   
-    HCO_list = [def_HCO.to_dict()]
-    return jsonify(HCO_list)
+@app.route('/health_profile', methods=['GET'])
+def get_client_health_profile():
+    client_id = request.args['client_id']
+    token = request.args['token']
+    hplist = con.get_client_health_profile(client_id,token)
+    return jsonify(hplist)
 
+# @app.route('/hco', methods=['GET'])
+# def list_HCOs():
+#     def_HCO = HCO(_DEF_HIC_ID,_DEF_HIC_NAME,_DEF_HIC_CREATION_DATE,_DEF_HIC_DEACTIVATION_DATE,_DEF_HIC_BIN,_DEF_HIC_ORGANIZATION_TYPE)   
+#     HCO_list = [def_HCO.to_dict()]
+#     return jsonify(HCO_list)
 
-@app.route('/comments', methods=['POST'])
-def post_comment():
-    if not request.json:
-        abort(400)
-    comment = Comment.from_dict(request.json)
-    return 'posted comment: "%s" ' % comment.comment_text
+# @app.route('/comments', methods=['POST'])
+# def post_comment():
+#     if not request.json:
+#         abort(400)
+#     comment = Comment.from_dict(request.json)
+#     return 'posted comment: "%s" ' % comment.comment_text
 
-@app.route('/comments/<string:subject_healthcare_provider_id>', methods=['GET'])
-def get_comment(subject_healthcare_provider_id):
-    comments_list = []
-    if subject_healthcare_provider_id ==  _subject_healthcare_provider_id:
-        comments_list.append(_a_comment.comment_text)
-        return jsonify(comments_list)
-    else:
-        return "no comment found!"
+# @app.route('/comments/<string:subject_healthcare_provider_id>', methods=['GET'])
+# def get_comment(subject_healthcare_provider_id):
+#     comments_list = []
+#     if subject_healthcare_provider_id ==  _subject_healthcare_provider_id:
+#         comments_list.append(_a_comment.comment_text)
+#         return jsonify(comments_list)
+#     else:
+#         return "no comment found!"
+
+# @app.route('/clients', method=['GET'])
+# def get_clients():
+#     return "blank"
 
 
 

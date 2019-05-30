@@ -1,0 +1,767 @@
+openapi: 3.0.0
+info:
+  description: |
+    This API provides means to collect and disseminate data (proposed in MyPHR ontology) from  healthcare clients and providers
+  title: MyPHR API
+  version: 0.0.1
+servers:
+- description: default server
+  url: http://localhost
+paths:
+  /patients:
+    post:
+      operationId: createpatient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+        required: true
+      responses:
+        201:
+          description: created
+      summary: creates a new patient object
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+  /patients/{client_id}:
+    get:
+      operationId: getpatientinfo
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+          description: one patient object
+      summary: gets a patient by ID
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+    patch:
+      operationId: editpatientinfo
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+        required: false
+      responses:
+        201:
+          description: patient info modified
+      summary: add/modify patient info
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+  /addresses/{client_id}:
+    get:
+      operationId: getaddressesforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Address'
+                type: array
+          description: getting the listed addresses for a patient
+      summary: gets the active addresses for a client
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+    post:
+      operationId: editaddressesforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Address'
+        required: true
+      responses:
+        201:
+          description: addresses modified
+      summary: add/modify addresses
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+  /phonenumbers/{client_id}:
+    get:
+      operationId: getphonenumbersforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PhoneNumber'
+                type: array
+          description: getting the listed phonenumbers for a patient
+      summary: gets the active phonenumbers for a client
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+    post:
+      operationId: editphonenumbersforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PhoneNumber'
+        required: false
+      responses:
+        201:
+          description: phonenumbers modified
+      summary: add/modify phonenumbers
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+  /caregivers:
+    post:
+      operationId: createcaregiver
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Caregiver'
+        required: true
+      responses:
+        201:
+          description: created
+      summary: creates a new caregiver object
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+  /caregivers/{client_id}:
+    get:
+      operationId: getcaregiverinfo
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Caregiver'
+          description: one care giver object
+      summary: gets a caregiver by ID
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+  /hco:
+    get:
+      operationId: list_hc_os
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/HCO'
+                type: array
+          description: array of results
+      summary: List all HCOs
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+  /comments:
+    post:
+      operationId: postcomment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+        required: true
+      responses:
+        201:
+          description: comment posted
+      summary: creates a new comment
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+  /comments/{subject_healthcare_provider_id}:
+    get:
+      operationId: getcommentforhco
+      parameters:
+      - explode: false
+        in: path
+        name: subject_healthcare_provider_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Comment'
+                type: array
+          description: comments for this HCO
+      summary: gets the comments for a healthcare provider by ID
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+  /medications/{client_id}:
+    get:
+      operationId: getmedicationsforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Medication'
+                type: array
+          description: getting the listed medications for a patient
+      summary: gets the medications for a client
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+    post:
+      operationId: postmedication
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Medication'
+        required: true
+      responses:
+        201:
+          description: medication posted
+      summary: creates a new medication
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+  /healthprofiles/{client_id}:
+    get:
+      operationId: gethealthprofilesforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/HealthProfile'
+                type: array
+          description: getting the listed Health Profiles for a patient
+      summary: gets the health profiles for a client
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+    post:
+      operationId: posthealthprofile
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HealthProfile'
+        required: true
+      responses:
+        201:
+          description: health profile posted
+      summary: creates a new healthprofile
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+  /episodes/{client_id}:
+    get:
+      operationId: getepisodesforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Episode'
+                type: array
+          description: getting the listed episodes for a patient
+      summary: gets the episodes for a client
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+    post:
+      operationId: addepisodeforaclient
+      parameters:
+      - explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Episode'
+        required: false
+      responses:
+        201:
+          description: episode added
+      summary: add an episode
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+components:
+  schemas:
+    GenderType:
+      enum:
+      - female
+      - male
+      - unknown
+      - nonbinary
+      type: string
+    ServiceLanguage:
+      enum:
+      - en
+      - fr
+      type: string
+    OrganizationType:
+      enum:
+      - hospital
+      - community care provider
+      - physician clinic
+      - pharmacy
+      - laboratory
+      - chiropactice
+      - physiotherapy centre
+      type: string
+    NotificationType:
+      enum:
+      - patient episodes
+      - addresses
+      - phone number
+      - web access
+      - comment added
+      type: string
+    DietaryRegimen:
+      properties:
+        dietary_regimen_id:
+          type: string
+        start_date:
+          format: date
+          type: string
+        end_date:
+          format: date
+          type: string
+      type: object
+    Client:
+      description: |
+        This is the base type with common properties  between patients and caregivers
+      properties:
+        client_id:
+          type: string
+        firstname:
+          type: string
+        surname:
+          type: string
+        gender:
+          $ref: '#/components/schemas/GenderType'
+        dob:
+          format: date
+          type: string
+        service_language:
+          $ref: '#/components/schemas/ServiceLanguage'
+        profile_start_date:
+          description: a new client profile may start when they change names or gender
+          format: date
+          type: string
+        profile_end_date:
+          description: a client profile may end when they change names or gender
+          format: date
+          type: string
+      type: object
+    Patient:
+      allOf:
+      - $ref: '#/components/schemas/Client'
+      - properties:
+          health_card_number:
+            type: string
+          active_primary_physician_id:
+            type: string
+          dietary_regimen:
+            description: the dietary aversions, restrictions, or preferences
+            items:
+              $ref: '#/components/schemas/DietaryRegimen'
+            type: array
+          advance_directives:
+            items:
+              type: string
+            type: array
+        type: object
+      description: |
+        a person with a health card number  that is the subject of the records
+    Caregiver:
+      allOf:
+      - $ref: '#/components/schemas/Client'
+      - description: |
+          a healthcare client that helps with a patient's  activities of daily living
+        properties:
+          relationship:
+            description: who the caregiver is to patient
+            type: string
+          is_active:
+            type: boolean
+          is_primary_caregiver:
+            type: boolean
+        type: object
+    HIC:
+      description: |
+        a registered provider with HIC designation offering healthcare services
+      properties:
+        healthcare_provider_id:
+          type: string
+        name:
+          type: string
+        creation_date:
+          format: date
+          type: string
+        deactivation_date:
+          format: date
+          type: string
+      type: object
+    HCO:
+      allOf:
+      - $ref: '#/components/schemas/HIC'
+      - description: |
+          a business entity that provides healthcare services and has at least one electronic health record system
+        properties:
+          bin:
+            description: the business identification number
+            type: string
+          organization_type:
+            $ref: '#/components/schemas/OrganizationType'
+        type: object
+    Physician:
+      allOf:
+      - $ref: '#/components/schemas/HIC'
+      - description: |
+          a physician regardless of their employment arrangement, hired by hospital or hired by their own practice
+        properties:
+          firstname:
+            type: string
+          lastname:
+            type: string
+          specialty:
+            type: string
+          licence_number:
+            type: string
+          licence_date:
+            format: date
+            type: string
+        type: object
+    HealthProfile:
+      example:
+        end_date: 2000-01-23
+        code: code
+        is_health_condition: true
+        health_profile_id: health_profile_id
+        name: name
+        is_activity_impediment: true
+        is_allergy: true
+        client_id: client_id
+        diagnosing_healthcare_provider_id: diagnosing_healthcare_provider_id
+        is_risk_and_safety_issue: true
+        start_date: 2000-01-23
+      properties:
+        health_profile_id:
+          type: string
+        client_id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        start_date:
+          format: date
+          type: string
+        end_date:
+          format: date
+          type: string
+        diagnosing_healthcare_provider_id:
+          type: string
+        is_activity_impediment:
+          type: boolean
+        is_risk_and_safety_issue:
+          type: boolean
+        is_allergy:
+          type: boolean
+        is_health_condition:
+          type: boolean
+      type: object
+    Medication:
+      example:
+        icd_code: icd_code
+        end_date: 2000-01-23
+        prescribing_healthcare_provider_id: prescribing_healthcare_provider_id
+        medication_id: medication_id
+        condition_prescribed_for_id: condition_prescribed_for_id
+        name: name
+        client_id: client_id
+        last_reconciliation_date: 2000-01-23
+        start_date: 2000-01-23
+      properties:
+        medication_id:
+          type: string
+        name:
+          type: string
+        icd_code:
+          type: string
+        client_id:
+          type: string
+        prescribing_healthcare_provider_id:
+          type: string
+        start_date:
+          format: date
+          type: string
+        end_date:
+          format: date
+          type: string
+        last_reconciliation_date:
+          format: date
+          type: string
+        condition_prescribed_for_id:
+          type: string
+      type: object
+    WebUser:
+      properties:
+        user_id:
+          type: string
+        client_id:
+          type: string
+        healthcare_provider_id:
+          type: string
+        status:
+          type: string
+        created_date:
+          format: date
+          type: string
+        type:
+          type: string
+        hcn:
+          type: string
+        password:
+          type: string
+      type: object
+    Comment:
+      example:
+        comment_text: comment_text
+        user_id: user_id
+        subject_healthcare_provider_id: subject_healthcare_provider_id
+        subject_client_id: subject_client_id
+        comment_date: 2000-01-23
+        comment_id: comment_id
+      properties:
+        comment_id:
+          type: string
+        user_id:
+          type: string
+        subject_healthcare_provider_id:
+          type: string
+        subject_client_id:
+          type: string
+        comment_date:
+          format: date
+          type: string
+        comment_text:
+          type: string
+      type: object
+    Episode:
+      example:
+        end_date: 2000-01-23
+        episode_type: episode_type
+        physician_id: physician_id
+        episode_id: episode_id
+        healthcare_provider_id: healthcare_provider_id
+        client_id: client_id
+        start_date: 2000-01-23
+        status: status
+      properties:
+        episode_id:
+          type: string
+        client_id:
+          type: string
+        healthcare_provider_id:
+          type: string
+        start_date:
+          format: date
+          type: string
+        end_date:
+          format: date
+          type: string
+        status:
+          type: string
+        episode_type:
+          type: string
+        physician_id:
+          type: string
+      type: object
+    Address:
+      example:
+        end_date: 2000-01-23
+        country: country
+        is_active: true
+        address_type: address_type
+        city: city
+        address_id: address_id
+        healthcare_provider_id: healthcare_provider_id
+        client_id: client_id
+        unit_number: unit_number
+        street_number: street_number
+        street_type: street_type
+        postal_code: postal_code
+        start_date: 2000-01-23
+      properties:
+        address_id:
+          type: string
+        address_type:
+          description: e.g. mailing, home, temporary etc.
+          type: string
+        client_id:
+          type: string
+        healthcare_provider_id:
+          type: string
+        is_active:
+          type: boolean
+        start_date:
+          format: date
+          type: string
+        end_date:
+          format: date
+          type: string
+        country:
+          type: string
+        city:
+          type: string
+        street_type:
+          type: string
+        street_number:
+          type: string
+        unit_number:
+          type: string
+        postal_code:
+          type: string
+      type: object
+    PhoneNumber:
+      example:
+        end_date: 2000-01-23
+        country_code: country_code
+        number: number
+        is_active: true
+        phone_num_id: phone_num_id
+        healthcare_provider_id: healthcare_provider_id
+        client_id: client_id
+        start_date: 2000-01-23
+      properties:
+        phone_num_id:
+          type: string
+        client_id:
+          type: string
+        healthcare_provider_id:
+          type: string
+        is_active:
+          type: boolean
+        start_date:
+          format: date
+          type: string
+        end_date:
+          format: date
+          type: string
+        country_code:
+          type: string
+        number:
+          type: string
+      type: object
+    AuditTrail:
+      properties:
+        audit_id:
+          type: string
+        user_id:
+          type: string
+        healthcare_provider_id:
+          type: string
+        is_web_access:
+          type: boolean
+        is_api_access:
+          type: boolean
+        access_date:
+          format: date
+          type: string
+      type: object
+    Notification:
+      properties:
+        subscription_id:
+          type: string
+        user_id:
+          type: string
+        healthcare_provider_id:
+          type: string
+        notification_type:
+          $ref: '#/components/schemas/NotificationType'
+        subscription_start_date:
+          format: date
+          type: string
+        subscription_end_date:
+          format: date
+          type: string
+      type: object
