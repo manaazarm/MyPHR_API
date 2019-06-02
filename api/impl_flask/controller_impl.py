@@ -55,9 +55,11 @@ def verify_ticket(claimed_client_id, hash_client_id):
 def get_authenticated(username, password):
     user = firebase.get_user(username,password)
     client_id = user.client_id
+    user_id = user.user_id
+    user_type = user.type
     if user is not None:
         client_hash = generate_ticket(client_id)
-        return {'client_id':client_id, 'token':client_hash}
+        return {'client_id':client_id, 'user_id':user_id , 'user_type': user_type,'token':client_hash}
     else:
         return 'no user found!' 
 
@@ -67,10 +69,10 @@ def get_client_from_user(username, password):
     clnt = firebase.get_client(user)
     return clnt
 
-def get_client_basic_info(client_id,token):
+def get_client_basic_info(client_id,user_id,token):
     bi = []
     if verify_ticket(client_id, token):
-        bi = firebase.get_client_basic_info(client_id)
+        bi = firebase.get_client_basic_info(client_id, user_id)
     return bi
 
 def get_client_health_profile(client_id,token):

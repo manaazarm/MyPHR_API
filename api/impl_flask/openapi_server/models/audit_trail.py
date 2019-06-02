@@ -15,7 +15,7 @@ class AuditTrail(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, audit_id=None, user_id=None, healthcare_provider_id=None, is_web_access=None, is_api_access=None, access_date=None):  # noqa: E501
+    def __init__(self, audit_id=None, user_id=None, healthcare_provider_id=None, is_web_access=None, is_api_access=None, access_date=None, accessed_client_id=None):  # noqa: E501
         """AuditTrail - a model defined in OpenAPI
 
         :param audit_id: The audit_id of this AuditTrail.  # noqa: E501
@@ -30,6 +30,8 @@ class AuditTrail(Model):
         :type is_api_access: bool
         :param access_date: The access_date of this AuditTrail.  # noqa: E501
         :type access_date: date
+        :param accessed_client_id: The accessed_client_id of this AuditTrail.  # noqa: E501
+        :type accessed_client_id: str
         """
         self.openapi_types = {
             'audit_id': str,
@@ -37,7 +39,8 @@ class AuditTrail(Model):
             'healthcare_provider_id': str,
             'is_web_access': bool,
             'is_api_access': bool,
-            'access_date': date
+            'access_date': date,
+            'accessed_client_id': str
         }
 
         self.attribute_map = {
@@ -46,7 +49,8 @@ class AuditTrail(Model):
             'healthcare_provider_id': 'healthcare_provider_id',
             'is_web_access': 'is_web_access',
             'is_api_access': 'is_api_access',
-            'access_date': 'access_date'
+            'access_date': 'access_date',
+            'accessed_client_id': 'accessed_client_id'
         }
 
         self._audit_id = audit_id
@@ -55,6 +59,7 @@ class AuditTrail(Model):
         self._is_web_access = is_web_access
         self._is_api_access = is_api_access
         self._access_date = access_date
+        self._accessed_client_id = accessed_client_id
 
     @classmethod
     def from_dict(cls, dikt) -> 'AuditTrail':
@@ -192,3 +197,24 @@ class AuditTrail(Model):
         """
 
         self._access_date = access_date
+
+    @property
+    def accessed_client_id(self):
+        """Gets the accessed_client_id of this AuditTrail.
+
+
+        :return: The accessed_client_id of this AuditTrail.
+        :rtype: str
+        """
+        return self._accessed_client_id
+
+    @accessed_client_id.setter
+    def accessed_client_id(self, accessed_client_id):
+        """Sets the accessed_client_id of this AuditTrail.
+
+
+        :param accessed_client_id: The accessed_client_id of this AuditTrail.
+        :type accessed_client_id: str
+        """
+
+        self._accessed_client_id = accessed_client_id

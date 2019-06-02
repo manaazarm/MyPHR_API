@@ -32,12 +32,26 @@ def authenticate():
     password = request.args['password']
     return jsonify(con.get_authenticated(username, password))
 
+@app.route('/basic_info', methods=['GET'])
+def get_client_basic_info():
+    client_id = request.args['client_id']
+    user_id = request.args['user_id']
+    token = request.args['token']
+    bi = con.get_client_basic_info(client_id,user_id,token)
+    return jsonify(bi)
+
 @app.route('/health_profile', methods=['GET'])
 def get_client_health_profile():
     client_id = request.args['client_id']
     token = request.args['token']
     hplist = con.get_client_health_profile(client_id,token)
     return jsonify(hplist)
+
+@app.route('/medications', methods=['GET'])
+def get_client_medication():
+    client_id = request.args['client_id']
+    token = request.args['token']
+    return ''
 
 # @app.route('/hco', methods=['GET'])
 # def list_HCOs():

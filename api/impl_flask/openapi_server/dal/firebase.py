@@ -6,6 +6,8 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 from passlib.hash import sha256_crypt
 
+from google.cloud import firestore as fs
+
 # hack: for sibling imports, add the parent path to sys.path
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.append(dir_path)
@@ -22,6 +24,7 @@ db = firestore.client()
 user_ref = db.collection('web_user')
 client_ref = db.collection('client')
 h_profile_ref = db.collection('health_profile')
+audit_ref = db.collection('audit_trail')
 
 def get_user(username, password):
     #grabs the user matching this username and password from the database
@@ -34,7 +37,14 @@ def get_user(username, password):
             doc_dict = doc.to_dict()
             h=doc_dict['password']
             if sha256_crypt.verify(password,h):
-                user = WebUser(client_id=doc_dict['client_id'], created_date=doc_dict['created_date'],hcn=doc_dict['hcn'],password=doc_dict['password'],status=doc_dict['status'],type=doc_dict['type'])
+                user = WebUser(
+                    client_id=doc_dict['client_id'], 
+                    user_id=doc_dict['user_id'],
+                    created_date=doc_dict['created_date'],
+                    hcn=doc_dict['hcn'],
+                    password=doc_dict['password'],
+                    status=doc_dict['status'],
+                    type=doc_dict['type'])
                 return user
             else:
                 print('password is wrong!')       
@@ -53,10 +63,22 @@ def get_client(user):
     clnt = query_ref.get()
     return clnt
 
-def get_client_basic_info(client_id):
-    query_ref = client_ref.where('client_id','==',client_id)
-    bi_list = list(query_ref.get())
-    return bi_list
+
+def get_client_basic_info(client_id, user_id):
+    try:
+        query_ref = client_ref.where('client_id','==',client_id)
+        bi_list = list(query_ref.get())
+        bi = bi_list[0].to_dict()
+
+        query_ref2 = audit_ref.where('user_id', '==', user_id).order_by('access_date', direction=fs.Query.DESCENDING).limit(1)
+        last_record = list(query_ref2.get())
+        last_access_date = last_record[0].get('access_date')
+        bi['last_access_date']= last_access_date
+        return bi
+    except Exception as e:
+        print(e)
+        print('No such document!')
+    
 
 def get_client_health_profile(client_id):
     health_profiles = []
