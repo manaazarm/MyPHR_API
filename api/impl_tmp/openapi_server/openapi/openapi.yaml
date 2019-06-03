@@ -666,6 +666,7 @@ components:
         address_id: address_id
         healthcare_provider_id: healthcare_provider_id
         client_id: client_id
+        street_name: street_name
         unit_number: unit_number
         street_number: street_number
         street_type: street_type
@@ -697,6 +698,8 @@ components:
           type: string
         street_number:
           type: string
+        street_name:
+          type: string
         unit_number:
           type: string
         postal_code:
@@ -710,6 +713,7 @@ components:
         is_active: true
         phone_num_id: phone_num_id
         healthcare_provider_id: healthcare_provider_id
+        type: type
         client_id: client_id
         start_date: 2000-01-23
       properties:
@@ -731,6 +735,8 @@ components:
           type: string
         number:
           type: string
+        type:
+          type: string
       type: object
     AuditTrail:
       properties:
@@ -746,6 +752,8 @@ components:
           type: boolean
         access_date:
           format: date
+          type: string
+        accessed_client_id:
           type: string
       type: object
     Notification:

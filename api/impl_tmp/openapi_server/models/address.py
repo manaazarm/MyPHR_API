@@ -15,7 +15,7 @@ class Address(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, address_id=None, address_type=None, client_id=None, healthcare_provider_id=None, is_active=None, start_date=None, end_date=None, country=None, city=None, street_type=None, street_number=None, unit_number=None, postal_code=None):  # noqa: E501
+    def __init__(self, address_id=None, address_type=None, client_id=None, healthcare_provider_id=None, is_active=None, start_date=None, end_date=None, country=None, city=None, street_type=None, street_number=None, street_name=None, unit_number=None, postal_code=None):  # noqa: E501
         """Address - a model defined in OpenAPI
 
         :param address_id: The address_id of this Address.  # noqa: E501
@@ -40,6 +40,8 @@ class Address(Model):
         :type street_type: str
         :param street_number: The street_number of this Address.  # noqa: E501
         :type street_number: str
+        :param street_name: The street_name of this Address.  # noqa: E501
+        :type street_name: str
         :param unit_number: The unit_number of this Address.  # noqa: E501
         :type unit_number: str
         :param postal_code: The postal_code of this Address.  # noqa: E501
@@ -57,6 +59,7 @@ class Address(Model):
             'city': str,
             'street_type': str,
             'street_number': str,
+            'street_name': str,
             'unit_number': str,
             'postal_code': str
         }
@@ -73,6 +76,7 @@ class Address(Model):
             'city': 'city',
             'street_type': 'street_type',
             'street_number': 'street_number',
+            'street_name': 'street_name',
             'unit_number': 'unit_number',
             'postal_code': 'postal_code'
         }
@@ -88,6 +92,7 @@ class Address(Model):
         self._city = city
         self._street_type = street_type
         self._street_number = street_number
+        self._street_name = street_name
         self._unit_number = unit_number
         self._postal_code = postal_code
 
@@ -334,6 +339,27 @@ class Address(Model):
         """
 
         self._street_number = street_number
+
+    @property
+    def street_name(self):
+        """Gets the street_name of this Address.
+
+
+        :return: The street_name of this Address.
+        :rtype: str
+        """
+        return self._street_name
+
+    @street_name.setter
+    def street_name(self, street_name):
+        """Sets the street_name of this Address.
+
+
+        :param street_name: The street_name of this Address.
+        :type street_name: str
+        """
+
+        self._street_name = street_name
 
     @property
     def unit_number(self):

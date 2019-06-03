@@ -15,7 +15,7 @@ class PhoneNumber(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, phone_num_id=None, client_id=None, healthcare_provider_id=None, is_active=None, start_date=None, end_date=None, country_code=None, number=None):  # noqa: E501
+    def __init__(self, phone_num_id=None, client_id=None, healthcare_provider_id=None, is_active=None, start_date=None, end_date=None, country_code=None, number=None, type=None):  # noqa: E501
         """PhoneNumber - a model defined in OpenAPI
 
         :param phone_num_id: The phone_num_id of this PhoneNumber.  # noqa: E501
@@ -34,6 +34,8 @@ class PhoneNumber(Model):
         :type country_code: str
         :param number: The number of this PhoneNumber.  # noqa: E501
         :type number: str
+        :param type: The type of this PhoneNumber.  # noqa: E501
+        :type type: str
         """
         self.openapi_types = {
             'phone_num_id': str,
@@ -43,7 +45,8 @@ class PhoneNumber(Model):
             'start_date': date,
             'end_date': date,
             'country_code': str,
-            'number': str
+            'number': str,
+            'type': str
         }
 
         self.attribute_map = {
@@ -54,7 +57,8 @@ class PhoneNumber(Model):
             'start_date': 'start_date',
             'end_date': 'end_date',
             'country_code': 'country_code',
-            'number': 'number'
+            'number': 'number',
+            'type': 'type'
         }
 
         self._phone_num_id = phone_num_id
@@ -65,6 +69,7 @@ class PhoneNumber(Model):
         self._end_date = end_date
         self._country_code = country_code
         self._number = number
+        self._type = type
 
     @classmethod
     def from_dict(cls, dikt) -> 'PhoneNumber':
@@ -244,3 +249,24 @@ class PhoneNumber(Model):
         """
 
         self._number = number
+
+    @property
+    def type(self):
+        """Gets the type of this PhoneNumber.
+
+
+        :return: The type of this PhoneNumber.
+        :rtype: str
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """Sets the type of this PhoneNumber.
+
+
+        :param type: The type of this PhoneNumber.
+        :type type: str
+        """
+
+        self._type = type

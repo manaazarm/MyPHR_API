@@ -47,11 +47,21 @@ def get_client_health_profile():
     hplist = con.get_client_health_profile(client_id,token)
     return jsonify(hplist)
 
+@app.route('/contact_info', methods=['GET'])
+def get_contact_info():
+    client_id = request.args['client_id']
+    is_active = request.args['is_active']
+    token = request.args['token']
+    contact = con.get_client_contact_info(client_id, is_active, token)
+    return jsonify(contact)
+
 @app.route('/medications', methods=['GET'])
 def get_client_medication():
     client_id = request.args['client_id']
     token = request.args['token']
     return ''
+
+
 
 # @app.route('/hco', methods=['GET'])
 # def list_HCOs():

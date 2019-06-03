@@ -14,7 +14,8 @@ sys.path.append(dir_path)
 
 from openapi_server.models.web_user import WebUser
 from openapi_server.models.health_profile import HealthProfile
-
+from openapi_server.models.address import Address 
+from openapi_server.models.phone_number import PhoneNumber
 
 cred = credentials.Certificate('/Users/mana/Dropbox/UO_Shared_With_Mana/Prototype Stuff/myphr-api-firebase-adminsdk-qfh5m-73a706148a.json')
 default_app = firebase_admin.initialize_app(cred)
@@ -25,6 +26,7 @@ user_ref = db.collection('web_user')
 client_ref = db.collection('client')
 h_profile_ref = db.collection('health_profile')
 audit_ref = db.collection('audit_trail')
+contact_info_ref = db.collection('contact_info')
 
 def get_user(username, password):
     #grabs the user matching this username and password from the database
@@ -89,7 +91,19 @@ def get_client_health_profile(client_id):
         if len(hp_list) >= 1:
             for hp in hp_list:
                 hp_dict = hp.to_dict()
-                health_profile = HealthProfile(health_profile_id=hp_dict['health_profile_id'], client_id=hp_dict['client_id'], name=hp_dict['name'], code=hp_dict['code'], start_date=hp_dict['start_date'], end_date=hp_dict['end_date'], diagnosing_healthcare_provider_id=hp_dict['diagnosing_healthcare_provider_id'], is_activity_impediment=hp_dict['is_activity_impediment'], is_risk_and_safety_issue=hp_dict['is_risk_and_safety_issue'], is_allergy=hp_dict['is_allergy'], is_health_condition=hp_dict['is_health_condition'])        
+                health_profile = HealthProfile(
+                    health_profile_id=hp_dict['health_profile_id'], 
+                    client_id=hp_dict['client_id'], 
+                    name=hp_dict['name'], 
+                    code=hp_dict['code'], 
+                    start_date=hp_dict['start_date'], 
+                    end_date=hp_dict['end_date'], 
+                    diagnosing_healthcare_provider_id=hp_dict['diagnosing_healthcare_provider_id'], 
+                    is_activity_impediment=hp_dict['is_activity_impediment'], 
+                    is_risk_and_safety_issue=hp_dict['is_risk_and_safety_issue'], 
+                    is_allergy=hp_dict['is_allergy'], 
+                    is_health_condition=hp_dict['is_health_condition']
+                    )        
                 
                 health_profiles.append(health_profile)
             return health_profiles
@@ -99,5 +113,101 @@ def get_client_health_profile(client_id):
     except:
         print('could not connect to database')
         raise
-    
 
+def get_address(is_active, client_id= None, healthcare_provider_id= None ):
+    try:
+        query_ref = None
+        addresses = []
+        if client_id != None:
+            query_ref = contact_info_ref.where('client_id','==',client_id).where('category','==','address').where('is_active','==','1')
+        elif healthcare_provider_id != None:
+            query_ref = contact_info_ref.where('healthcare_provider_id').where('category','==','address').where('is_active','==','1')
+        else:
+            print('should specify either a client_id or healthcare_provider_id')
+        address_list = list(query_ref.get())
+        if len(address_list)>=1:
+            for ad in address_list:
+                ad_dict = ad.to_dict()
+                address = Address(
+                    address_id = ad_dict['contact_id'],
+                    address_type=ad_dict['type'],
+                    client_id=ad_dict['client_id'],
+                    healthcare_provider_id=ad_dict['healthcare_provider_id'],
+                    is_active=ad_dict['is_active'],
+                    start_date=ad_dict['start_date'],
+                    end_date=ad_dict['end_date'],
+                    country=ad_dict['country'],
+                    city=ad_dict['city'],
+                    street_type=ad_dict['street_type'],
+                    street_name=ad_dict['street_name'],
+                    street_number=ad_dict['street_number'],
+                    unit_number=ad_dict['unit_number'],
+                    postal_code=ad_dict['postal_code']
+                )
+                addresses.append(address)
+            return addresses
+        else:
+            print('No address found')
+            return []
+    except:
+        print('could not connect to database')
+        raise
+            
+def get_phone_number(is_active, client_id= None, healthcare_provider_id= None):
+    try:
+        query_ref = None
+        numbers = []
+        if client_id != None:
+            query_ref = contact_info_ref.where('client_id','==',client_id).where('category','==','phone').where('is_active','==','1')
+        elif healthcare_provider_id != None:
+            query_ref = contact_info_ref.where('healthcare_provider_id').where('category','==','phone').where('is_active','==','1')
+        else:
+            print('should specify either a client_id or healthcare_provider_id')
+        phone_list = list(query_ref.get())
+        if len(phone_list)>=1:
+            for nu in phone_list:
+                nu_dict = nu.to_dict()
+                phone = PhoneNumber(
+                    phone_num_id = nu_dict['contact_id'],
+                    type=nu_dict['type'],
+                    client_id=nu_dict['client_id'],
+                    healthcare_provider_id=nu_dict['healthcare_provider_id'],
+                    is_active=nu_dict['is_active'],
+                    start_date=nu_dict['start_date'],
+                    end_date=nu_dict['end_date'],
+                    country_code=nu_dict['country_code'],
+                    number=nu_dict['number']
+                )
+                numbers.append(phone)
+            return numbers
+        else:
+            print('No phone number found')
+            return []
+    except:
+        print('could not connect to database')
+        raise
+
+def get_email_address(is_active, client_id= None, healthcare_provider_id= None):
+    try:    
+        query_ref = None
+        emails = []
+        if client_id != None:
+            query_ref = contact_info_ref.where('client_id','==',client_id).where('category','==','email').where('is_active','==','1')
+        elif healthcare_provider_id != None:
+            query_ref = contact_info_ref.where('healthcare_provider_id').where('category','==','email').where('is_active','==','1')
+        else:
+            print('should specify either a client_id or healthcare_provider_id')
+        email_list = list(query_ref.get())
+        if len(email_list)>=1:
+            for em in email_list:
+                email_dict = em.to_dict()
+                email = email_dict['email_address']
+                emails.append(email)
+            return emails
+        else:
+            print('No phone number found')
+            return []
+    except:
+        print('could not connect to database')
+        raise
+            

@@ -641,6 +641,8 @@ components:
           type: string
         street_number:
           type: string
+        street_name:
+          type: string
         unit_number:
           type: string
         postal_code:
@@ -667,6 +669,8 @@ components:
           type: string
         number:
           type: string
+        type:
+          type: string
 
     AuditTrail:
       type: object
@@ -684,6 +688,8 @@ components:
         access_date:
           type: string
           format: date
+        accessed_client_id:
+          type: string
 
     Notification:
       type: object
