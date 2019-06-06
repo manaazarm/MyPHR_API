@@ -26,6 +26,13 @@ _comment_date=date(2018,12,27)
 _comment_text='Excellent'
 _a_comment = Comment(_comment_id, _user_id, _subject_healthcare_provider_id, _subject_client_id, _comment_date, _comment_text)
 
+
+def __parse_bool(s):
+    if s is None:
+        return False
+    return s.lower() in ('true', '1')
+
+
 @app.route('/login', methods=['GET'])
 def authenticate():
     username = request.args['username']
@@ -50,7 +57,7 @@ def get_client_health_profile():
 @app.route('/contact_info', methods=['GET'])
 def get_contact_info():
     client_id = request.args['client_id']
-    is_active = request.args['is_active']
+    is_active = __parse_bool(request.args['is_active'])
     token = request.args['token']
     contact = con.get_client_contact_info(client_id, is_active, token)
     return jsonify(contact)
@@ -58,7 +65,7 @@ def get_contact_info():
 @app.route('/medications', methods=['GET'])
 def get_client_medication():
     client_id = request.args['client_id']
-    token = request.args['token']
+    token = request.args['toke/.cxn']
     return ''
 
 

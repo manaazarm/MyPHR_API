@@ -84,8 +84,8 @@ def get_client_health_profile(client_id,token):
 
 def get_client_contact_info(client_id,is_active,token):
     if verify_ticket(client_id, token):
-        addresses = firebase.get_address(is_active,client_id)
-        phone_numbers = firebase.get_phone_number(is_active,client_id)
+        addresses = [a.to_dict() for a in firebase.get_address(is_active,client_id)]
+        phone_numbers = [p.to_dict() for p in firebase.get_phone_number(is_active,client_id)]
         emails = firebase.get_email_address(is_active,client_id)
         contact_info = [('addresses',addresses),('phone_numbers',phone_numbers),('emails',emails)]
         return contact_info

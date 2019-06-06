@@ -119,9 +119,9 @@ def get_address(is_active, client_id= None, healthcare_provider_id= None ):
         query_ref = None
         addresses = []
         if client_id != None:
-            query_ref = contact_info_ref.where('client_id','==',client_id).where('category','==','address').where('is_active','==','1')
-        elif healthcare_provider_id != None:
-            query_ref = contact_info_ref.where('healthcare_provider_id').where('category','==','address').where('is_active','==','1')
+            query_ref = contact_info_ref.where('client_id','==',client_id).where('category','==','address').where('is_active','==', is_active)
+        elif healthcare_provider_id != None: 
+            query_ref = contact_info_ref.where('healthcare_provider_id').where('category','==','address').where('is_active','==',is_active)
         else:
             print('should specify either a client_id or healthcare_provider_id')
         address_list = list(query_ref.get())
@@ -158,9 +158,9 @@ def get_phone_number(is_active, client_id= None, healthcare_provider_id= None):
         query_ref = None
         numbers = []
         if client_id != None:
-            query_ref = contact_info_ref.where('client_id','==',client_id).where('category','==','phone').where('is_active','==','1')
+            query_ref = contact_info_ref.where('client_id','==',client_id).where('category','==','phone').where('is_active','==',is_active)
         elif healthcare_provider_id != None:
-            query_ref = contact_info_ref.where('healthcare_provider_id').where('category','==','phone').where('is_active','==','1')
+            query_ref = contact_info_ref.where('healthcare_provider_id').where('category','==','phone').where('is_active','==',is_active)
         else:
             print('should specify either a client_id or healthcare_provider_id')
         phone_list = list(query_ref.get())
@@ -192,9 +192,9 @@ def get_email_address(is_active, client_id= None, healthcare_provider_id= None):
         query_ref = None
         emails = []
         if client_id != None:
-            query_ref = contact_info_ref.where('client_id','==',client_id).where('category','==','email').where('is_active','==','1')
+            query_ref = contact_info_ref.where('client_id','==',client_id).where('category','==','email').where('is_active','==',is_active)
         elif healthcare_provider_id != None:
-            query_ref = contact_info_ref.where('healthcare_provider_id').where('category','==','email').where('is_active','==','1')
+            query_ref = contact_info_ref.where('healthcare_provider_id').where('category','==','email').where('is_active','==',is_active)
         else:
             print('should specify either a client_id or healthcare_provider_id')
         email_list = list(query_ref.get())
