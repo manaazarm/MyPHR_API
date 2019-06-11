@@ -100,9 +100,21 @@ def get_client_caregiver_info(client_id,is_active,token):
     else:
         raise Exception('invalid token')
 
-def get_client_episodes(client_id,token):
+def get_client_physicians(client_id,episode_type,token):
     if verify_ticket(client_id, token):
-        episodes_dict = firebase.get_client_episodes(client_id)
+        episodes_dict = firebase.get_client_episodes(client_id,episode_type)
+        output_dict = {K: {
+            'episode': V[0].to_dict(), 
+            'hic': V[1].to_dict(), 
+            'dr': V[2].to_dict()} for K,V in episodes_dict.items()}
+        
+        return output_dict
+    else:
+        raise Exception('invalid token')
+
+def get_client_episodes(client_id,token, episode_type = None):
+    if verify_ticket(client_id, token):
+        episodes_dict = firebase.get_client_episodes(client_id,episode_type)
         output_dict = {K: {
             'episode': V[0].to_dict(), 
             'hic': V[1].to_dict(), 
@@ -114,11 +126,15 @@ def get_client_episodes(client_id,token):
 
 def get_client_episodes_in_range(client_id,token, start_date, end_date= datetime.datetime.now):
     if verify_ticket(client_id, token):
-        episodes = [c.to_dict() for c in firebase.get_client_episodes_in_range(client_id, start_date,end_date)]
-        return episodes
+        episodes_dict = firebase.get_client_episodes_in_range(client_id, start_date,end_date)
+        output_dict = {K: {
+            'episode': V[0].to_dict(), 
+            'hic': V[1].to_dict(), 
+            'dr': V[2].to_dict()} for K,V in episodes_dict.items()}
+        
+        return output_dict
     else:
         raise Exception('invalid token')
-
 
 if __name__ == '__main__':
     print("[main] reached here")

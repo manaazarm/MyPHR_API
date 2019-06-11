@@ -256,6 +256,8 @@ def get_client_episodes(client_id, episode_type='All'):
         
         if episode_type == 'All':
            query_ref = episode_ref.where('client_id','==',client_id)
+        elif episode_type == 'Physician':
+            query_ref = episode_ref.where('client_id','==',client_id).where('episode_type','==',episode_type).where('is_active', '==', True)
         else:
             query_ref = episode_ref.where('client_id','==',client_id).where('episode_type','==',episode_type)
         
@@ -310,10 +312,12 @@ def get_client_episodes(client_id, episode_type='All'):
 
 def get_client_episodes_in_range(client_id,start_date,end_date, episode_type='All'):
     try: 
-        episodes = []
+        episodes = {}
         
         if episode_type == 'All':
            query_ref = episode_ref.where('client_id','==',client_id).where('start_date','>=',start_date).where('end_date','<=',end_date)
+        elif episode_type == 'Physician':
+            query_ref = episode_ref.where('client_id','==',client_id).where('episode_type','==',episode_type).where('start_date','>=',start_date).where('end_date','<=',end_date)
         else:
             query_ref = episode_ref.where('client_id','==',client_id).where('episode_type','==',episode_type).where('start_date','>=',start_date).where('end_date','<=',end_date)
         
@@ -327,10 +331,11 @@ def get_client_episodes_in_range(client_id,start_date,end_date, episode_type='Al
                     healthcare_provider_id = e_dict['healthcare_provider_id'],
                     start_date = e_dict['start_date'],
                     end_date = e_dict['end_date'],
-                    is_active= e_dict['is_active'],
+                    is_active = e_dict['is_active'],
                     episode_type = e_dict['episode_type'],
                     physician_id = e_dict['physician_id']
                 )
+                
                 hicl = list(hic_ref.where('hic_id','==',episode.healthcare_provider_id).get())
                 if len(hicl)>=1:
                     hicd = hicl[0].to_dict()
@@ -361,6 +366,6 @@ def get_client_episodes_in_range(client_id,start_date,end_date, episode_type='Al
         else: 
             print('no episode found!')
             return []
-    except:
-        print('could not conncet to database')
+    except Exception as e:
+        print( e)
         raise

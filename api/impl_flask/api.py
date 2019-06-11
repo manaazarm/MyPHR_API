@@ -70,6 +70,14 @@ def get_caregiver_info():
     cgs= con.get_client_caregiver_info(client_id, is_active, token)
     return jsonify(cgs)
 
+@app.route('/physician', methods=['GET'])
+def get_client_physicians():
+    client_id = request.args['client_id']
+    token = request.args['token']
+    episode_type = 'Physician'
+    episodes = con.get_client_episodes(client_id, token,episode_type)
+    return jsonify(episodes)
+
 @app.route('/episodes', methods=['GET'])
 def get_client_episodes():
     client_id = request.args['client_id']
