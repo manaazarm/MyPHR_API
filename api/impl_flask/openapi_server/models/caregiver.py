@@ -15,7 +15,7 @@ class Caregiver(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, client_id=None, firstname=None, surname=None, gender=None, dob=None, service_language=None, profile_start_date=None, profile_end_date=None, relationship=None, is_active=None, is_primary_caregiver=None):  # noqa: E501
+    def __init__(self, client_id=None, firstname=None, surname=None, gender=None, dob=None, service_language=None, profile_start_date=None, profile_end_date=None, relationship=None, is_active=None, is_primary_caregiver=None, caregiver_of_client_id=None):  # noqa: E501
         """Caregiver - a model defined in OpenAPI
 
         :param client_id: The client_id of this Caregiver.  # noqa: E501
@@ -25,11 +25,11 @@ class Caregiver(Model):
         :param surname: The surname of this Caregiver.  # noqa: E501
         :type surname: str
         :param gender: The gender of this Caregiver.  # noqa: E501
-        :type gender: GenderType
+        :type gender: str
         :param dob: The dob of this Caregiver.  # noqa: E501
         :type dob: date
         :param service_language: The service_language of this Caregiver.  # noqa: E501
-        :type service_language: ServiceLanguage
+        :type service_language: str
         :param profile_start_date: The profile_start_date of this Caregiver.  # noqa: E501
         :type profile_start_date: date
         :param profile_end_date: The profile_end_date of this Caregiver.  # noqa: E501
@@ -40,19 +40,22 @@ class Caregiver(Model):
         :type is_active: bool
         :param is_primary_caregiver: The is_primary_caregiver of this Caregiver.  # noqa: E501
         :type is_primary_caregiver: bool
+        :param caregiver_of_client_id: The caregiver_of_client_id of this Caregiver.  # noqa: E501
+        :type caregiver_of_client_id: str
         """
         self.openapi_types = {
             'client_id': str,
             'firstname': str,
             'surname': str,
-            'gender': GenderType,
+            'gender': str,
             'dob': date,
-            'service_language': ServiceLanguage,
+            'service_language': str,
             'profile_start_date': date,
             'profile_end_date': date,
             'relationship': str,
             'is_active': bool,
-            'is_primary_caregiver': bool
+            'is_primary_caregiver': bool,
+            'caregiver_of_client_id': str
         }
 
         self.attribute_map = {
@@ -66,7 +69,8 @@ class Caregiver(Model):
             'profile_end_date': 'profile_end_date',
             'relationship': 'relationship',
             'is_active': 'is_active',
-            'is_primary_caregiver': 'is_primary_caregiver'
+            'is_primary_caregiver': 'is_primary_caregiver',
+            'caregiver_of_client_id': 'caregiver_of_client_id'
         }
 
         self._client_id = client_id
@@ -80,6 +84,7 @@ class Caregiver(Model):
         self._relationship = relationship
         self._is_active = is_active
         self._is_primary_caregiver = is_primary_caregiver
+        self._caregiver_of_client_id = caregiver_of_client_id
 
     @classmethod
     def from_dict(cls, dikt) -> 'Caregiver':
@@ -161,7 +166,7 @@ class Caregiver(Model):
 
 
         :return: The gender of this Caregiver.
-        :rtype: GenderType
+        :rtype: str
         """
         return self._gender
 
@@ -171,7 +176,7 @@ class Caregiver(Model):
 
 
         :param gender: The gender of this Caregiver.
-        :type gender: GenderType
+        :type gender: str
         """
 
         self._gender = gender
@@ -203,7 +208,7 @@ class Caregiver(Model):
 
 
         :return: The service_language of this Caregiver.
-        :rtype: ServiceLanguage
+        :rtype: str
         """
         return self._service_language
 
@@ -213,7 +218,7 @@ class Caregiver(Model):
 
 
         :param service_language: The service_language of this Caregiver.
-        :type service_language: ServiceLanguage
+        :type service_language: str
         """
 
         self._service_language = service_language
@@ -328,3 +333,24 @@ class Caregiver(Model):
         """
 
         self._is_primary_caregiver = is_primary_caregiver
+
+    @property
+    def caregiver_of_client_id(self):
+        """Gets the caregiver_of_client_id of this Caregiver.
+
+
+        :return: The caregiver_of_client_id of this Caregiver.
+        :rtype: str
+        """
+        return self._caregiver_of_client_id
+
+    @caregiver_of_client_id.setter
+    def caregiver_of_client_id(self, caregiver_of_client_id):
+        """Sets the caregiver_of_client_id of this Caregiver.
+
+
+        :param caregiver_of_client_id: The caregiver_of_client_id of this Caregiver.
+        :type caregiver_of_client_id: str
+        """
+
+        self._caregiver_of_client_id = caregiver_of_client_id

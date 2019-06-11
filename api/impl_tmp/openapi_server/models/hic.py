@@ -15,36 +15,36 @@ class HIC(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, healthcare_provider_id=None, name=None, creation_date=None, deactivation_date=None):  # noqa: E501
+    def __init__(self, healthcare_provider_id=None, name=None, start_date=None, end_date=None):  # noqa: E501
         """HIC - a model defined in OpenAPI
 
         :param healthcare_provider_id: The healthcare_provider_id of this HIC.  # noqa: E501
         :type healthcare_provider_id: str
         :param name: The name of this HIC.  # noqa: E501
         :type name: str
-        :param creation_date: The creation_date of this HIC.  # noqa: E501
-        :type creation_date: date
-        :param deactivation_date: The deactivation_date of this HIC.  # noqa: E501
-        :type deactivation_date: date
+        :param start_date: The start_date of this HIC.  # noqa: E501
+        :type start_date: date
+        :param end_date: The end_date of this HIC.  # noqa: E501
+        :type end_date: date
         """
         self.openapi_types = {
             'healthcare_provider_id': str,
             'name': str,
-            'creation_date': date,
-            'deactivation_date': date
+            'start_date': date,
+            'end_date': date
         }
 
         self.attribute_map = {
             'healthcare_provider_id': 'healthcare_provider_id',
             'name': 'name',
-            'creation_date': 'creation_date',
-            'deactivation_date': 'deactivation_date'
+            'start_date': 'start_date',
+            'end_date': 'end_date'
         }
 
         self._healthcare_provider_id = healthcare_provider_id
         self._name = name
-        self._creation_date = creation_date
-        self._deactivation_date = deactivation_date
+        self._start_date = start_date
+        self._end_date = end_date
 
     @classmethod
     def from_dict(cls, dikt) -> 'HIC':
@@ -100,43 +100,43 @@ class HIC(Model):
         self._name = name
 
     @property
-    def creation_date(self):
-        """Gets the creation_date of this HIC.
+    def start_date(self):
+        """Gets the start_date of this HIC.
 
 
-        :return: The creation_date of this HIC.
+        :return: The start_date of this HIC.
         :rtype: date
         """
-        return self._creation_date
+        return self._start_date
 
-    @creation_date.setter
-    def creation_date(self, creation_date):
-        """Sets the creation_date of this HIC.
+    @start_date.setter
+    def start_date(self, start_date):
+        """Sets the start_date of this HIC.
 
 
-        :param creation_date: The creation_date of this HIC.
-        :type creation_date: date
+        :param start_date: The start_date of this HIC.
+        :type start_date: date
         """
 
-        self._creation_date = creation_date
+        self._start_date = start_date
 
     @property
-    def deactivation_date(self):
-        """Gets the deactivation_date of this HIC.
+    def end_date(self):
+        """Gets the end_date of this HIC.
 
 
-        :return: The deactivation_date of this HIC.
+        :return: The end_date of this HIC.
         :rtype: date
         """
-        return self._deactivation_date
+        return self._end_date
 
-    @deactivation_date.setter
-    def deactivation_date(self, deactivation_date):
-        """Sets the deactivation_date of this HIC.
+    @end_date.setter
+    def end_date(self, end_date):
+        """Sets the end_date of this HIC.
 
 
-        :param deactivation_date: The deactivation_date of this HIC.
-        :type deactivation_date: date
+        :param end_date: The end_date of this HIC.
+        :type end_date: date
         """
 
-        self._deactivation_date = deactivation_date
+        self._end_date = end_date

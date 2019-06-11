@@ -15,61 +15,61 @@ class Physician(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, healthcare_provider_id=None, name=None, creation_date=None, deactivation_date=None, firstname=None, lastname=None, specialty=None, licence_number=None, licence_date=None):  # noqa: E501
+    def __init__(self, healthcare_provider_id=None, name=None, start_date=None, end_date=None, firstname=None, surname=None, specialty=None, license_number=None, license_date=None):  # noqa: E501
         """Physician - a model defined in OpenAPI
 
         :param healthcare_provider_id: The healthcare_provider_id of this Physician.  # noqa: E501
         :type healthcare_provider_id: str
         :param name: The name of this Physician.  # noqa: E501
         :type name: str
-        :param creation_date: The creation_date of this Physician.  # noqa: E501
-        :type creation_date: date
-        :param deactivation_date: The deactivation_date of this Physician.  # noqa: E501
-        :type deactivation_date: date
+        :param start_date: The start_date of this Physician.  # noqa: E501
+        :type start_date: date
+        :param end_date: The end_date of this Physician.  # noqa: E501
+        :type end_date: date
         :param firstname: The firstname of this Physician.  # noqa: E501
         :type firstname: str
-        :param lastname: The lastname of this Physician.  # noqa: E501
-        :type lastname: str
+        :param surname: The surname of this Physician.  # noqa: E501
+        :type surname: str
         :param specialty: The specialty of this Physician.  # noqa: E501
         :type specialty: str
-        :param licence_number: The licence_number of this Physician.  # noqa: E501
-        :type licence_number: str
-        :param licence_date: The licence_date of this Physician.  # noqa: E501
-        :type licence_date: date
+        :param license_number: The license_number of this Physician.  # noqa: E501
+        :type license_number: str
+        :param license_date: The license_date of this Physician.  # noqa: E501
+        :type license_date: date
         """
         self.openapi_types = {
             'healthcare_provider_id': str,
             'name': str,
-            'creation_date': date,
-            'deactivation_date': date,
+            'start_date': date,
+            'end_date': date,
             'firstname': str,
-            'lastname': str,
+            'surname': str,
             'specialty': str,
-            'licence_number': str,
-            'licence_date': date
+            'license_number': str,
+            'license_date': date
         }
 
         self.attribute_map = {
             'healthcare_provider_id': 'healthcare_provider_id',
             'name': 'name',
-            'creation_date': 'creation_date',
-            'deactivation_date': 'deactivation_date',
+            'start_date': 'start_date',
+            'end_date': 'end_date',
             'firstname': 'firstname',
-            'lastname': 'lastname',
+            'surname': 'surname',
             'specialty': 'specialty',
-            'licence_number': 'licence_number',
-            'licence_date': 'licence_date'
+            'license_number': 'license_number',
+            'license_date': 'license_date'
         }
 
         self._healthcare_provider_id = healthcare_provider_id
         self._name = name
-        self._creation_date = creation_date
-        self._deactivation_date = deactivation_date
+        self._start_date = start_date
+        self._end_date = end_date
         self._firstname = firstname
-        self._lastname = lastname
+        self._surname = surname
         self._specialty = specialty
-        self._licence_number = licence_number
-        self._licence_date = licence_date
+        self._license_number = license_number
+        self._license_date = license_date
 
     @classmethod
     def from_dict(cls, dikt) -> 'Physician':
@@ -125,46 +125,46 @@ class Physician(Model):
         self._name = name
 
     @property
-    def creation_date(self):
-        """Gets the creation_date of this Physician.
+    def start_date(self):
+        """Gets the start_date of this Physician.
 
 
-        :return: The creation_date of this Physician.
+        :return: The start_date of this Physician.
         :rtype: date
         """
-        return self._creation_date
+        return self._start_date
 
-    @creation_date.setter
-    def creation_date(self, creation_date):
-        """Sets the creation_date of this Physician.
+    @start_date.setter
+    def start_date(self, start_date):
+        """Sets the start_date of this Physician.
 
 
-        :param creation_date: The creation_date of this Physician.
-        :type creation_date: date
+        :param start_date: The start_date of this Physician.
+        :type start_date: date
         """
 
-        self._creation_date = creation_date
+        self._start_date = start_date
 
     @property
-    def deactivation_date(self):
-        """Gets the deactivation_date of this Physician.
+    def end_date(self):
+        """Gets the end_date of this Physician.
 
 
-        :return: The deactivation_date of this Physician.
+        :return: The end_date of this Physician.
         :rtype: date
         """
-        return self._deactivation_date
+        return self._end_date
 
-    @deactivation_date.setter
-    def deactivation_date(self, deactivation_date):
-        """Sets the deactivation_date of this Physician.
+    @end_date.setter
+    def end_date(self, end_date):
+        """Sets the end_date of this Physician.
 
 
-        :param deactivation_date: The deactivation_date of this Physician.
-        :type deactivation_date: date
+        :param end_date: The end_date of this Physician.
+        :type end_date: date
         """
 
-        self._deactivation_date = deactivation_date
+        self._end_date = end_date
 
     @property
     def firstname(self):
@@ -188,25 +188,25 @@ class Physician(Model):
         self._firstname = firstname
 
     @property
-    def lastname(self):
-        """Gets the lastname of this Physician.
+    def surname(self):
+        """Gets the surname of this Physician.
 
 
-        :return: The lastname of this Physician.
+        :return: The surname of this Physician.
         :rtype: str
         """
-        return self._lastname
+        return self._surname
 
-    @lastname.setter
-    def lastname(self, lastname):
-        """Sets the lastname of this Physician.
+    @surname.setter
+    def surname(self, surname):
+        """Sets the surname of this Physician.
 
 
-        :param lastname: The lastname of this Physician.
-        :type lastname: str
+        :param surname: The surname of this Physician.
+        :type surname: str
         """
 
-        self._lastname = lastname
+        self._surname = surname
 
     @property
     def specialty(self):
@@ -230,43 +230,43 @@ class Physician(Model):
         self._specialty = specialty
 
     @property
-    def licence_number(self):
-        """Gets the licence_number of this Physician.
+    def license_number(self):
+        """Gets the license_number of this Physician.
 
 
-        :return: The licence_number of this Physician.
+        :return: The license_number of this Physician.
         :rtype: str
         """
-        return self._licence_number
+        return self._license_number
 
-    @licence_number.setter
-    def licence_number(self, licence_number):
-        """Sets the licence_number of this Physician.
+    @license_number.setter
+    def license_number(self, license_number):
+        """Sets the license_number of this Physician.
 
 
-        :param licence_number: The licence_number of this Physician.
-        :type licence_number: str
+        :param license_number: The license_number of this Physician.
+        :type license_number: str
         """
 
-        self._licence_number = licence_number
+        self._license_number = license_number
 
     @property
-    def licence_date(self):
-        """Gets the licence_date of this Physician.
+    def license_date(self):
+        """Gets the license_date of this Physician.
 
 
-        :return: The licence_date of this Physician.
+        :return: The license_date of this Physician.
         :rtype: date
         """
-        return self._licence_date
+        return self._license_date
 
-    @licence_date.setter
-    def licence_date(self, licence_date):
-        """Sets the licence_date of this Physician.
+    @license_date.setter
+    def license_date(self, license_date):
+        """Sets the license_date of this Physician.
 
 
-        :param licence_date: The licence_date of this Physician.
-        :type licence_date: date
+        :param license_date: The license_date of this Physician.
+        :type license_date: date
         """
 
-        self._licence_date = licence_date
+        self._license_date = license_date

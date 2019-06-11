@@ -80,7 +80,7 @@ def get_client_health_profile(client_id,token):
         hplist_dto = firebase.get_client_health_profile(client_id)
         return [H.to_dict() for H in hplist_dto]
     else:
-        raise Exception('invalid ticket')
+        raise Exception('invalid token')
 
 def get_client_contact_info(client_id,is_active,token):
     if verify_ticket(client_id, token):
@@ -90,20 +90,34 @@ def get_client_contact_info(client_id,is_active,token):
         contact_info = [('addresses',addresses),('phone_numbers',phone_numbers),('emails',emails)]
         return contact_info
     else:
-        raise Exception('invalid ticket')
+        raise Exception('invalid token')
 
 
-def get_client_caregiver_info(client_id,token):
-    return "here's the caregiver status"
+def get_client_caregiver_info(client_id,is_active,token):
+    if verify_ticket(client_id, token):
+        caregivers = [c.to_dict() for c in firebase.get_care_givers(client_id, is_active)]
+        return caregivers
+    else:
+        raise Exception('invalid token')
 
-def get_client_physicians(client_id,token):
-    return "here's the client's physician"
+def get_client_episodes(client_id,token):
+    if verify_ticket(client_id, token):
+        episodes_dict = firebase.get_client_episodes(client_id)
+        output_dict = {K: {
+            'episode': V[0].to_dict(), 
+            'hic': V[1].to_dict(), 
+            'dr': V[2].to_dict()} for K,V in episodes_dict.items()}
+        
+        return output_dict
+    else:
+        raise Exception('invalid token')
 
-def get_client_episodes(client_id,token, start_date, end_date= datetime.datetime.now):
-    return "here's the health profile"
-
-def get_client_alerts(client_id, token, active_status =1):
-    return "here are the alerts"
+def get_client_episodes_in_range(client_id,token, start_date, end_date= datetime.datetime.now):
+    if verify_ticket(client_id, token):
+        episodes = [c.to_dict() for c in firebase.get_client_episodes_in_range(client_id, start_date,end_date)]
+        return episodes
+    else:
+        raise Exception('invalid token')
 
 
 if __name__ == '__main__':

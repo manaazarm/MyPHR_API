@@ -62,11 +62,29 @@ def get_contact_info():
     contact = con.get_client_contact_info(client_id, is_active, token)
     return jsonify(contact)
 
-@app.route('/medications', methods=['GET'])
-def get_client_medication():
+@app.route('/caregiver', methods=['GET'])
+def get_caregiver_info():
     client_id = request.args['client_id']
-    token = request.args['toke/.cxn']
-    return ''
+    token = request.args['token']
+    is_active = __parse_bool(request.args['is_active'])
+    cgs= con.get_client_caregiver_info(client_id, is_active, token)
+    return jsonify(cgs)
+
+@app.route('/episodes', methods=['GET'])
+def get_client_episodes():
+    client_id = request.args['client_id']
+    token = request.args['token']
+    episodes = con.get_client_episodes(client_id, token)
+    return jsonify(episodes)
+
+@app.route('/episodes_by_range', methods=['GET'])
+def get_client_episodes_by_range():
+    client_id = request.args['client_id']
+    token = request.args['token']
+    start_date = request.args['start_date']
+    end_date = request.args['end_date']
+    episodes = con.get_client_episodes_in_range(client_id, token,start_date, end_date)
+    return jsonify(episodes)
 
 
 

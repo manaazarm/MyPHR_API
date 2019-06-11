@@ -15,44 +15,44 @@ class HCO(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, healthcare_provider_id=None, name=None, creation_date=None, deactivation_date=None, bin=None, organization_type=None):  # noqa: E501
+    def __init__(self, healthcare_provider_id=None, name=None, start_date=None, end_date=None, bin=None, organization_type=None):  # noqa: E501
         """HCO - a model defined in OpenAPI
 
         :param healthcare_provider_id: The healthcare_provider_id of this HCO.  # noqa: E501
         :type healthcare_provider_id: str
         :param name: The name of this HCO.  # noqa: E501
         :type name: str
-        :param creation_date: The creation_date of this HCO.  # noqa: E501
-        :type creation_date: date
-        :param deactivation_date: The deactivation_date of this HCO.  # noqa: E501
-        :type deactivation_date: date
+        :param start_date: The start_date of this HCO.  # noqa: E501
+        :type start_date: date
+        :param end_date: The end_date of this HCO.  # noqa: E501
+        :type end_date: date
         :param bin: The bin of this HCO.  # noqa: E501
         :type bin: str
         :param organization_type: The organization_type of this HCO.  # noqa: E501
-        :type organization_type: OrganizationType
+        :type organization_type: str
         """
         self.openapi_types = {
             'healthcare_provider_id': str,
             'name': str,
-            'creation_date': date,
-            'deactivation_date': date,
+            'start_date': date,
+            'end_date': date,
             'bin': str,
-            'organization_type': OrganizationType
+            'organization_type': str
         }
 
         self.attribute_map = {
             'healthcare_provider_id': 'healthcare_provider_id',
             'name': 'name',
-            'creation_date': 'creation_date',
-            'deactivation_date': 'deactivation_date',
+            'start_date': 'start_date',
+            'end_date': 'end_date',
             'bin': 'bin',
             'organization_type': 'organization_type'
         }
 
         self._healthcare_provider_id = healthcare_provider_id
         self._name = name
-        self._creation_date = creation_date
-        self._deactivation_date = deactivation_date
+        self._start_date = start_date
+        self._end_date = end_date
         self._bin = bin
         self._organization_type = organization_type
 
@@ -110,46 +110,46 @@ class HCO(Model):
         self._name = name
 
     @property
-    def creation_date(self):
-        """Gets the creation_date of this HCO.
+    def start_date(self):
+        """Gets the start_date of this HCO.
 
 
-        :return: The creation_date of this HCO.
+        :return: The start_date of this HCO.
         :rtype: date
         """
-        return self._creation_date
+        return self._start_date
 
-    @creation_date.setter
-    def creation_date(self, creation_date):
-        """Sets the creation_date of this HCO.
+    @start_date.setter
+    def start_date(self, start_date):
+        """Sets the start_date of this HCO.
 
 
-        :param creation_date: The creation_date of this HCO.
-        :type creation_date: date
+        :param start_date: The start_date of this HCO.
+        :type start_date: date
         """
 
-        self._creation_date = creation_date
+        self._start_date = start_date
 
     @property
-    def deactivation_date(self):
-        """Gets the deactivation_date of this HCO.
+    def end_date(self):
+        """Gets the end_date of this HCO.
 
 
-        :return: The deactivation_date of this HCO.
+        :return: The end_date of this HCO.
         :rtype: date
         """
-        return self._deactivation_date
+        return self._end_date
 
-    @deactivation_date.setter
-    def deactivation_date(self, deactivation_date):
-        """Sets the deactivation_date of this HCO.
+    @end_date.setter
+    def end_date(self, end_date):
+        """Sets the end_date of this HCO.
 
 
-        :param deactivation_date: The deactivation_date of this HCO.
-        :type deactivation_date: date
+        :param end_date: The end_date of this HCO.
+        :type end_date: date
         """
 
-        self._deactivation_date = deactivation_date
+        self._end_date = end_date
 
     @property
     def bin(self):
@@ -180,7 +180,7 @@ class HCO(Model):
 
 
         :return: The organization_type of this HCO.
-        :rtype: OrganizationType
+        :rtype: str
         """
         return self._organization_type
 
@@ -190,7 +190,7 @@ class HCO(Model):
 
 
         :param organization_type: The organization_type of this HCO.
-        :type organization_type: OrganizationType
+        :type organization_type: str
         """
 
         self._organization_type = organization_type

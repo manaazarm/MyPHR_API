@@ -15,7 +15,7 @@ class Episode(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, episode_id=None, client_id=None, healthcare_provider_id=None, start_date=None, end_date=None, status=None, episode_type=None, physician_id=None):  # noqa: E501
+    def __init__(self, episode_id=None, client_id=None, healthcare_provider_id=None, start_date=None, end_date=None, is_active=None, episode_type=None, physician_id=None):  # noqa: E501
         """Episode - a model defined in OpenAPI
 
         :param episode_id: The episode_id of this Episode.  # noqa: E501
@@ -28,8 +28,8 @@ class Episode(Model):
         :type start_date: date
         :param end_date: The end_date of this Episode.  # noqa: E501
         :type end_date: date
-        :param status: The status of this Episode.  # noqa: E501
-        :type status: str
+        :param is_active: The is_active of this Episode.  # noqa: E501
+        :type is_active: str
         :param episode_type: The episode_type of this Episode.  # noqa: E501
         :type episode_type: str
         :param physician_id: The physician_id of this Episode.  # noqa: E501
@@ -41,7 +41,7 @@ class Episode(Model):
             'healthcare_provider_id': str,
             'start_date': date,
             'end_date': date,
-            'status': str,
+            'is_active': str,
             'episode_type': str,
             'physician_id': str
         }
@@ -52,7 +52,7 @@ class Episode(Model):
             'healthcare_provider_id': 'healthcare_provider_id',
             'start_date': 'start_date',
             'end_date': 'end_date',
-            'status': 'status',
+            'is_active': 'is_active',
             'episode_type': 'episode_type',
             'physician_id': 'physician_id'
         }
@@ -62,7 +62,7 @@ class Episode(Model):
         self._healthcare_provider_id = healthcare_provider_id
         self._start_date = start_date
         self._end_date = end_date
-        self._status = status
+        self._is_active = is_active
         self._episode_type = episode_type
         self._physician_id = physician_id
 
@@ -183,25 +183,25 @@ class Episode(Model):
         self._end_date = end_date
 
     @property
-    def status(self):
-        """Gets the status of this Episode.
+    def is_active(self):
+        """Gets the is_active of this Episode.
 
 
-        :return: The status of this Episode.
+        :return: The is_active of this Episode.
         :rtype: str
         """
-        return self._status
+        return self._is_active
 
-    @status.setter
-    def status(self, status):
-        """Sets the status of this Episode.
+    @is_active.setter
+    def is_active(self, is_active):
+        """Sets the is_active of this Episode.
 
 
-        :param status: The status of this Episode.
-        :type status: str
+        :param is_active: The is_active of this Episode.
+        :type is_active: str
         """
 
-        self._status = status
+        self._is_active = is_active
 
     @property
     def episode_type(self):

@@ -18,13 +18,14 @@ class OrganizationType(Model):
     """
     allowed enum values
     """
-    HOSPITAL = "hospital"
-    COMMUNITY_CARE_PROVIDER = "community care provider"
-    PHYSICIAN_CLINIC = "physician clinic"
-    PHARMACY = "pharmacy"
-    LABORATORY = "laboratory"
-    CHIROPACTICE = "chiropactice"
-    PHYSIOTHERAPY_CENTRE = "physiotherapy centre"
+    HOSPITAL = "Hospital"
+    COMMUNITY_CARE_PROVIDER = "Community care provider"
+    PHYSICIAN = "Physician"
+    FAMILY_HEALTH_TEAM = "Family Health Team"
+    PHARMACY = "Pharmacy"
+    LABORATORY = "Laboratory"
+    CHIROPRACTICE = "Chiropractice"
+    PHYSIOTHERAPY_CENTRE = "Physiotherapy centre"
 
     def __init__(self):  # noqa: E501
         """OrganizationType - a model defined in OpenAPI

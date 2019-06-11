@@ -354,13 +354,14 @@ components:
     OrganizationType:
       type: string
       enum:
-        - hospital
-        - community care provider
-        - physician clinic
-        - pharmacy
-        - laboratory
-        - chiropactice
-        - physiotherapy centre
+        - Hospital
+        - Community care provider
+        - Physician 
+        - Family Health Team
+        - Pharmacy
+        - Laboratory
+        - Chiropractice
+        - Physiotherapy centre
 
     NotificationType:
       type: string
@@ -396,12 +397,12 @@ components:
         surname: 
           type: string
         gender: 
-          $ref: "#/components/schemas/GenderType"
+          type: string
         dob:
           type: string
           format: date
         service_language:
-          $ref: "#/components/schemas/ServiceLanguage"
+          type: string
         profile_start_date:
           description: a new client profile may start when they change names or gender
           type: string
@@ -448,6 +449,8 @@ components:
               type: boolean
             is_primary_caregiver:
               type: boolean
+            caregiver_of_client_id:
+              type: string 
 
     HIC:
       description: > 
@@ -459,10 +462,10 @@ components:
           type: string
         name:
           type: string
-        creation_date:
+        start_date:
           type: string
           format: date 
-        deactivation_date:
+        end_date:
           type: string
           format: date 
 
@@ -478,7 +481,7 @@ components:
               type: string
               description: the business identification number
             organization_type:
-              $ref: "#/components/schemas/OrganizationType"
+              type: string
 
     Physician:
       allOf:
@@ -490,13 +493,13 @@ components:
           properties:
             firstname:
               type: string
-            lastname:
+            surname:
               type: string
             specialty:
               type: string
-            licence_number:
+            license_number:
               type: string
-            licence_date:
+            license_date:
               type: string
               format: date 
 
@@ -606,7 +609,7 @@ components:
         end_date:
           type: string
           format: date
-        status:
+        is_active:
           type: string
         episode_type:
           type: string

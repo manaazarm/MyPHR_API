@@ -25,11 +25,11 @@ class Client(Model):
         :param surname: The surname of this Client.  # noqa: E501
         :type surname: str
         :param gender: The gender of this Client.  # noqa: E501
-        :type gender: GenderType
+        :type gender: str
         :param dob: The dob of this Client.  # noqa: E501
         :type dob: date
         :param service_language: The service_language of this Client.  # noqa: E501
-        :type service_language: ServiceLanguage
+        :type service_language: str
         :param profile_start_date: The profile_start_date of this Client.  # noqa: E501
         :type profile_start_date: date
         :param profile_end_date: The profile_end_date of this Client.  # noqa: E501
@@ -39,9 +39,9 @@ class Client(Model):
             'client_id': str,
             'firstname': str,
             'surname': str,
-            'gender': GenderType,
+            'gender': str,
             'dob': date,
-            'service_language': ServiceLanguage,
+            'service_language': str,
             'profile_start_date': date,
             'profile_end_date': date
         }
@@ -146,7 +146,7 @@ class Client(Model):
 
 
         :return: The gender of this Client.
-        :rtype: GenderType
+        :rtype: str
         """
         return self._gender
 
@@ -156,7 +156,7 @@ class Client(Model):
 
 
         :param gender: The gender of this Client.
-        :type gender: GenderType
+        :type gender: str
         """
 
         self._gender = gender
@@ -188,7 +188,7 @@ class Client(Model):
 
 
         :return: The service_language of this Client.
-        :rtype: ServiceLanguage
+        :rtype: str
         """
         return self._service_language
 
@@ -198,7 +198,7 @@ class Client(Model):
 
 
         :param service_language: The service_language of this Client.
-        :type service_language: ServiceLanguage
+        :type service_language: str
         """
 
         self._service_language = service_language

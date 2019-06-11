@@ -25,11 +25,11 @@ class Patient(Model):
         :param surname: The surname of this Patient.  # noqa: E501
         :type surname: str
         :param gender: The gender of this Patient.  # noqa: E501
-        :type gender: GenderType
+        :type gender: str
         :param dob: The dob of this Patient.  # noqa: E501
         :type dob: date
         :param service_language: The service_language of this Patient.  # noqa: E501
-        :type service_language: ServiceLanguage
+        :type service_language: str
         :param profile_start_date: The profile_start_date of this Patient.  # noqa: E501
         :type profile_start_date: date
         :param profile_end_date: The profile_end_date of this Patient.  # noqa: E501
@@ -47,9 +47,9 @@ class Patient(Model):
             'client_id': str,
             'firstname': str,
             'surname': str,
-            'gender': GenderType,
+            'gender': str,
             'dob': date,
-            'service_language': ServiceLanguage,
+            'service_language': str,
             'profile_start_date': date,
             'profile_end_date': date,
             'health_card_number': str,
@@ -166,7 +166,7 @@ class Patient(Model):
 
 
         :return: The gender of this Patient.
-        :rtype: GenderType
+        :rtype: str
         """
         return self._gender
 
@@ -176,7 +176,7 @@ class Patient(Model):
 
 
         :param gender: The gender of this Patient.
-        :type gender: GenderType
+        :type gender: str
         """
 
         self._gender = gender
@@ -208,7 +208,7 @@ class Patient(Model):
 
 
         :return: The service_language of this Patient.
-        :rtype: ServiceLanguage
+        :rtype: str
         """
         return self._service_language
 
@@ -218,7 +218,7 @@ class Patient(Model):
 
 
         :param service_language: The service_language of this Patient.
-        :type service_language: ServiceLanguage
+        :type service_language: str
         """
 
         self._service_language = service_language
