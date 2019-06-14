@@ -112,7 +112,7 @@ def get_client_physicians(client_id,episode_type,token):
     else:
         raise Exception('invalid token')
 
-def get_client_episodes(client_id,token, episode_type = None):
+def get_client_episodes(client_id,token, episode_type = 'All'):
     if verify_ticket(client_id, token):
         episodes_dict = firebase.get_client_episodes(client_id,episode_type)
         output_dict = {K: {

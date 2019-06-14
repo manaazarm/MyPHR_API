@@ -4,6 +4,7 @@ from flask import request
 from openapi_server.models import *
 import controller_impl as con 
 from datetime import date
+from datetime import datetime
 
 
 app = flask.Flask(__name__)
@@ -89,12 +90,12 @@ def get_client_episodes():
 def get_client_episodes_by_range():
     client_id = request.args['client_id']
     token = request.args['token']
-    start_date = request.args['start_date']
-    end_date = request.args['end_date']
+    start_date_arg = request.args['start_date']
+    start_date = datetime.strptime(start_date_arg,'%Y-%m-%d')
+    end_date_arg = request.args['end_date']
+    end_date = datetime.strptime(end_date_arg,'%Y-%m-%d')
     episodes = con.get_client_episodes_in_range(client_id, token,start_date, end_date)
     return jsonify(episodes)
-
-
 
 # @app.route('/hco', methods=['GET'])
 # def list_HCOs():

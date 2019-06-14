@@ -315,11 +315,11 @@ def get_client_episodes_in_range(client_id,start_date,end_date, episode_type='Al
         episodes = {}
         
         if episode_type == 'All':
-           query_ref = episode_ref.where('client_id','==',client_id).where('start_date','>=',start_date).where('end_date','<=',end_date)
+           query_ref = episode_ref.where('client_id','==',client_id).where('start_date','>=',start_date).where('start_date','<=',end_date)
         elif episode_type == 'Physician':
-            query_ref = episode_ref.where('client_id','==',client_id).where('episode_type','==',episode_type).where('start_date','>=',start_date).where('end_date','<=',end_date)
+            query_ref = episode_ref.where('client_id','==',client_id).where('episode_type','==',episode_type).where('start_date','>=',start_date).where('start_date','<=',end_date)
         else:
-            query_ref = episode_ref.where('client_id','==',client_id).where('episode_type','==',episode_type).where('start_date','>=',start_date).where('end_date','<=',end_date)
+            query_ref = episode_ref.where('client_id','==',client_id).where('episode_type','==',episode_type).where('start_date','>=',start_date).where('start_date','<=',end_date)
         
         caregiver_list = list(query_ref.get())
         if len(caregiver_list)>=1:
