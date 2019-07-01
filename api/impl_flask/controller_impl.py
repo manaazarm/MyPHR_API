@@ -63,8 +63,6 @@ def get_authenticated(username, password):
     else:
         return 'no user found!' 
 
-def get_client_id_from_hcn(hcn):
-    return firebase.get_client_id_by_hcn(hcn)
     
 def get_client_from_user(username, password):
     user = get_authenticated(username,password)
@@ -125,8 +123,6 @@ def get_client_episodes(client_id,token, episode_type = 'All'):
         return output_dict
     else:
         raise Exception('invalid token')
-
-def save_client_episode ()
 
 def get_client_episodes_in_range(client_id,token, start_date, end_date= datetime.datetime.now):
     if verify_ticket(client_id, token):

@@ -73,17 +73,7 @@ def get_client(user):
     clnt = query_ref.get()
     return clnt
 
-def get_client_id_by_hcn(hcn):
-    try:
-        query_ref = client_ref.where('health_card_number','==',hcn)
-        clnt = list(query_ref.get())[0].to_dict()
-        if clnt != None:
-            return clnt['client_id']
-        else:
-            return 'No client found!'
-    except Exception as e:
-        print(e)
-        
+
 def get_client_basic_info(client_id, user_id):
     try:
         query_ref = client_ref.where('client_id','==',client_id)

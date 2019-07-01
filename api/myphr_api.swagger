@@ -392,22 +392,16 @@ components:
       properties:
         client_id: 
           type: string
-        active:
-          type: string
-        deceased:
-          type: string
         firstname:
           type: string
         surname: 
           type: string
         gender: 
           type: string
-        birth_date:
+        dob:
           type: string
           format: date
         service_language:
-          type: string
-        marital_status:
           type: string
         profile_start_date:
           description: a new client profile may start when they change names or gender
@@ -440,7 +434,7 @@ components:
               items: 
                 type: string
 
-    Contact:
+    Caregiver:
       allOf:
         - $ref: '#/components/schemas/Client'
         - type: object
@@ -451,6 +445,8 @@ components:
             relationship:
               type: string
               description: who the caregiver is to patient
+            is_active:
+              type: boolean
             is_primary_caregiver:
               type: boolean
             caregiver_of_client_id:
@@ -466,8 +462,6 @@ components:
           type: string
         name:
           type: string
-        active:
-          type: boolean
         start_date:
           type: string
           format: date 
@@ -501,11 +495,6 @@ components:
               type: string
             surname:
               type: string
-            birth_date:
-              type: string
-              format: date
-            gender:
-              type: string
             specialty:
               type: string
             license_number:
@@ -525,15 +514,10 @@ components:
           type: string
         code:
           type: string
-        status:
-          type: boolean
         start_date: 
           type: string
           format: date
         end_date:
-          type: string
-          format: date
-        last_occurance_date:
           type: string
           format: date
         diagnosing_healthcare_provider_id:
@@ -546,10 +530,6 @@ components:
           type: boolean
         is_health_condition:
           type: boolean
-        criticality:
-          type: string
-        recorder_hic_id: 
-          type: string
 
     Medication:
       type: object

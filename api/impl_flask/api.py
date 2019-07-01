@@ -81,39 +81,20 @@ def get_client_physicians():
 
 @app.route('/episodes', methods=['GET'])
 def get_client_episodes():
-    try:
-        client_id = request.args.get('client_id')
-        hcn = request.args.get('hcn')
-        token = request.args.get('token')
-        if client_id == None:
-            client_id = con.get_client_id_from_hcn (hcn)
-        episodes = con.get_client_episodes(client_id, token)
-        return jsonify(episodes)
-    except Exception as e:
-        print(e)
+    client_id = request.args['client_id']
+    token = request.args['token']
+    episodes = con.get_client_episodes(client_id, token)
+    return jsonify(episodes)
 
 @app.route('/episodes_by_range', methods=['GET'])
 def get_client_episodes_by_range():
     client_id = request.args['client_id']
     token = request.args['token']
-    
-    hcn = request.args['hcn']
-    if client_id == None:
-        client_id = con.get_client_id_from_hcn (hcn)
-    
     start_date_arg = request.args['start_date']
     start_date = datetime.strptime(start_date_arg,'%Y-%m-%d')
     end_date_arg = request.args['end_date']
     end_date = datetime.strptime(end_date_arg,'%Y-%m-%d')
     episodes = con.get_client_episodes_in_range(client_id, token,start_date, end_date)
-    return jsonify(episodes)
-
-@app.route('/episodes', methods=['POST'])
-def send_client_episodes():
-    hcn = request.args.get('hcn')
-    token = request.args.get('token')
-    client_id = con.get_client_id_from_hcn (hcn)
-    episodes = con.save_client_episodes(client_id, token)
     return jsonify(episodes)
 
 # @app.route('/hco', methods=['GET'])
