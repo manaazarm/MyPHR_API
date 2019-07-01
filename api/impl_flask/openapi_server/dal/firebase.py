@@ -23,7 +23,7 @@ from openapi_server.models.hco import HCO
 from openapi_server.models.physician import Physician
 
 
-cred = credentials.Certificate('/Users/mana/Dropbox/UO_Shared_With_Mana/Prototype Stuff/myphr-api-firebase-adminsdk-qfh5m-73a706148a.json')
+cred = credentials.Certificate('/Users/wenyanli/Desktop/MyPHR_API/api/impl_flask/myphr-api-firebase-adminsdk-qfh5m-73a706148a.json')
 default_app = firebase_admin.initialize_app(cred)
 
 db = firestore.client()
@@ -73,17 +73,7 @@ def get_client(user):
     clnt = query_ref.get()
     return clnt
 
-def get_client_id_by_hcn(hcn):
-    try:
-        query_ref = client_ref.where('health_card_number','==',hcn)
-        clnt = list(query_ref.get())[0].to_dict()
-        if clnt != None:
-            return clnt['client_id']
-        else:
-            return 'No client found!'
-    except Exception as e:
-        print(e)
-        
+
 def get_client_basic_info(client_id, user_id):
     try:
         query_ref = client_ref.where('client_id','==',client_id)
@@ -325,11 +315,11 @@ def get_client_episodes_in_range(client_id,start_date,end_date, episode_type='Al
         episodes = {}
         
         if episode_type == 'All':
-           query_ref = episode_ref.where('client_id','==',client_id).where('start_date','>=',start_date).where('start_date','<=',end_date)
+           query_ref = episode_ref.where('client_id','==',client_id).where('start_date','>=',start_date).where('end_date','<=',end_date)
         elif episode_type == 'Physician':
-            query_ref = episode_ref.where('client_id','==',client_id).where('episode_type','==',episode_type).where('start_date','>=',start_date).where('start_date','<=',end_date)
+            query_ref = episode_ref.where('client_id','==',client_id).where('episode_type','==',episode_type).where('start_date','>=',start_date).where('end_date','<=',end_date)
         else:
-            query_ref = episode_ref.where('client_id','==',client_id).where('episode_type','==',episode_type).where('start_date','>=',start_date).where('start_date','<=',end_date)
+            query_ref = episode_ref.where('client_id','==',client_id).where('episode_type','==',episode_type).where('start_date','>=',start_date).where('end_date','<=',end_date)
         
         caregiver_list = list(query_ref.get())
         if len(caregiver_list)>=1:

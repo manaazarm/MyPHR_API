@@ -19,6 +19,7 @@ from openapi_server.models.patient import Patient  # noqa: E501
 from openapi_server.models.phone_number import PhoneNumber  # noqa: E501
 from openapi_server import util
 from openapi_server.models.organization_type import OrganizationType
+from fhir.model import Patient, HumanName, Identifier, CodeableConcept, Coding, uri
 
 _DEF_HIC_ID = '000000001'
 _DEF_HIC_NAME = 'MANA DEFAULT HIC'
@@ -63,8 +64,6 @@ def get_authenticated(username, password):
     else:
         return 'no user found!' 
 
-def get_client_id_from_hcn(hcn):
-    return firebase.get_client_id_by_hcn(hcn)
     
 def get_client_from_user(username, password):
     user = get_authenticated(username,password)
@@ -76,6 +75,14 @@ def get_client_basic_info(client_id,user_id,token):
     if verify_ticket(client_id, token):
         bi = firebase.get_client_basic_info(client_id, user_id)
     return bi
+
+#test FHIR format
+def get_client_basic_info_fhir(client_id,user_id,token):
+    bi = []
+    if verify_ticket(client_id, token):
+        bi = firebase.get_client_basic_info(client_id, user_id)
+    return bi
+
 
 def get_client_health_profile(client_id,token):
     if verify_ticket(client_id, token):
@@ -89,7 +96,17 @@ def get_client_contact_info(client_id,is_active,token):
         addresses = [a.to_dict() for a in firebase.get_address(is_active,client_id)]
         phone_numbers = [p.to_dict() for p in firebase.get_phone_number(is_active,client_id)]
         emails = firebase.get_email_address(is_active,client_id)
-        contact_info = [('addresses',addresses),('phone_numbers',phone_numbers),('emails',emails)]
+        contact_info = [('addresses', addresses),('phone_numbers',phone_numbers),('emails',emails)]
+        return contact_info
+    else:
+        raise Exception('invalid token')
+
+def get_client_contact_info_fhir(client_id,is_active,token):
+    if verify_ticket(client_id, token):
+        addresses = [a.to_dict() for a in firebase.get_address(is_active,client_id)]
+        phone_numbers = [p.to_dict() for p in firebase.get_phone_number(is_active,client_id)]
+        emails = firebase.get_email_address(is_active,client_id)
+        contact_info = [addresses, phone_numbers, emails]
         return contact_info
     else:
         raise Exception('invalid token')
@@ -114,7 +131,7 @@ def get_client_physicians(client_id,episode_type,token):
     else:
         raise Exception('invalid token')
 
-def get_client_episodes(client_id,token, episode_type = 'All'):
+def get_client_episodes(client_id,token, episode_type = None):
     if verify_ticket(client_id, token):
         episodes_dict = firebase.get_client_episodes(client_id,episode_type)
         output_dict = {K: {
@@ -125,8 +142,6 @@ def get_client_episodes(client_id,token, episode_type = 'All'):
         return output_dict
     else:
         raise Exception('invalid token')
-
-def save_client_episode ()
 
 def get_client_episodes_in_range(client_id,token, start_date, end_date= datetime.datetime.now):
     if verify_ticket(client_id, token):

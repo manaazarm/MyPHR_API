@@ -4,7 +4,7 @@ from flask import request
 from openapi_server.models import *
 import controller_impl as con 
 from datetime import date
-
+from fhir.model import Patient, HumanName, Identifier, CodeableConcept, Coding, uri, Address, ContactPoint, ContactDetail
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -53,6 +53,62 @@ def get_client_basic_info():
     token = request.args['token']
     bi = con.get_client_basic_info(client_id,user_id,token)
     return jsonify(bi)
+
+######
+## update data to fhir format
+######
+@app.route('/basic_info_fhir', methods=['GET']) ##Needs change  to /patient
+def get_client_basic_info_fhir():
+    client_id = request.args['client_id']
+    user_id = request.args['user_id']
+    token = request.args['token']
+    is_active = __parse_bool(request.args['is_active'])
+    bi = con.get_client_basic_info(client_id,user_id,token)
+    contact = con.get_client_contact_info_fhir(client_id, is_active, token)
+
+    #fhir operations
+    p = Patient(id='patient1')                                  
+    identifier = Identifier(
+        type=CodeableConcept(coding=[Coding(system="http://hl7.org/fhir/v2/0203", code="MR")]),
+        system='urn:oid:1.2.36.146.595.217.0.1',
+        value='123456789'
+    )
+    p.identifier = [identifier]
+    p.active = True
+    #name information 
+    name = HumanName()
+    name.use = 'official'
+    name.given = [bi['firstname']]
+    name.family  =  bi['surname'] 
+    p.name = [name]
+    
+    #gender
+    p.gender = bi['gender']
+
+    #address (from contactInfo)
+    address = Address()
+    address.city = contact[0][0]['city']
+    address.use = contact[0][0]['address_type']
+    address.city = contact[0][0]['city']
+    address.country = contact[0][0]['country']
+    address.postalCode = contact[0][0]['postal_code']
+    address.line = [contact[0][0]['street_number']+' '+ contact[0][0]['street_name']+' '+ contact[0][0]['street_type']]
+    p.address = [address] 
+
+    #telecom (from contactInfo)
+    phone = ContactPoint()
+    phone.system = 'phone'
+    phone.value = contact[1][0]['number']
+    phone.use = contact[1][0]['type']
+    email = ContactPoint()
+    email.system = 'email'
+    email.value = contact[2][0]
+    p.telecom = [phone, email]
+
+    #contact persons (caregiver)
+    
+    return p.dumps('json')
+
 
 @app.route('/health_profile', methods=['GET'])
 def get_client_health_profile():
