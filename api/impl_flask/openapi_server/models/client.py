@@ -15,7 +15,7 @@ class Client(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, client_id=None, firstname=None, surname=None, gender=None, dob=None, service_language=None, profile_start_date=None, profile_end_date=None):  # noqa: E501
+    def __init__(self, client_id=None, firstname=None, surname=None, gender=None, dob=None, service_language=None, start_date=None, end_date=None):  # noqa: E501
         """Client - a model defined in OpenAPI
 
         :param client_id: The client_id of this Client.  # noqa: E501
@@ -30,10 +30,10 @@ class Client(Model):
         :type dob: date
         :param service_language: The service_language of this Client.  # noqa: E501
         :type service_language: str
-        :param profile_start_date: The profile_start_date of this Client.  # noqa: E501
-        :type profile_start_date: date
-        :param profile_end_date: The profile_end_date of this Client.  # noqa: E501
-        :type profile_end_date: date
+        :param start_date: The start_date of this Client.  # noqa: E501
+        :type start_date: date
+        :param end_date: The end_date of this Client.  # noqa: E501
+        :type end_date: date
         """
         self.openapi_types = {
             'client_id': str,
@@ -42,8 +42,8 @@ class Client(Model):
             'gender': str,
             'dob': date,
             'service_language': str,
-            'profile_start_date': date,
-            'profile_end_date': date
+            'start_date': date,
+            'end_date': date
         }
 
         self.attribute_map = {
@@ -53,8 +53,8 @@ class Client(Model):
             'gender': 'gender',
             'dob': 'dob',
             'service_language': 'service_language',
-            'profile_start_date': 'profile_start_date',
-            'profile_end_date': 'profile_end_date'
+            'start_date': 'start_date',
+            'end_date': 'end_date'
         }
 
         self._client_id = client_id
@@ -63,8 +63,8 @@ class Client(Model):
         self._gender = gender
         self._dob = dob
         self._service_language = service_language
-        self._profile_start_date = profile_start_date
-        self._profile_end_date = profile_end_date
+        self._start_date = start_date
+        self._end_date = end_date
 
     @classmethod
     def from_dict(cls, dikt) -> 'Client':
@@ -204,47 +204,47 @@ class Client(Model):
         self._service_language = service_language
 
     @property
-    def profile_start_date(self):
-        """Gets the profile_start_date of this Client.
+    def start_date(self):
+        """Gets the start_date of this Client.
 
         a new client profile may start when they change names or gender  # noqa: E501
 
-        :return: The profile_start_date of this Client.
+        :return: The start_date of this Client.
         :rtype: date
         """
-        return self._profile_start_date
+        return self._start_date
 
-    @profile_start_date.setter
-    def profile_start_date(self, profile_start_date):
-        """Sets the profile_start_date of this Client.
+    @start_date.setter
+    def start_date(self, start_date):
+        """Sets the start_date of this Client.
 
         a new client profile may start when they change names or gender  # noqa: E501
 
-        :param profile_start_date: The profile_start_date of this Client.
-        :type profile_start_date: date
+        :param start_date: The start_date of this Client.
+        :type start_date: date
         """
 
-        self._profile_start_date = profile_start_date
+        self._start_date = start_date
 
     @property
-    def profile_end_date(self):
-        """Gets the profile_end_date of this Client.
+    def end_date(self):
+        """Gets the end_date of this Client.
 
         a client profile may end when they change names or gender  # noqa: E501
 
-        :return: The profile_end_date of this Client.
+        :return: The end_date of this Client.
         :rtype: date
         """
-        return self._profile_end_date
+        return self._end_date
 
-    @profile_end_date.setter
-    def profile_end_date(self, profile_end_date):
-        """Sets the profile_end_date of this Client.
+    @end_date.setter
+    def end_date(self, end_date):
+        """Sets the end_date of this Client.
 
         a client profile may end when they change names or gender  # noqa: E501
 
-        :param profile_end_date: The profile_end_date of this Client.
-        :type profile_end_date: date
+        :param end_date: The end_date of this Client.
+        :type end_date: date
         """
 
-        self._profile_end_date = profile_end_date
+        self._end_date = end_date

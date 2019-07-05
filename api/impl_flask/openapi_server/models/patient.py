@@ -15,7 +15,7 @@ class Patient(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, client_id=None, firstname=None, surname=None, gender=None, dob=None, service_language=None, profile_start_date=None, profile_end_date=None, health_card_number=None, active_primary_physician_id=None, dietary_regimen=None, advance_directives=None):  # noqa: E501
+    def __init__(self, client_id=None, firstname=None, surname=None, gender=None, dob=None, service_language=None, start_date=None, end_date=None, health_card_number=None, active_primary_physician_id=None, dietary_regimen=None, advance_directives=None):  # noqa: E501
         """Patient - a model defined in OpenAPI
 
         :param client_id: The client_id of this Patient.  # noqa: E501
@@ -30,10 +30,10 @@ class Patient(Model):
         :type dob: date
         :param service_language: The service_language of this Patient.  # noqa: E501
         :type service_language: str
-        :param profile_start_date: The profile_start_date of this Patient.  # noqa: E501
-        :type profile_start_date: date
-        :param profile_end_date: The profile_end_date of this Patient.  # noqa: E501
-        :type profile_end_date: date
+        :param start_date: The start_date of this Patient.  # noqa: E501
+        :type start_date: date
+        :param end_date: The end_date of this Patient.  # noqa: E501
+        :type end_date: date
         :param health_card_number: The health_card_number of this Patient.  # noqa: E501
         :type health_card_number: str
         :param active_primary_physician_id: The active_primary_physician_id of this Patient.  # noqa: E501
@@ -50,8 +50,8 @@ class Patient(Model):
             'gender': str,
             'dob': date,
             'service_language': str,
-            'profile_start_date': date,
-            'profile_end_date': date,
+            'start_date': date,
+            'end_date': date,
             'health_card_number': str,
             'active_primary_physician_id': str,
             'dietary_regimen': List[DietaryRegimen],
@@ -65,8 +65,8 @@ class Patient(Model):
             'gender': 'gender',
             'dob': 'dob',
             'service_language': 'service_language',
-            'profile_start_date': 'profile_start_date',
-            'profile_end_date': 'profile_end_date',
+            'start_date': 'start_date',
+            'end_date': 'end_date',
             'health_card_number': 'health_card_number',
             'active_primary_physician_id': 'active_primary_physician_id',
             'dietary_regimen': 'dietary_regimen',
@@ -79,8 +79,8 @@ class Patient(Model):
         self._gender = gender
         self._dob = dob
         self._service_language = service_language
-        self._profile_start_date = profile_start_date
-        self._profile_end_date = profile_end_date
+        self._start_date = start_date
+        self._end_date = end_date
         self._health_card_number = health_card_number
         self._active_primary_physician_id = active_primary_physician_id
         self._dietary_regimen = dietary_regimen
@@ -224,50 +224,50 @@ class Patient(Model):
         self._service_language = service_language
 
     @property
-    def profile_start_date(self):
-        """Gets the profile_start_date of this Patient.
+    def start_date(self):
+        """Gets the start_date of this Patient.
 
         a new client profile may start when they change names or gender  # noqa: E501
 
-        :return: The profile_start_date of this Patient.
+        :return: The start_date of this Patient.
         :rtype: date
         """
-        return self._profile_start_date
+        return self._start_date
 
-    @profile_start_date.setter
-    def profile_start_date(self, profile_start_date):
-        """Sets the profile_start_date of this Patient.
+    @start_date.setter
+    def start_date(self, start_date):
+        """Sets the start_date of this Patient.
 
         a new client profile may start when they change names or gender  # noqa: E501
 
-        :param profile_start_date: The profile_start_date of this Patient.
-        :type profile_start_date: date
+        :param start_date: The start_date of this Patient.
+        :type start_date: date
         """
 
-        self._profile_start_date = profile_start_date
+        self._start_date = start_date
 
     @property
-    def profile_end_date(self):
-        """Gets the profile_end_date of this Patient.
+    def end_date(self):
+        """Gets the end_date of this Patient.
 
         a client profile may end when they change names or gender  # noqa: E501
 
-        :return: The profile_end_date of this Patient.
+        :return: The end_date of this Patient.
         :rtype: date
         """
-        return self._profile_end_date
+        return self._end_date
 
-    @profile_end_date.setter
-    def profile_end_date(self, profile_end_date):
-        """Sets the profile_end_date of this Patient.
+    @end_date.setter
+    def end_date(self, end_date):
+        """Sets the end_date of this Patient.
 
         a client profile may end when they change names or gender  # noqa: E501
 
-        :param profile_end_date: The profile_end_date of this Patient.
-        :type profile_end_date: date
+        :param end_date: The end_date of this Patient.
+        :type end_date: date
         """
 
-        self._profile_end_date = profile_end_date
+        self._end_date = end_date
 
     @property
     def health_card_number(self):

@@ -75,17 +75,25 @@ def get_client_basic_info(client_id,user_id,token):
         bi = firebase.get_client_basic_info(client_id, user_id)
     return bi
 
+def update_service_language(client_id, service_language,token):
+    if verify_ticket(client_id, token):
+        message = firebase.update_service_language(client_id, service_language)
+    return message
+
 def get_client_health_profile(client_id,token):
     if verify_ticket(client_id, token):
         hplist_dto = firebase.get_client_health_profile(client_id)
-        return [H.to_dict() for H in hplist_dto]
+        return hplist_dto
+        #return [H.to_dict() for H in hplist_dto]
     else:
         raise Exception('invalid token')
 
 def get_client_contact_info(client_id,is_active,token):
     if verify_ticket(client_id, token):
-        addresses = [a.to_dict() for a in firebase.get_address(is_active,client_id)]
-        phone_numbers = [p.to_dict() for p in firebase.get_phone_number(is_active,client_id)]
+        addresses = firebase.get_address(is_active,client_id)
+        phone_numbers = firebase.get_phone_number(is_active,client_id)
+        # addresses = [a.to_dict() for a in firebase.get_address(is_active,client_id)]
+        # phone_numbers = [p.to_dict() for p in firebase.get_phone_number(is_active,client_id)]
         emails = firebase.get_email_address(is_active,client_id)
         contact_info = [('addresses',addresses),('phone_numbers',phone_numbers),('emails',emails)]
         return contact_info
@@ -95,7 +103,8 @@ def get_client_contact_info(client_id,is_active,token):
 
 def get_client_caregiver_info(client_id,is_active,token):
     if verify_ticket(client_id, token):
-        caregivers = [c.to_dict() for c in firebase.get_care_givers(client_id, is_active)]
+        # caregivers = [c.to_dict() for c in firebase.get_care_givers(client_id, is_active)]
+        caregivers = firebase.get_care_givers(client_id, is_active)
         return caregivers
     else:
         raise Exception('invalid token')
@@ -115,24 +124,19 @@ def get_client_physicians(client_id,episode_type,token):
 def get_client_episodes(client_id,token, episode_type = 'All'):
     if verify_ticket(client_id, token):
         episodes_dict = firebase.get_client_episodes(client_id,episode_type)
-        output_dict = {K: {
-            'episode': V[0].to_dict(), 
-            'hic': V[1].to_dict(), 
-            'dr': V[2].to_dict()} for K,V in episodes_dict.items()}
+        # output_dict = {K: {
+        #     'episode': V[0].to_dict(), 
+        #     'hic': V[1].to_dict(), 
+        #     'dr': V[2].to_dict()} for K,V in episodes_dict.items()}
         
-        return output_dict
+        return episodes_dict
     else:
         raise Exception('invalid token')
 
 def get_client_episodes_in_range(client_id,token, start_date, end_date= datetime.datetime.now):
     if verify_ticket(client_id, token):
         episodes_dict = firebase.get_client_episodes_in_range(client_id, start_date,end_date)
-        output_dict = {K: {
-            'episode': V[0].to_dict(), 
-            'hic': V[1].to_dict(), 
-            'dr': V[2].to_dict()} for K,V in episodes_dict.items()}
-        
-        return output_dict
+        return episodes_dict
     else:
         raise Exception('invalid token')
 

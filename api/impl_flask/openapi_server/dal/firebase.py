@@ -5,6 +5,8 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 from passlib.hash import sha256_crypt
+from datetime import date
+
 
 from google.cloud import firestore as fs
 
@@ -87,39 +89,49 @@ def get_client_basic_info(client_id, user_id):
         return bi
     except Exception as e:
         print(e)
-        print('No such document!')
     
+def update_service_language(client_id, service_language):
+    try:
+        query_ref = client_ref.where('client_id','==',client_id)
+        c_list = list(query_ref.get())
+        c = c_list[0]
+        document_id = c.id
+        cd = c.to_dict()
+        cd['service_language']=service_language
+        client_ref.document(document_id).set(cd)
+        return 'Service language updated successfully :-D'
+    except Exception as e:
+        print (e)
 
 def get_client_health_profile(client_id):
     health_profiles = []
     try:
         query_ref = h_profile_ref.where('client_id','==',client_id)
-        # .where('end_date','==','2200-01-01')
         hp_list = list(query_ref.get())
         if len(hp_list) >= 1:
             for hp in hp_list:
                 hp_dict = hp.to_dict()
-                health_profile = HealthProfile(
-                    health_profile_id=hp_dict['health_profile_id'], 
-                    client_id=hp_dict['client_id'], 
-                    name=hp_dict['name'], 
-                    code=hp_dict['code'], 
-                    start_date=hp_dict['start_date'], 
-                    end_date=hp_dict['end_date'], 
-                    diagnosing_healthcare_provider_id=hp_dict['diagnosing_healthcare_provider_id'], 
-                    is_activity_impediment=hp_dict['is_activity_impediment'], 
-                    is_risk_and_safety_issue=hp_dict['is_risk_and_safety_issue'], 
-                    is_allergy=hp_dict['is_allergy'], 
-                    is_health_condition=hp_dict['is_health_condition']
-                    )        
-                
-                health_profiles.append(health_profile)
+                # if hp_dict.get('end_date') == None:
+                #     health_profile = HealthProfile(
+                #         health_profile_id=hp_dict['health_profile_id'], 
+                #         client_id=hp_dict['client_id'], 
+                #         name=hp_dict['name'], 
+                #         code=hp_dict['code'], 
+                #         start_date=hp_dict['start_date'], 
+                #         diagnosing_healthcare_provider_id=hp_dict['diagnosing_healthcare_provider_id'], 
+                #         is_activity_impediment=hp_dict['is_activity_impediment'], 
+                #         is_risk_and_safety_issue=hp_dict['is_risk_and_safety_issue'], 
+                #         is_allergy=hp_dict['is_allergy'], 
+                #         is_health_condition=hp_dict['is_health_condition']
+                #     )                       
+                    # health_profiles.append(health_profile)
+                health_profiles.append(hp_dict)
             return health_profiles
         else:
             print('No health profile found')
             return []
-    except:
-        print('could not connect to database')
+    except Exception as e:
+        print(e)
         raise
 
 def get_address(is_active, client_id= None, healthcare_provider_id= None ):
@@ -136,23 +148,24 @@ def get_address(is_active, client_id= None, healthcare_provider_id= None ):
         if len(address_list)>=1:
             for ad in address_list:
                 ad_dict = ad.to_dict()
-                address = Address(
-                    address_id = ad_dict['contact_id'],
-                    address_type=ad_dict['type'],
-                    client_id=ad_dict['client_id'],
-                    healthcare_provider_id=ad_dict['healthcare_provider_id'],
-                    is_active=ad_dict['is_active'],
-                    start_date=ad_dict['start_date'],
-                    end_date=ad_dict['end_date'],
-                    country=ad_dict['country'],
-                    city=ad_dict['city'],
-                    street_type=ad_dict['street_type'],
-                    street_name=ad_dict['street_name'],
-                    street_number=ad_dict['street_number'],
-                    unit_number=ad_dict['unit_number'],
-                    postal_code=ad_dict['postal_code']
-                )
-                addresses.append(address)
+                # if ad_dict.get('end_date') == None:
+                #     address = Address(
+                #         address_id = ad_dict['contact_id'],
+                #         address_type=ad_dict['type'],
+                #         client_id=ad_dict['client_id'],
+                #         healthcare_provider_id=ad_dict['healthcare_provider_id'],
+                #         is_active=ad_dict['is_active'],
+                #         start_date=ad_dict['start_date'],
+                #         country=ad_dict['country'],
+                #         city=ad_dict['city'],
+                #         street_type=ad_dict['street_type'],
+                #         street_name=ad_dict['street_name'],
+                #         street_number=ad_dict['street_number'],
+                #         unit_number=ad_dict['unit_number'],
+                #         postal_code=ad_dict['postal_code']
+                #     )
+                #     addresses.append(address)
+                addresses.append(ad_dict)
             return addresses
         else:
             print('No address found')
@@ -175,18 +188,19 @@ def get_phone_number(is_active, client_id= None, healthcare_provider_id= None):
         if len(phone_list)>=1:
             for nu in phone_list:
                 nu_dict = nu.to_dict()
-                phone = PhoneNumber(
-                    phone_num_id = nu_dict['contact_id'],
-                    type=nu_dict['type'],
-                    client_id=nu_dict['client_id'],
-                    healthcare_provider_id=nu_dict['healthcare_provider_id'],
-                    is_active=nu_dict['is_active'],
-                    start_date=nu_dict['start_date'],
-                    end_date=nu_dict['end_date'],
-                    country_code=nu_dict['country_code'],
-                    number=nu_dict['number']
-                )
-                numbers.append(phone)
+                # if nu_dict.get('end_date') == None:
+                #     phone = PhoneNumber(
+                #         phone_num_id = nu_dict['contact_id'],
+                #         type=nu_dict['type'],
+                #         client_id=nu_dict['client_id'],
+                #         healthcare_provider_id=nu_dict['healthcare_provider_id'],
+                #         is_active=nu_dict['is_active'],
+                #         start_date=nu_dict['start_date'],
+                #         country_code=nu_dict['country_code'],
+                #         number=nu_dict['number']
+                #     )
+                #     numbers.append(phone)
+                numbers.append(nu_dict)
             return numbers
         else:
             print('No phone number found')
@@ -227,21 +241,22 @@ def get_care_givers(client_id,is_active):
         if len(caregiver_list)>= 1:
             for cg in caregiver_list:
                 cg_dict = cg.to_dict()
-                caregiver = Caregiver(
-                    client_id = cg_dict['client_id'],
-                    firstname = cg_dict['firstname'],
-                    surname = cg_dict['surname'],
-                    gender = cg_dict['gender'],
-                    dob = cg_dict['dob'],
-                    service_language = cg_dict['service_language'],
-                    profile_start_date = cg_dict['profile_start_date'],
-                    profile_end_date = cg_dict['profile_end_date'],
-                    relationship = cg_dict['relationship'],
-                    is_active = cg_dict['is_active'],
-                    is_primary_caregiver = cg_dict['is_primary_caregiver'],
-                    caregiver_of_client_id = cg_dict['caregiver_of_client_id']
-                )
-                caregivers.append(caregiver)
+                # if cg_dict.get('end_date') == None:
+                    # caregiver = Caregiver(
+                    #     client_id = cg_dict['client_id'],
+                    #     firstname = cg_dict['firstname'],
+                    #     surname = cg_dict['surname'],
+                    #     gender = cg_dict['gender'],
+                    #     dob = cg_dict['dob'],
+                    #     service_language = cg_dict['service_language'],
+                    #     start_date = cg_dict['start_date'],
+                    #     relationship = cg_dict['relationship'],
+                    #     is_active = cg_dict['is_active'],
+                    #     is_primary_caregiver = cg_dict['is_primary_caregiver'],
+                    #     caregiver_of_client_id = cg_dict['caregiver_of_client_id']
+                    # )
+                    # caregivers.append(caregiver)
+                caregivers.append(cg_dict)
             return caregivers
         else:
             print('no caregiver found')
@@ -252,7 +267,7 @@ def get_care_givers(client_id,is_active):
 
 def get_client_episodes(client_id, episode_type='All'):
     try: 
-        episodes = {}
+        episodes = []
         
         if episode_type == 'All':
            query_ref = episode_ref.where('client_id','==',client_id)
@@ -261,47 +276,21 @@ def get_client_episodes(client_id, episode_type='All'):
         else:
             query_ref = episode_ref.where('client_id','==',client_id).where('episode_type','==',episode_type)
         
-        caregiver_list = list(query_ref.get())
-        if len(caregiver_list)>=1:
-            for e in caregiver_list:
+        episodes_list = list(query_ref.get())
+        if len(episodes_list)>=1:
+            for e in episodes_list:
                 e_dict = e.to_dict()
-                episode = Episode(
-                    episode_id = e_dict['episode_id'],
-                    client_id = e_dict['client_id'],
-                    healthcare_provider_id = e_dict['healthcare_provider_id'],
-                    start_date = e_dict['start_date'],
-                    end_date = e_dict['end_date'],
-                    is_active = e_dict['is_active'],
-                    episode_type = e_dict['episode_type'],
-                    physician_id = e_dict['physician_id']
-                )
                 
-                hicl = list(hic_ref.where('hic_id','==',episode.healthcare_provider_id).get())
-                if len(hicl)>=1:
-                    hicd = hicl[0].to_dict()
-                    hic = HCO(
-                        healthcare_provider_id = hicd['hic_id'],
-                        name = hicd['name'],
-                        start_date = hicd['start_date'],
-                        end_date = hicd['end_date'],
-                        bin = hicd['bin'],
-                        organization_type = hicd['organization_type']
-                    )
-
-                drl = list(hic_ref.where('hic_id','==',episode.physician_id).get())
+                hicl = list(hic_ref.where('hic_id','==',e_dict['healthcare_provider_id']).get())
+                hicd = hicl[0].to_dict()
+                data = {'Healthcare_provider_name': hicd['name']}
+                e_dict.update(data)
+                    
+                drl = list(hic_ref.where('hic_id','==',e_dict['physician_id']).get())
                 drd = drl[0].to_dict()
-                dr = Physician(
-                    healthcare_provider_id=drd['hic_id'], 
-                    name=drd['name'], 
-                    start_date=drd['start_date'], 
-                    end_date=drd['end_date'], 
-                    firstname=drd['firstname'], 
-                    surname=drd['surname'], 
-                    specialty=drd['specialty'], 
-                    license_number=drd['license_number'], 
-                    license_date=drd['license_date']
-                )
-                episodes[episode.episode_id] = (episode,hic,dr)
+                data = {'Physician name': drd['name']}
+                e_dict.update(data)
+                episodes.append(e_dict)
             return episodes
         else: 
             print('no episode found!')
@@ -312,7 +301,7 @@ def get_client_episodes(client_id, episode_type='All'):
 
 def get_client_episodes_in_range(client_id,start_date,end_date, episode_type='All'):
     try: 
-        episodes = {}
+        episodes = []
         
         if episode_type == 'All':
            query_ref = episode_ref.where('client_id','==',client_id).where('start_date','>=',start_date).where('start_date','<=',end_date)
@@ -321,47 +310,21 @@ def get_client_episodes_in_range(client_id,start_date,end_date, episode_type='Al
         else:
             query_ref = episode_ref.where('client_id','==',client_id).where('episode_type','==',episode_type).where('start_date','>=',start_date).where('start_date','<=',end_date)
         
-        caregiver_list = list(query_ref.get())
-        if len(caregiver_list)>=1:
-            for e in caregiver_list:
+        episodes_list = list(query_ref.get())
+        if len(episodes_list)>=1:
+            for e in episodes_list:
                 e_dict = e.to_dict()
-                episode = Episode(
-                    episode_id = e_dict['episode_id'],
-                    client_id = e_dict['client_id'],
-                    healthcare_provider_id = e_dict['healthcare_provider_id'],
-                    start_date = e_dict['start_date'],
-                    end_date = e_dict['end_date'],
-                    is_active = e_dict['is_active'],
-                    episode_type = e_dict['episode_type'],
-                    physician_id = e_dict['physician_id']
-                )
                 
-                hicl = list(hic_ref.where('hic_id','==',episode.healthcare_provider_id).get())
-                if len(hicl)>=1:
-                    hicd = hicl[0].to_dict()
-                    hic = HCO(
-                        healthcare_provider_id = hicd['hic_id'],
-                        name = hicd['name'],
-                        start_date = hicd['start_date'],
-                        end_date = hicd['end_date'],
-                        bin = hicd['bin'],
-                        organization_type = hicd['organization_type']
-                    )
-
-                drl = list(hic_ref.where('hic_id','==',episode.physician_id).get())
+                hicl = list(hic_ref.where('hic_id','==',e_dict['healthcare_provider_id']).get())
+                hicd = hicl[0].to_dict()
+                data = {'Healthcare_provider_name': hicd['name']}
+                e_dict.update(data)
+                    
+                drl = list(hic_ref.where('hic_id','==',e_dict['physician_id']).get())
                 drd = drl[0].to_dict()
-                dr = Physician(
-                    healthcare_provider_id=drd['hic_id'], 
-                    name=drd['name'], 
-                    start_date=drd['start_date'], 
-                    end_date=drd['end_date'], 
-                    firstname=drd['firstname'], 
-                    surname=drd['surname'], 
-                    specialty=drd['specialty'], 
-                    license_number=drd['license_number'], 
-                    license_date=drd['license_date']
-                )
-                episodes[episode.episode_id] = (episode,hic,dr)
+                data = {'Physician name': drd['name']}
+                e_dict.update(data)
+                episodes.append(e_dict)
             return episodes
         else: 
             print('no episode found!')

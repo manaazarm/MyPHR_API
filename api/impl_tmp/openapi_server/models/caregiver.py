@@ -15,7 +15,7 @@ class Caregiver(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, client_id=None, firstname=None, surname=None, gender=None, dob=None, service_language=None, profile_start_date=None, profile_end_date=None, relationship=None, is_active=None, is_primary_caregiver=None, caregiver_of_client_id=None):  # noqa: E501
+    def __init__(self, client_id=None, firstname=None, surname=None, gender=None, dob=None, service_language=None, start_date=None, end_date=None, relationship=None, is_active=None, is_primary_caregiver=None, caregiver_of_client_id=None):  # noqa: E501
         """Caregiver - a model defined in OpenAPI
 
         :param client_id: The client_id of this Caregiver.  # noqa: E501
@@ -30,10 +30,10 @@ class Caregiver(Model):
         :type dob: date
         :param service_language: The service_language of this Caregiver.  # noqa: E501
         :type service_language: str
-        :param profile_start_date: The profile_start_date of this Caregiver.  # noqa: E501
-        :type profile_start_date: date
-        :param profile_end_date: The profile_end_date of this Caregiver.  # noqa: E501
-        :type profile_end_date: date
+        :param start_date: The start_date of this Caregiver.  # noqa: E501
+        :type start_date: date
+        :param end_date: The end_date of this Caregiver.  # noqa: E501
+        :type end_date: date
         :param relationship: The relationship of this Caregiver.  # noqa: E501
         :type relationship: str
         :param is_active: The is_active of this Caregiver.  # noqa: E501
@@ -50,8 +50,8 @@ class Caregiver(Model):
             'gender': str,
             'dob': date,
             'service_language': str,
-            'profile_start_date': date,
-            'profile_end_date': date,
+            'start_date': date,
+            'end_date': date,
             'relationship': str,
             'is_active': bool,
             'is_primary_caregiver': bool,
@@ -65,8 +65,8 @@ class Caregiver(Model):
             'gender': 'gender',
             'dob': 'dob',
             'service_language': 'service_language',
-            'profile_start_date': 'profile_start_date',
-            'profile_end_date': 'profile_end_date',
+            'start_date': 'start_date',
+            'end_date': 'end_date',
             'relationship': 'relationship',
             'is_active': 'is_active',
             'is_primary_caregiver': 'is_primary_caregiver',
@@ -79,8 +79,8 @@ class Caregiver(Model):
         self._gender = gender
         self._dob = dob
         self._service_language = service_language
-        self._profile_start_date = profile_start_date
-        self._profile_end_date = profile_end_date
+        self._start_date = start_date
+        self._end_date = end_date
         self._relationship = relationship
         self._is_active = is_active
         self._is_primary_caregiver = is_primary_caregiver
@@ -224,50 +224,50 @@ class Caregiver(Model):
         self._service_language = service_language
 
     @property
-    def profile_start_date(self):
-        """Gets the profile_start_date of this Caregiver.
+    def start_date(self):
+        """Gets the start_date of this Caregiver.
 
         a new client profile may start when they change names or gender  # noqa: E501
 
-        :return: The profile_start_date of this Caregiver.
+        :return: The start_date of this Caregiver.
         :rtype: date
         """
-        return self._profile_start_date
+        return self._start_date
 
-    @profile_start_date.setter
-    def profile_start_date(self, profile_start_date):
-        """Sets the profile_start_date of this Caregiver.
+    @start_date.setter
+    def start_date(self, start_date):
+        """Sets the start_date of this Caregiver.
 
         a new client profile may start when they change names or gender  # noqa: E501
 
-        :param profile_start_date: The profile_start_date of this Caregiver.
-        :type profile_start_date: date
+        :param start_date: The start_date of this Caregiver.
+        :type start_date: date
         """
 
-        self._profile_start_date = profile_start_date
+        self._start_date = start_date
 
     @property
-    def profile_end_date(self):
-        """Gets the profile_end_date of this Caregiver.
+    def end_date(self):
+        """Gets the end_date of this Caregiver.
 
         a client profile may end when they change names or gender  # noqa: E501
 
-        :return: The profile_end_date of this Caregiver.
+        :return: The end_date of this Caregiver.
         :rtype: date
         """
-        return self._profile_end_date
+        return self._end_date
 
-    @profile_end_date.setter
-    def profile_end_date(self, profile_end_date):
-        """Sets the profile_end_date of this Caregiver.
+    @end_date.setter
+    def end_date(self, end_date):
+        """Sets the end_date of this Caregiver.
 
         a client profile may end when they change names or gender  # noqa: E501
 
-        :param profile_end_date: The profile_end_date of this Caregiver.
-        :type profile_end_date: date
+        :param end_date: The end_date of this Caregiver.
+        :type end_date: date
         """
 
-        self._profile_end_date = profile_end_date
+        self._end_date = end_date
 
     @property
     def relationship(self):

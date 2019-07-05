@@ -403,11 +403,11 @@ components:
           format: date
         service_language:
           type: string
-        profile_start_date:
+        start_date:
           description: a new client profile may start when they change names or gender
           type: string
           format: date
-        profile_end_date:
+        end_date:
           description: a client profile may end when they change names or gender
           type: string
           format: date

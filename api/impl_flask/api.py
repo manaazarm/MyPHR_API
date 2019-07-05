@@ -48,6 +48,14 @@ def get_client_basic_info():
     bi = con.get_client_basic_info(client_id,user_id,token)
     return jsonify(bi)
 
+@app.route('/service_language', methods=['POST'])
+def edit_client_service_language():
+    client_id = request.args['client_id']
+    service_language = request.args['service_language']
+    token = request.args['token']
+    message = con.update_service_language(client_id, service_language,token)
+    return message
+
 @app.route('/health_profile', methods=['GET'])
 def get_client_health_profile():
     client_id = request.args['client_id']
