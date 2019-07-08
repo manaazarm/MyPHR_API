@@ -177,7 +177,7 @@ def edit_caregiver_contacts(client_id, token, category,field,text,contact_type,i
     try:
         if verify_ticket(client_id, token):
             ci = firebase.edit_caregiver_contacts(client_id, category,field,text,contact_type,is_primary)
-            return ci
+            return ci  
     except Exception as e:
         print(e)
 

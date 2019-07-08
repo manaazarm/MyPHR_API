@@ -338,9 +338,20 @@ def edit_caregivers(client_id, name, relationship, is_primary):
         #find the matching record and end it
         query_ref = client_ref.where('caregiver_of_client_id','==',client_id).where('is_active','==',True).where('is_primary','==',is_primary)
         c_list = list(query_ref.get())
-        c = c_list[0]
-        document_id = c.id
-        cd = c.to_dict()
+        if len(c_list)>0:
+            c = c_list[0]
+            cd = c.to_dict()
+            caregiver_client_id = cd['client_id']
+        # otherwise create a new record
+        else:
+        #create a new caregiver client
+            data={
+                'caregiver_of_client_id': client_id,
+                'client_id': str(uuid.uuid4()),
+                'is_active': True,
+                'is_primary': is_primary,
+                
+            }
         cd['end_date']=date.today().strftime('%d-%b-%Y (%H:%M:%S.%f)')
         cd['is_active']=False
         client_ref.document(document_id).set(cd)
@@ -362,13 +373,18 @@ def edit_caregivers(client_id, name, relationship, is_primary):
         print (e)
 
 def edit_caregiver_contacts(client_id, category,field,text,contact_type, is_primary):
-    #find the matching record and end it
+    #if the client has a caregiver, find the record
     query_ref = client_ref.where('caregiver_of_client_id','==',client_id).where('is_active','==',True).where('is_primary','==', is_primary)
     c_list = list(query_ref.get())
-    c = c_list[0]
-    cd = c.to_dict()
-    caregiver_client_id = cd['client_id']
-    return edit_client_contact_info(caregiver_client_id, category,field,text,contact_type)
+    caregiver_client_id=''
+    if len(c_list)>0:
+        c = c_list[0]
+        cd = c.to_dict()
+        caregiver_client_id = cd['client_id']
+        message = edit_client_contact_info(caregiver_client_id, category,field,text,contact_type)
+        return message
+    else:
+        return 'No caregiver found!'
 
         
 
