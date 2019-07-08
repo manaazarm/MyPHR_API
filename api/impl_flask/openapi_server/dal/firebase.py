@@ -338,36 +338,37 @@ def edit_caregivers(client_id, name, relationship, is_primary):
         #find the matching record and end it
         query_ref = client_ref.where('caregiver_of_client_id','==',client_id).where('is_active','==',True).where('is_primary','==',is_primary)
         c_list = list(query_ref.get())
+        cd = {}
         if len(c_list)>0:
             c = c_list[0]
+            document_id = c.id
             cd = c.to_dict()
-            caregiver_client_id = cd['client_id']
-        # otherwise create a new record
+            cd['end_date']=date.today().strftime('%d-%b-%Y (%H:%M:%S.%f)')
+            cd['is_active']=False
+            client_ref.document(document_id).set(cd)
+        
+        #add a new record with the new info
+            data = {
+                'caregiver_of_client_id': client_id,
+                'client_id': cd['client_id'],
+                'is_active': True,
+                'is_primary_caregive': is_primary,
+                'name': name,
+                'relationship': relationship,
+                'start_date': date.today().strftime('%d-%b-%Y (%H:%M:%S.%f)')
+            }
+            client_ref.add(data)
         else:
-        #create a new caregiver client
-            data={
+            data = {
                 'caregiver_of_client_id': client_id,
                 'client_id': str(uuid.uuid4()),
                 'is_active': True,
-                'is_primary': is_primary,
-                
+                'is_primary_caregive': is_primary,
+                'name': name,
+                'relationship': relationship,
+                'start_date': date.today().strftime('%d-%b-%Y (%H:%M:%S.%f)')
             }
-        cd['end_date']=date.today().strftime('%d-%b-%Y (%H:%M:%S.%f)')
-        cd['is_active']=False
-        client_ref.document(document_id).set(cd)
-        
-        #add a new record with the new info
-        data = {
-            'caregiver_of_client_id': client_id,
-            'client_id': cd['client_id'],
-            'is_active': True,
-            'is_primary_caregive': is_primary,
-            'name': name,
-            'relationship': relationship,
-            'start_date': date.today().strftime('%d-%b-%Y (%H:%M:%S.%f)')
-        }
-        client_ref.add(data)
-        
+            client_ref.add(data)
         return 'caregiver updated successfully :-D'
     except Exception as e:
         print (e)
