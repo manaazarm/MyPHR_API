@@ -134,11 +134,20 @@ def get_client_episodes(client_id,token, episode_type = 'All'):
         raise Exception('invalid token')
 
 def get_client_episodes_in_range(client_id,token, start_date, end_date= datetime.datetime.now):
-    if verify_ticket(client_id, token):
-        episodes_dict = firebase.get_client_episodes_in_range(client_id, start_date,end_date)
-        return episodes_dict
-    else:
-        raise Exception('invalid token')
+    try:
+        if verify_ticket(client_id, token):
+            episodes_dict = firebase.get_client_episodes_in_range(client_id, start_date,end_date)
+            return episodes_dict
+    except Exception as e:
+        print(e)
+
+def add_diet(client_id, diet,token):
+    try:
+        if verify_ticket(client_id, token):
+            diet_dict = firebase.add_diet(client_id, diet)
+            return diet_dict
+    except Exception as e:
+        print(e)
 
 if __name__ == '__main__':
     print("[main] reached here")
