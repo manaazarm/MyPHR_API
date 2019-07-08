@@ -118,7 +118,23 @@ def add_client_advance_directive(client_id):
     message = con.add_advance_directive(client_id, ad, token)
     return message
 
+@app.route('/client/<client_id>/edit_contact_info', methods=['POST'])
+def edit_client_contact(client_id):
+    category = request.args['category']
+    field = ''
+    if category == 'email':
+        field = 'email'
+    elif category == 'phone':
+        field = 'number'
+    elif category == 'address': 
+        field = 'address'
+    text = request.args['text']
+    token = request.args['token']
+    contact_type = request.args['type']
+    message = con.edit_client_contact_info(client_id, token, category,field,text,contact_type)
+    return message
 
+# @app.route()
 
 
 app.run()

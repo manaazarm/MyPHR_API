@@ -304,5 +304,37 @@ def add_advance_directive(client_id, ad):
         return '{} advance directive is successfully added!'.format(ad)
     except Exception as e:
         print(e)
+    
+
+def edit_client_contact_info(client_id, category,field,text,contact_type):
+    
+        query_ref = contact_info_ref.where('client_id','==',client_id).where('category','==',category).where('type','==',contact_type).where('is_active','==',True)
+        c_list = list(query_ref.get())
+        # if there is already a document of that type and category, we end it
+        if len(c_list) == 1:
+            # finding the current record and end it
+            c = c_list[0]
+            document_id = c.id
+            cd = c.to_dict()
+            cd['end_date']=date.today().strftime('%d-%b-%Y (%H:%M:%S.%f)')
+            cd['is_active']=False
+            contact_info_ref.document(document_id).set(cd)
+
+        # add a new record for the new phone number
+        data = {
+            'client_id' : client_id,
+            'contact_id' :str(uuid.uuid4()),
+            field: text,
+            'is_active':True,
+            'start_date': date.today().strftime('%d-%b-%Y (%H:%M:%S.%f)'),
+            'type':contact_type,
+            'category' : category
+        }
+        contact_info_ref.add(data)
+        return 'contact successfully updated!'
+
+
+
+        
 
 
