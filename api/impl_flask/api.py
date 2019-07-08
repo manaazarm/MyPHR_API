@@ -111,7 +111,12 @@ def edit_client_diet(client_id):
     message = con.add_diet(client_id, diet,token)
     return message
 
-
+@app.route('/client/<client_id>/add_advance_directive', methods=['POST'])
+def add_client_advance_directive(client_id):
+    ad = request.args['advance_directive']
+    token = request.args['token']
+    message = con.add_advance_directive(client_id, ad, token)
+    return message
 
 
 

@@ -149,5 +149,14 @@ def add_diet(client_id, diet,token):
     except Exception as e:
         print(e)
 
+def add_advance_directive (client_id, ad,token):
+    try:
+        if verify_ticket(client_id, token):
+            ad_dict = firebase.add_advance_directive(client_id, ad)
+            return ad_dict
+    except Exception as e:
+        print(e)
+
+
 if __name__ == '__main__':
     print("[main] reached here")

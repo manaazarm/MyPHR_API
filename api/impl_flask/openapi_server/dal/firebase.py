@@ -291,4 +291,18 @@ def add_diet(client_id, diet):
     except Exception as e:
         print(e)
 
+def add_advance_directive(client_id, ad):
+    try: 
+        data = {
+            'health_profile_id': str(uuid.uuid4()),
+            'client_id': client_id,
+            'start_date': date.today().strftime('%d-%b-%Y (%H:%M:%S.%f)'),
+            'type': 'Advance Directive',
+            'name': ad
+        }
+        h_profile_ref.add(data)
+        return '{} advance directive is successfully added!'.format(ad)
+    except Exception as e:
+        print(e)
+
 
