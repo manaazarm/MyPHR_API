@@ -134,7 +134,32 @@ def edit_client_contact(client_id):
     message = con.edit_client_contact_info(client_id, token, category,field,text,contact_type)
     return message
 
-# @app.route()
+@app.route('/client/<client_id>/edit_caregivers', methods=['POST'])
+def edit_client_contact(client_id):
+    token = request.args['token']
+    is_primary = request.args['is_primary']
+    name = request.args['name']
+    relationship = request.args['relationship']
+    is_primary = __parse_bool(request.args['is_primary'])
+    message = con.edit_caregivers(client_id, token, name, relationship, is_primary)
+    return message
+    
+@app.route('/client/<client_id>/edit_caregiver_contacts', methods=['POST'])
+def edit_client_contact(client_id):
+    category = request.args['category']
+    field = ''
+    if category == 'email':
+        field = 'email'
+    elif category == 'phone':
+        field = 'number'
+    elif category == 'address': 
+        field = 'address'
+    text = request.args['text']
+    token = request.args['token']
+    contact_type = request.args['type']
+    is_primary = request.args['is_primary']
+    message = con.edit_caregiver_contacts(client_id, token, category,field,text,contact_type,is_primary)
+    return message
 
 
 app.run()

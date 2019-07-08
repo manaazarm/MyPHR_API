@@ -165,5 +165,22 @@ def edit_client_contact_info(client_id, token, category,field,text,contact_type)
     except Exception as e:
         print(e)
 
+def edit_caregivers(client_id, token, name, relationship, is_primary):
+    try:
+        if verify_ticket(client_id, token):
+            ci = firebase.edit_caregivers(client_id, name, relationship, is_primary)
+            return ci
+    except Exception as e:
+        print(e)
+
+def edit_caregiver_contacts(client_id, token, category,field,text,contact_type,is_primary):
+    try:
+        if verify_ticket(client_id, token):
+            ci = firebase.edit_caregiver_contacts(client_id, category,field,text,contact_type,is_primary)
+            return ci
+    except Exception as e:
+        print(e)
+
+
 if __name__ == '__main__':
     print("[main] reached here")
