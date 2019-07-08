@@ -5,6 +5,7 @@ from openapi_server.models import *
 import controller_impl as con 
 from datetime import date
 from datetime import datetime
+import openapi_server.dal.firebase as firebase
 
 
 app = flask.Flask(__name__)
@@ -38,7 +39,10 @@ def __parse_bool(s):
 def authenticate():
     username = request.args['username']
     password = request.args['password']
-    return jsonify(con.get_authenticated(username, password))
+    a = con.get_authenticated(username, password)
+    cred = jsonify(a)
+    firebase.add_audit_trail(a['client_id'], a['token'], 'login attempt', a['user_id'])
+    return cred
 
 @app.route('/basic_info', methods=['GET'])
 def get_client_basic_info():

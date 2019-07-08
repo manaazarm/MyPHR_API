@@ -38,6 +38,7 @@ contact_info_ref = db.collection('contact_info')
 episode_ref = db.collection('episodes')
 hic_ref = db.collection('hic')
 
+
 def get_user(username, password):
     #grabs the user matching this username and password from the database
     try:
@@ -388,5 +389,18 @@ def edit_caregiver_contacts(client_id, category,field,text,contact_type, is_prim
         return 'No caregiver found!'
 
         
-
+def add_audit_trail(client_id, token, accessed_content, user_id = None):
+    try:
+        data = {
+            'audit_id': str(uuid.uuid4()),
+            'client_id': client_id,
+            'user_id': user_id,
+            'accessed_with_token': token,
+            'access_date': date.today().strftime('%d-%b-%Y (%H:%M:%S.%f)'),
+            'accessed_content': accessed_content
+        }
+        audit_ref.add(data)
+        return 'audit trail recorded successfully'
+    except Exception as e:
+        return e
 
