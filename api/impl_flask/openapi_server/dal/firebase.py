@@ -170,7 +170,7 @@ def get_email_address(is_active, client_id= None, healthcare_provider_id= None):
         if len(email_list)>=1:
             for em in email_list:
                 email_dict = em.to_dict()
-                email = email_dict['email_address']
+                email = email_dict['email']
                 emails.append(email)
             return emails
         else:
@@ -220,7 +220,7 @@ def get_client_episodes(client_id, episode_type='All'):
                     
                 drl = list(hic_ref.where('hic_id','==',e_dict['physician_id']).get())
                 drd = drl[0].to_dict()
-                data = {'Physician name': drd['name']}
+                data = {'physician_name': drd['name']}
                 e_dict.update(data)
                 episodes.append(e_dict)
             return episodes
@@ -254,7 +254,7 @@ def get_client_episodes_in_range(client_id,start_date,end_date, episode_type='Al
                     
                 drl = list(hic_ref.where('hic_id','==',e_dict['physician_id']).get())
                 drd = drl[0].to_dict()
-                data = {'Physician name': drd['name']}
+                data = {'physician_name': drd['name']}
                 e_dict.update(data)
                 episodes.append(e_dict)
             return episodes
@@ -353,7 +353,7 @@ def edit_caregivers(client_id, name, relationship, is_primary):
                 'caregiver_of_client_id': client_id,
                 'client_id': cd['client_id'],
                 'is_active': True,
-                'is_primary_caregive': is_primary,
+                'is_primary': is_primary,
                 'name': name,
                 'relationship': relationship,
                 'start_date': date.today().strftime('%d-%b-%Y (%H:%M:%S.%f)')
@@ -364,7 +364,7 @@ def edit_caregivers(client_id, name, relationship, is_primary):
                 'caregiver_of_client_id': client_id,
                 'client_id': str(uuid.uuid4()),
                 'is_active': True,
-                'is_primary_caregive': is_primary,
+                'is_primary': is_primary,
                 'name': name,
                 'relationship': relationship,
                 'start_date': date.today().strftime('%d-%b-%Y (%H:%M:%S.%f)')
