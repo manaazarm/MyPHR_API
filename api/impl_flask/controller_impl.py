@@ -109,6 +109,16 @@ def get_client_caregiver_info(client_id,is_active,token):
     else:
         raise Exception('invalid token')
 
+def get_client_caregiver_contact_info(client_id, is_active, token, caregiver_client_id):
+    if verify_ticket(client_id, token):
+        addresses = firebase.get_address(is_active,caregiver_client_id)
+        phone_numbers = firebase.get_phone_number(is_active,caregiver_client_id)
+        emails = firebase.get_email_address(is_active,caregiver_client_id)
+        contact_info = [('addresses',addresses),('phone_numbers',phone_numbers),('emails',emails)]
+        return contact_info
+    else:
+        raise Exception('invalid token')
+
 def get_client_physicians(client_id,episode_type,token):
     if verify_ticket(client_id, token):
         episodes_dict = firebase.get_client_episodes(client_id,episode_type)

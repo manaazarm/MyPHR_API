@@ -75,6 +75,15 @@ def get_caregiver_info():
     cgs= con.get_client_caregiver_info(client_id, is_active, token)
     return jsonify(cgs)
 
+@app.route('/caregiver_contact_info', methods=['GET'])
+def get_caregiver_contact_info():
+    client_id = request.args['client_id']
+    token = request.args['token']
+    caregiver_client_id = request.args['caregiver_client_id']
+    is_active = __parse_bool(request.args['is_active'])
+    cgs= con.get_client_caregiver_contact_info(client_id, is_active, token, caregiver_client_id)
+    return jsonify(cgs)
+
 @app.route('/physician', methods=['GET'])
 def get_client_physicians():
     client_id = request.args['client_id']
@@ -164,5 +173,9 @@ def edit_caregiver_contact(client_id):
     message = con.edit_caregiver_contacts(client_id, token, category,field,text,contact_type,is_primary)
     return message
 
+@app.route('/createuser', methods=['POST'])
+def create_a_new_user(username, password, name, email, hcn):
+
+    return ''
 
 app.run()
