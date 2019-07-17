@@ -178,4 +178,9 @@ def create_a_new_user(username, password, name, email, hcn):
 
     return ''
 
-app.run()
+@app.route("/")
+def hello():
+    return "<h1 style='color:blue'>Hello</h1>"
+
+if __name__ == '__main__':
+    app.run()

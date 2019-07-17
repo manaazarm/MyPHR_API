@@ -24,8 +24,22 @@ from openapi_server.models.organization_type import OrganizationType
 from openapi_server.models.hco import HCO
 from openapi_server.models.physician import Physician
 
+def sniff_credential_path():
+    cert_targets = [
+        'myphr-api-firebase-adminsdk-qfh5m-73a706148a.json', 
+        '/Users/mana/Dropbox/UO_Shared_With_Mana/Prototype Stuff/myphr-api-firebase-adminsdk-qfh5m-73a706148a.json']
+    cred_path = None
+    for C in cert_targets:
+        if os.path.exists(C):
+            cred_path = C
+    if not cred_path:
+        raise FileNotFoundError('could not load myphr-api-firebase-adminsdk-qfh5m-73a706148a.json: not found')
+    else:
+        loaded_cred = credentials.Certificate(cred_path)
+    return loaded_cred
 
-cred = credentials.Certificate('/Users/mana/Dropbox/UO_Shared_With_Mana/Prototype Stuff/myphr-api-firebase-adminsdk-qfh5m-73a706148a.json')
+
+cred = sniff_credential_path()
 default_app = firebase_admin.initialize_app(cred)
 
 db = firestore.client()

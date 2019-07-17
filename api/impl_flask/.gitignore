@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# firebase auth
+myphr-api-firebase-*.json
+
 # C extensions
 *.so
 
