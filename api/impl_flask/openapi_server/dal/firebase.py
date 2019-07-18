@@ -70,7 +70,7 @@ def get_user(username, password):
                     created_date=doc_dict['created_date'],
                     hcn=doc_dict['hcn'],
                     password=doc_dict['password'],
-                    status=doc_dict['status'],
+                    status=doc_dict['is_active'],
                     type=doc_dict['type'])
                 return user
             else:
