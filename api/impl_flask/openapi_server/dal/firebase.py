@@ -418,3 +418,7 @@ def add_audit_trail(client_id, token, accessed_content, user_id = None):
     except Exception as e:
         return e
 
+
+
+
+

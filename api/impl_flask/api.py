@@ -173,11 +173,6 @@ def edit_caregiver_contact(client_id):
     message = con.edit_caregiver_contacts(client_id, token, category,field,text,contact_type,is_primary)
     return message
 
-@app.route('/createuser', methods=['POST'])
-def create_a_new_user(username, password, name, email, hcn):
-
-    return ''
-
 @app.route("/")
 def hello():
     return "<h1 style='color:blue'>Hello</h1>"
