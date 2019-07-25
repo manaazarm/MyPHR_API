@@ -179,6 +179,13 @@ def edit_caregiver_contact(client_id):
     message = con.edit_caregiver_contacts(client_id, token, category,field,text,contact_type,is_primary)
     return message
 
+@app.route("/client/<client_id>/add_episode", methods=['POST'])
+def add_client_episode(client_id):
+    token = request.args['token']
+    attributes = request.json
+    message = con.add_episode(client_id, token, attributes)
+    return message
+
 @app.route("/")
 def hello():
     return "<h1 style='color:blue'>Hello</h1>"

@@ -236,6 +236,23 @@ def get_client_episodes(client_id, episode_type='All'):
                 drd = drl[0].to_dict()
                 data = {'physician_name': drd['name']}
                 e_dict.update(data)
+
+                addobj = contact_info_ref.where('healthcare_provider_id','==',e_dict['healthcare_provider_id']).where('category','==','address').where('is_active','==',True)
+                addres = addobj.get()
+                addl = list(addres)
+                if len(addl) > 0:
+                    addi = addl[0].to_dict()
+                    data = {'address': addi['address']}
+                    e_dict.update(data)
+
+                phoobj = contact_info_ref.where('healthcare_provider_id','==',e_dict['healthcare_provider_id']).where('category','==','phone').where('is_active','==',True)
+                phores = phoobj.get()
+                phol=list(phores)
+                if len(phol)>0:
+                    phod = phol[0].to_dict()
+                    data = {'number': phod['number']} 
+                    e_dict.update(data)
+
                 episodes.append(e_dict)
             return episodes
         else: 
@@ -418,7 +435,9 @@ def add_audit_trail(client_id, token, accessed_content, user_id = None):
     except Exception as e:
         return e
 
-
+def add_episode(client_id, attributes):
+    message = ''
+    return message
 
 
 
