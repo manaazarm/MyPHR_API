@@ -21,7 +21,7 @@ then: python3 api.py
 
 ## glcoud builds
 
-    gcloud builds submit --tag gcr.io/myphr-api/myphr
+    gcloud builds submit --tag gcr.io/myphr-api/myphr && \
     gcloud beta run deploy --image gcr.io/myphr-api/myphr
 
     
